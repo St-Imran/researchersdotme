@@ -1,0 +1,15 @@
+footer{
+    background-color: black;
+    padding: 100px 0px;
+    text-align: center;
+    color: #fff;
+}
+footer h2{
+    margin-bottom: 40px;
+}
+.social__icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
