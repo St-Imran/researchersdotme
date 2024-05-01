@@ -1,0 +1,36 @@
+.hero__wrapper{
+    display: flex;
+    justify-content: center;
+    padding: 170px 0px;
+    background: url(./assets/img/worldmap3.png) no-repeat center top;
+    background-size: contain;
+    animation: world 25s linear 2s infinite forwards alternate;
+}
+@keyframes world {
+    from{
+        background-position: left center;
+    }
+    to{
+        background-position: right center;
+    }
+}
+.hero__wrapper > div{
+    width: 41%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+.hero__wrapper .text h1{
+    font-size: 55px;
+    font-weight: 800;
+}
+.hero__wrapper .text p{
+    font-size: 18px;
+    line-height: 28px;
+}
+.hero__wrapper .frame img{
+    width: 400px;
+    height: 320px;
+}

@@ -1,5 +1,9 @@
 .footer__top{
     background-color: black;
+    background-image: url(../../../../public/snake_4-1536x1351.webp);
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
     color: white;
     padding: 100px 50px;
     display: flex;
@@ -30,6 +34,10 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding: 20px;
+    background-color: #144c8985;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 .footer__top form input, .footer__top form textarea{
     padding: 10px;
@@ -41,6 +49,8 @@
     resize: none;
     transition: all 0.4s;
     border: 2px solid transparent;
+    background-color: #144c8985;
+    backdrop-filter: blur(10px);
 }
 .footer__top form input:hover, .footer__top form textarea:hover{
     transform: translateX(5px);
@@ -51,12 +61,13 @@
 .footer__top form input:hover::placeholder, .footer__top form textarea:hover::placeholder{
     color: white;
 }
+.footer__top form input::placeholder, .footer__top form textarea::placeholder{
+    color: white;
+}
 .footer__top form input[type='submit']{
-    background-color: #fff;
-    color: black;
+    color: rgb(255, 255, 255);
     transition: all 0.3s;
 }
 .footer__top form input[type='submit']:hover{
     background-color: #000;
-    color: #fff;
 }
