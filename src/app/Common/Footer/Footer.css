@@ -1,8 +1,14 @@
-footer{
+.footer__main{
     background-color: black;
+    background-image: url(../../../../public/snake_4-1536x1351.webp);
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+footer{
     padding: 100px 0px;
     text-align: center;
-    color: #fff;
 }
 footer h2{
     margin-bottom: 40px;

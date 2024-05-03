@@ -1,7 +1,9 @@
+import FooterTop from '../FooterTop/FooterTop';
 import './Footer.css'
 function Footer() {
     return (
-        <>
+        <div className='footer__main'>
+            <FooterTop/>
             <footer>
                 <h2>FOLLOW US</h2>
                 <div className="social__icons">
@@ -25,7 +27,7 @@ function Footer() {
                     </svg>
                 </div>
             </footer>
-        </>
+        </div>
     )
 }
 export default Footer;
