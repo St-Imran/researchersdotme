@@ -39,3 +39,47 @@ header .contact-link a{
 header .contact-link svg{
     margin-right: 10px;
 }
+header .buttons{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+header .toggleButton{
+    display: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px){
+    header ul{
+        flex-direction: column;
+    }
+    header nav{
+        position: absolute;
+        top: 100%;
+        background-color: darkgreen;
+        width: 100%;
+        left: -100%;
+        opacity: 0;
+        transition: all 0.3s ease-out;
+    }
+    header nav.open{
+        opacity: 1;
+        left: 0px;
+    }
+    header nav ul{
+        flex-direction: column;
+    }
+    header nav ul li{
+        width: 100%;
+        transition: all 0.4s;
+    }
+    header nav ul li:hover{
+        padding-left: 20px;
+        transform: translateX(20px);
+    }
+    header .toggleButton{
+        order: 2;
+        display: block;
+        visibility: visible;
+    }
+}

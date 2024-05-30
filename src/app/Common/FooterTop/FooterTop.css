@@ -30,8 +30,9 @@
     flex-direction: column;
     gap: 5px;
     padding: 20px;
-    background-color: #144c8985;
-    backdrop-filter: blur(10px);
+    background-color: #89ffc26c;
+    /* background-color: #144c8985; */
+    backdrop-filter: blur(30px);
     border-radius: 10px;
 }
 .footer__top form input, .footer__top form textarea{
@@ -44,8 +45,8 @@
     resize: none;
     transition: all 0.4s;
     border: 2px solid transparent;
-    background-color: #144c8985;
-    backdrop-filter: blur(10px);
+    background-color: transparent;
+    backdrop-filter: blur(30px);
 }
 .footer__top form input:hover, .footer__top form textarea:hover{
     transform: translateX(5px);
@@ -65,4 +66,15 @@
 }
 .footer__top form input[type='submit']:hover{
     background-color: #000;
+}
+
+
+@media only screen and (max-width: 1200px){
+    .footer__top{
+        flex-direction: column;
+    }
+    .footer__top > div{
+        width: 90%;
+        margin: auto;
+    }
 }

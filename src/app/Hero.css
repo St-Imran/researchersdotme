@@ -1,10 +1,7 @@
 .hero__wrapper{
     display: flex;
     justify-content: center;
-    padding: 170px 0px;
-    background: url(./assets/img/worldmap3.png) no-repeat center top;
-    background-size: contain;
-    animation: world 25s linear 2s infinite forwards alternate;
+    /* animation: world 25s linear 2s infinite forwards alternate; */
 }
 .hero__wrapper.no__img{
     background-image: url('');
@@ -74,5 +71,16 @@
     }
     .hero__wrapper.no__img p{
         text-align: justify;
+    }
+}
+@media only screen and (max-width:1200px){
+    .hero__wrapper{
+        flex-direction: column;
+        gap: 30px;
+    }
+    .hero__wrapper > div{
+        width: 80%;
+        margin: auto;
+        text-align: center;
     }
 }

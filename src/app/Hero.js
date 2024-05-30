@@ -7,9 +7,28 @@ function Hero() {
         '/img/crousel_image_2.jpeg',
         '/img/crousel_image_3.jpeg'
     ];
+    const styles = {
+        gradiant: {
+            padding: "200px 0px",
+            background: `linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)`
+        },
+        gradiant2: {
+            padding: "200px 0px",
+            background: 'linear-gradient(45deg,#ffde00,#00d1c3)',
+        }
+    }
     return (
         <>
-            <section className="hero__wrapper">
+            <section className="hero__wrapper" style={{...(styles.gradiant), marginTop: '90px'}}>
+                <div className='text'>
+                    <h1>REMOVE GUESSWORK AND MAKE THE RIGHT DECISION</h1>
+                    <p>Welcome To Researchers! We Help You Unlock Your Business Potentials Through Our <strong>"ProfitPulse"</strong> Approach, With Zero Data Pollution.</p>
+                </div>
+                <div className='frame'>
+                    <Crousel  imageUrls={imageUrls}/>
+                </div>
+            </section>
+            <section className="hero__wrapper" style={styles.gradiant2}>
                 <div className='text'>
                     <h1>REMOVE GUESSWORK AND MAKE THE RIGHT DECISION</h1>
                     <p>Welcome To Researchers! We Help You Unlock Your Business Potentials Through Our <strong>"ProfitPulse"</strong> Approach, With Zero Data Pollution.</p>
