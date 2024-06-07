@@ -1,4 +1,4 @@
-header{
+.header{
     position: fixed;
     z-index: 100;
     top: 0;
@@ -14,46 +14,46 @@ header{
     box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.319);
     transition: height .3s linear, top .3s linear;
 }
-header ul{
+.header ul{
     list-style: none;
     display: flex;
     justify-content: center;
 }
-header ul li, header .contact-link {
+.header ul li, .header .contact-link {
     padding: 20px;
     transition: all 0.4s;
 }
-header ul li.dropdown::after{
+.header ul li.dropdown::after{
     content: '>';
     transform: rotate(90deg);
 }
-header .contact-link:hover{
+.header .contact-link:hover{
     background-color: black;
     color: white;
     transform: scale(1.1);
 }
-header .contact-link a{
+.header .contact-link a{
     display: flex; 
     align-items: center;
 }
-header .contact-link svg{
+.header .contact-link svg{
     margin-right: 10px;
 }
-header .buttons{
+.header .buttons{
     display: flex;
     align-items: center;
     gap: 30px;
 }
-header .toggleButton{
+.header .toggleButton{
     display: none;
     cursor: pointer;
 }
 
 @media only screen and (max-width: 1200px){
-    header ul{
+    .header ul{
         flex-direction: column;
     }
-    header nav{
+    .header nav{
         position: absolute;
         top: 100%;
         background-color: darkgreen;
@@ -62,22 +62,22 @@ header .toggleButton{
         opacity: 0;
         transition: all 0.3s ease-out;
     }
-    header nav.open{
+    .header nav.open{
         opacity: 1;
         left: 0px;
     }
-    header nav ul{
+    .header nav ul{
         flex-direction: column;
     }
-    header nav ul li{
+    .header nav ul li{
         width: 100%;
         transition: all 0.4s;
     }
-    header nav ul li:hover{
+    .header nav ul li:hover{
         padding-left: 20px;
         transform: translateX(20px);
     }
-    header .toggleButton{
+    .header .toggleButton{
         order: 2;
         display: block;
         visibility: visible;

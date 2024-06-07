@@ -1,7 +1,7 @@
-import './FixedButton.css'
+import styles from './FixedButton.module.css'
 function FixedButton(){
     return (
-        <a href="/contact-us" className="fixedButton">
+        <a href="/contact-us" className={styles.fixedButton}>
             Contact Us
         </a>
     )

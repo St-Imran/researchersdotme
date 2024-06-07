@@ -1,6 +1,5 @@
 import React from "react";
-import Title from "../../Common/Title/Title";
-import "./About.css";
+import styles from "./about.module.css";
 
 const About = () => {
   return (
@@ -9,11 +8,11 @@ const About = () => {
         text="ABOUT US"
         img="https://www.researchers.me/wp-content/uploads/2023/06/pexels-aleksandar-pasaric-2603464.png"
       /> */}
-      <div className="about__main">
-        <div className="container">
-          <div className="about__wrapper">
+      <div className={styles.about__main}>
+        <div className={styles.container}>
+          <div className={styles.about__wrapper}>
             <div>
-              <h2 className="page-banner__title">WHAT DO WE DO?</h2>
+              <h2 className={styles.page_banner__title}>WHAT DO WE DO?</h2>
               <p style={{ mt: "4" }}>
                 We provide a wide range of solutions to investors, business
                 startups seeking to establish a company with a talented team and
@@ -39,9 +38,9 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="our__uniqueness">
-        <div className="container">
-          <div className="uniqueness">
+      <div className={styles.our__uniqueness}>
+        <div className={styles.container}>
+          <div className={styles.uniqueness}>
             <div>
               <h2>Our Uniqueness</h2>
               <p>
@@ -51,7 +50,7 @@ const About = () => {
             </div>
             <div></div>
           </div>
-          <div className="about__services">
+          <div className={styles.about__services}>
             <div>
               <h3>Customer satisfaction and transparency</h3>
               <p>
@@ -79,7 +78,7 @@ const About = () => {
               </p>
             </div>
           </div>
-          <div className="uniqueness second">
+          <div className={`${styles.uniqueness} ${styles.second}`}>
             <div>
               <h2>Our Approach To Work</h2>
               <p>
@@ -94,7 +93,7 @@ const About = () => {
             </div>
             <div></div>
           </div>
-          <div className="about__options">
+          <div className={styles.about__options}>
           <h5><span>Ask questions</span></h5>
           <h5><span>Identify the problem.</span></h5>
           <h5><span>Define the sample.</span></h5>

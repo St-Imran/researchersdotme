@@ -1,4 +1,4 @@
-* {
+.about__main * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -131,7 +131,7 @@
 .about__options h5:hover span{
     background-size: 100% 1.5px;
 }
-button {
+.about__main button {
     background-color: #ffde00;
     padding: 15px 30px;
     cursor: pointer;
@@ -145,7 +145,7 @@ button {
     margin-bottom: 60px;
 }
 
-.page-banner__title::after {
+.page_banner__title::after {
     content: "";
     display: block;
     width: 100px;

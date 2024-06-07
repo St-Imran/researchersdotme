@@ -1,8 +1,8 @@
-import './FooterTop.css'
+import styles from './FooterTop.module.css'
 function FooterTop(){
     return (
-        <section className='footer__top'>
-            <div className="form">
+        <section className={styles.footer__top}>
+            <div className={styles.form}>
                 <h2>CONTACT US</h2>
                 <form action="">
                     <input type="text" placeholder='Name' />
@@ -12,7 +12,7 @@ function FooterTop(){
                     <input type="submit" value={'Send'}/>
                 </form>
             </div>
-            <div className="tech">
+            <div className={styles.tech}>
                 <h2>TECHNOLOGIES</h2>
                 <nav>
                     <ul>
@@ -30,7 +30,7 @@ function FooterTop(){
                     </ul>
                 </nav>
             </div>
-            <div className="service">
+            <div className={styles.service}>
                 <h2></h2>
                 <nav>
                     <ul>
@@ -42,7 +42,7 @@ function FooterTop(){
                     </ul>
                 </nav>
             </div>
-            <div className="address"></div>
+            <div className={styles.address}></div>
         </section>
     )
 }

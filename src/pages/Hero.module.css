@@ -7,9 +7,9 @@
     background-image: url('');
     padding:100px 200px
 }
-::selection{
+/* ::selection{
     background-color: #ff6a00b7;
-}
+} */
 @keyframes world {
     from{
         background-position: left center;

@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 
-import "./Hamberger.css";
+import styles from "./Hamberger.module.css";
 
 const Hamberger = (props) => {
     
@@ -13,7 +13,7 @@ const Hamberger = (props) => {
   };
 
   return (
-    <div id="nav-icon3" className={isOpen ? "open" : ""} onClick={toggleHandler}>
+    <div id="nav-icon3" className={isOpen ? styles.open : ""} onClick={toggleHandler}>
       <span></span>
       <span></span>
       <span></span>
