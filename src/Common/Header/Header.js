@@ -32,13 +32,16 @@ function Header() {
             <Link href="/contact">Contact Us</Link>
           </li>
           <li>
-            <Link href="/blog">Blog</Link>
+            <Link href="/blogs">Blogs</Link>
           </li>
           <li>
             <Link href="/news">News & Report</Link>
           </li>
           <li>
             <Link href="/cases">Case Studies</Link>
+          </li>
+          <li>
+            <Link href="/ckEditor">Write here</Link>
           </li>
         </ul>
       </nav>
