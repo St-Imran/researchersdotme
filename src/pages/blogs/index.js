@@ -1,5 +1,10 @@
 export default function Blogs () {
+    const styles = {
+        main:{
+            minHeight: '95vh'
+        }
+    }
     return (
-        <div> Here in Blogs page </div>
+        <div style={styles.main}> Here in Blogs page </div>
     );
 }

@@ -13,7 +13,7 @@ const Hamberger = (props) => {
   };
 
   return (
-    <div id="nav-icon3" className={isOpen ? styles.open : ""} onClick={toggleHandler}>
+    <div id={styles.navicon} className={`nav-icon3 ${isOpen ? styles.open : ""}`} onClick={toggleHandler}>
       <span></span>
       <span></span>
       <span></span>

@@ -7,7 +7,7 @@ export default function Home(props) {
   return (
     <>
       <Header />
-      <div style={{ paddingTop: '140px' }}>
+      <div style={{ paddingTop: '85px' }}>
         <Component />
       </div>
       <Footer />

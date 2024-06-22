@@ -15,7 +15,7 @@
 }
 .uniqueness > div{
     padding: 20px;
-    width: 50%;
+    width: 100%;
 }
 .about__main::before {
     content: '';
@@ -58,17 +58,12 @@
 }
 .uniqueness {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin-bottom: 60px;
 }
-.uniqueness p{
-    font-size: 2.125rem;
-    line-height: 3.0625rem;
-    font-weight: 300;
-    letter-spacing: .54px;
-}
 .about__wrapper img{
-    width: calc(100% + 30%);
+    width: 100%;
     height: 100%;
 }
 .uniqueness.second > div:nth-of-type(1){
@@ -131,19 +126,7 @@
 .about__options h5:hover span{
     background-size: 100% 1.5px;
 }
-.about__main button {
-    background-color: #ffde00;
-    padding: 15px 30px;
-    cursor: pointer;
-    font-size: 16px;
-    min-width: 188px;
-    border: none;
-    line-height: 23px;
-    color: #000;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 60px;
-}
+
 
 .page_banner__title::after {
     content: "";
@@ -174,7 +157,68 @@
     background: currentColor;
     margin: 24px 0px;
 }
+.cards{
+    display: flex;
+    justify-content: space-between;
+}
+.cards .card{
+    width: 28%;
+    padding: 20px; 
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px 2px gray;
+    text-align: justify;
+    &:hover{
+        box-shadow: 2px 2px 5px 2px gray;
+    }
+}
 
+.card p{
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    font-weight: 300;
+    letter-spacing: 1.54px;
+}
+.about__cta{
+    padding: 100px 80px;
+    background-image: url("https://www.researchers.me/wp-content/uploads/2023/06/pexels-aleksandar-pasaric-2603464.png");
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+.about__cta::before {
+    content: '';
+    background-color: #003;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+.about__cta h2{
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.about__cta p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+.about__cta button {
+    background-color: #ffde00;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 16px;
+    min-width: 188px;
+    border: none;
+    line-height: 23px;
+    color: #000;
+    font-weight: 600;
+    display: block;
+}
 
 @media only screen and (max-width: 1200px){
     .about__options, .about__services{
@@ -199,6 +243,15 @@
     }
     .about__wrapper h2, .uniqueness h2{
         font-size: 2rem;
+    }
+    .cards{
+        flex-direction: column;
+    }
+    .cards .card{
+        width: 98%;
+        &:hover{
+            box-shadow: 2px 2px 5px 2px gray;
+        }
     }
 }
 
