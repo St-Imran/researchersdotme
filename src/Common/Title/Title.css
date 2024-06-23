@@ -1,0 +1,14 @@
+.pageTitle{
+    min-height: 549px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 55px;
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

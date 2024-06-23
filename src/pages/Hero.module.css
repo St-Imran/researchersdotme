@@ -1,0 +1,146 @@
+.hero__wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+    /* animation: world 25s linear 2s infinite forwards alternate; */
+}
+
+.hero__wrapper.no__img {
+    background-image: unset;
+    padding: 100px 0px;
+    text-align: center;
+}
+
+/* ::selection{
+    background-color: #ff6a00b7;
+} */
+@keyframes world {
+    from {
+        background-position: left center;
+    }
+
+    to {
+        background-position: right center;
+    }
+}
+
+.hero__wrapper>div {
+    width: 41%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.hero__wrapper .text {
+    align-items: flex-start;
+}
+
+.hero__wrapper .text h1 {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.hero__wrapper .text p {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.hero__wrapper button {
+    background-color: #ffde00;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 16px;
+    min-width: 188px;
+    border: none;
+    line-height: 23px;
+    color: #000;
+    font-weight: 600;
+}
+
+.about_info_boxes ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0px;
+}
+
+.about_info_boxes ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 47%;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 3px 4px 1px rgba(137, 137, 137, 0.594);
+
+    &:hover {
+        transition: all 0.3s ease;
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero__wrapper .text {
+        align-items: center;
+    }
+
+    .hero__wrapper .text h1 {
+        font-size: 34px;
+    }
+
+    .hero__wrapper {
+        flex-direction: column;
+    }
+
+    .hero__wrapper>div {
+        text-align: center;
+    }
+
+    .hero__wrapper>div,
+    .about_info_boxes ul li {
+        width: 100%;
+    }
+
+    .hero__wrapper.no__img {
+        padding: 0px 20px
+    }
+
+    .hero__wrapper.no__img p {
+        text-align: justify;
+    }
+}
+
+.servicedetails {
+    width: 80%;
+    align-items:center;
+    text-align:center;
+    margin:50px auto;
+}
+
+@media only screen and (max-width:1200px) {
+    .servicedetails {
+        width: 95%;
+    }
+    .hero__wrapper {
+        margin-top: 0px;
+    }
+
+    .hero__wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .hero__wrapper>div {
+        width: 100%;
+        margin: auto;
+        text-align: center;
+    }
+}

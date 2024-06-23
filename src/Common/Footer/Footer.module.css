@@ -1,0 +1,15 @@
+.footer__main{
+    background-color: black;
+    color: #fff;
+    & a{
+        color: inherit;
+        text-decoration: none;
+    }
+}
+.footer__main footer{
+    padding: 100px 0px;
+    text-align: center;
+}
+.footer__main footer h2{
+    margin-bottom: 40px;
+}
