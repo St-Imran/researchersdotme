@@ -4,9 +4,13 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const CKEditorComponent = () => {
   const [editorData, setEditorData] = useState('');
-
+  const styles = {
+    main:{
+        minHeight: '95vh'
+    }
+}
   return (
-    <div>
+    <div style={styles.main}>
       <h2>CKEditor in Next.js</h2>
       <CKEditor
         editor={ClassicEditor}

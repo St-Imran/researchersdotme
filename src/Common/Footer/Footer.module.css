@@ -1,10 +1,10 @@
 .footer__main{
     background-color: black;
-    background-image: url(../../../public/snake_4-1536x1351.webp);
-    background-size: cover;
-    background-position: left center;
-    background-repeat: no-repeat;
     color: #fff;
+    & a{
+        color: inherit;
+        text-decoration: none;
+    }
 }
 .footer__main footer{
     padding: 100px 0px;
@@ -12,10 +12,4 @@
 }
 .footer__main footer h2{
     margin-bottom: 40px;
-}
-.social__icons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
 }

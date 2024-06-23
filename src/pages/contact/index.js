@@ -1,5 +1,10 @@
 export default function ContactUs () {
+    const styles = {
+        main:{
+            minHeight: '95vh'
+        }
+    }
     return (
-        <div> Here in Contact us page </div>
+        <div style={styles.main}> Here in Contact us page </div>
     );
 }
