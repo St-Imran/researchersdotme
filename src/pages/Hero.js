@@ -1,6 +1,6 @@
 // import Crousel from '@/Common/Crousel/Crousel';
 import style from './Hero.module.css';
-
+import {styles} from './Hero.styles'
 
 function Hero() {
     const mainImage = '/img/guessWork.png';
@@ -9,21 +9,13 @@ function Hero() {
     //     '/img/crousel_image_2.jpeg',
     //     '/img/crousel_image_3.jpeg'
     // ];
-    const styles = {
-        gradiant: {
-            padding: "100px 0px",
-            background: `linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)`
-        },
-        gradiant2: {
-            padding: "100px 0px",
-            background: 'linear-gradient(45deg,#ffde00,#00d1c3)',
-        }
-    }
+    
+    
     return (
         <>
             <section className={style.hero__wrapper}>
-                <div className={style.text}>
-                    <h1>REMOVE THE GUESSWORK AND MAKE THE RIGHT DECISION</h1>
+                <div className={style.text} style={styles}>
+                    <h1 style={styles.headingColor}>REMOVE THE GUESSWORK AND MAKE THE RIGHT DECISION</h1>
                     <p>Welcome To Researchers! We Help You Unlock Your Business Potentials Through Our <b>"ProfitPulse"</b> Approach, With Zero Data Pollution.</p>
                     <button>Sign Up</button>
                 </div>
