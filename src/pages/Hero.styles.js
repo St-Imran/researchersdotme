@@ -16,9 +16,6 @@ export const styles = {
         padding: "100px 0px",
         background: 'linear-gradient(45deg,#ffde00,#00d1c3)',
     },
-    headingColor: {
-        color: 'red'
-    },
     sidebarOpen:{
         ...commenbar,
         width: '300px'

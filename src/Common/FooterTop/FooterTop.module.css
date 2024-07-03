@@ -37,6 +37,7 @@
 .footer__top form input, .footer__top form textarea{
     padding: 10px;
     border: 2px solid white;
+    color: #fff;
     outline: none;
     border-radius: 5px;
     font-size: 15px;
@@ -68,6 +69,11 @@
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
+}
+.social__icons > svg:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: all 0.4s ease;
 }
 
 
