@@ -5,12 +5,12 @@ import Link from 'next/link';
 const Card = (props) => {
   let url = 'https://www.researchers.me/wp-content/uploads/2023/08/Australian-Financial-Regulator.png';
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '20px'}}>
       <div className="card">
         <img src={url} alt="" className="bgImg" />
         <div className="backgroundOverlay"></div>
-        <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <h2 className="cardHeading">Australian Financial Regulator Sues eToro Over CFD Product Risks</h2>
+        <div style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'flex-start' }}>
+          <h2 className="cardHeading">Red Flags Raised Over Surging Silver Imports from Dubai via Gift City: Potential Revenue Losses and Trade Conflicts</h2>
           <Link className="button" href="/blogs">
             Read More
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">

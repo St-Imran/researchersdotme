@@ -28,8 +28,13 @@ function Header() {
           <li>
             <Link href="/services">Services</Link>
           </li>
-          <li>
+          <li className="dropdown">
             <Link href="/contact">Contact Us</Link>
+            <div className="dropdown-menu">
+              <ul>
+                <li><Link href='/'>Feasibility Studies</Link></li>
+              </ul>
+            </div>
           </li>
           <li>
             <Link href="/blogs">Blogs</Link>
