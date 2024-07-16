@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.css';
+// import './Card.css';
 import Link from 'next/link';
 
 const Card = (props) => {

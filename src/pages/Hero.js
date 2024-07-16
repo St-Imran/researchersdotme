@@ -2,9 +2,9 @@
 import style from './Hero.module.css';
 import { styles } from './Hero.styles';
 import Classess from './page.module.css';
+import Image from 'next/image';
 
 function Hero() {
-    const mainImage = '/img/guessWork.png';
     // const imageUrls = [
     //     '/img/crousel_image_1.jpeg',
     //     '/img/crousel_image_2.jpeg',
@@ -23,7 +23,9 @@ function Hero() {
                             <button>Sign Up</button>
                         </div>
                         <div className={style.frame}>
-                            <img src={mainImage} alt="" />
+                            <Image src='/guessWork.png' width={400}
+                                height={400}
+                                alt="Picture of the author" />
                         </div>
                     </div>
                 </div>
