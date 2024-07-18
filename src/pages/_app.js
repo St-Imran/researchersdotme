@@ -1,18 +1,18 @@
+// pages/_app.js
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../Common/Header/Header";
 import Footer from "../Common/Footer/Footer";
-import './Component/Card.css'
+import './Component/Card.css';
+import './services/Services.css';
 
-
-
-export default function Home(props) {
-  const { Component } = props;
+export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <Header />
       <div style={{ paddingTop: '85px' }}>
-        <Component />
+        <Component {...pageProps} />
       </div>
       <Footer />
     </>
   );
-} 
+}

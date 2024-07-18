@@ -14,7 +14,7 @@ function Hero() {
 
     return (
         <>
-            <section style={styles.gradiant}>
+            <section style={styles.gradiant2}>
                 <div className={Classess.container}>
                     <div className={style.hero__wrapper}>
                         <div className={style.text} >
@@ -33,8 +33,8 @@ function Hero() {
             <section className={`${style.hero__wrapper} ${style.no__img}`}>
                 <div className={Classess.container}>
                     <div className={style.text}>
-                        <h2>As a full-service agency, we provide qualitative and quantitative research services worldwide.</h2>
-                        <p>Through our well-trained professional researchers, we take the task off your table. At Researchers, we operate a full-service agency. We conduct the feasibility study with a thorough market analysis and customer need using natural field data to make a beneficial decision that propels your business ahead of the competition.</p>
+                        <h2 className='text-light'>As a full-service agency, we provide qualitative and quantitative research services worldwide.</h2>
+                        <p className='text-light'>Through our well-trained professional researchers, we take the task off your table. At Researchers, we operate a full-service agency. We conduct the feasibility study with a thorough market analysis and customer need using natural field data to make a beneficial decision that propels your business ahead of the competition.</p>
                         <button>Schedule a Demo</button>
                     </div>
                     <div className={style.about_info_boxes}>
