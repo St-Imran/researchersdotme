@@ -32,19 +32,24 @@ function Hero() {
             </section>
             <section className={`${style.hero__wrapper} ${style.no__img}`}>
                 <div className={Classess.container}>
-                    <div className={style.text}>
-                        <h2 className='text-light'>As a full-service agency, we provide qualitative and quantitative research services worldwide.</h2>
-                        <p className='text-light'>Through our well-trained professional researchers, we take the task off your table. At Researchers, we operate a full-service agency. We conduct the feasibility study with a thorough market analysis and customer need using natural field data to make a beneficial decision that propels your business ahead of the competition.</p>
-                        <button>Schedule a Demo</button>
+                    <div className="row justify-content-center">
+                        <div className="col-md-8">
+                            <div className={style.text}>
+                                <h2 className='mb-4'>As a full-service agency, we provide qualitative and quantitative research services worldwide.</h2>
+                                <p className='mb-4'>Through our well-trained professional researchers, we take the task off your table. At Researchers, we operate a full-service agency. We conduct the feasibility study with a thorough market analysis and customer need using natural field data to make a beneficial decision that propels your business ahead of the competition.</p>
+                                <button>Schedule a Demo</button>
+                            </div>
+                            <div className={style.about_info_boxes}>
+                                <ul className='mt-5'>
+                                    <li><div>What are your present business bottlenecks?</div></li>
+                                    <li><div>Are you stuck in the middle of making a decision?</div></li>
+                                    <li><div>Do you want to discover why people aren't purchasing your goods and services?</div></li>
+                                    <li><div>Are you interested in introducing a new service, product, or even marketing campaign but need clarification on what your target market wants?</div></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div className={style.about_info_boxes}>
-                        <ul>
-                            <li><div>What are your present business bottlenecks?</div></li>
-                            <li><div>Are you stuck in the middle of making a decision?</div></li>
-                            <li><div>Do you want to discover why people aren't purchasing your goods and services?</div></li>
-                            <li><div>Are you interested in introducing a new service, product, or even marketing campaign but need clarification on what your target market wants?</div></li>
-                        </ul>
-                    </div>
+
                 </div>
             </section>
         </>
