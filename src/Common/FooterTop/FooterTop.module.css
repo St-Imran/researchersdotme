@@ -1,6 +1,6 @@
 .footer__top{
     color: white;
-    padding: 100px 50px;
+    padding: 100px 50px 10px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -21,6 +21,9 @@
 .footer__top > div{
     width: 25%;
     padding: 20px;
+}
+.footer__top > div.form{
+    width: 50%;
 }
 .footer__top > div h2{
     margin-bottom: 10px;
@@ -80,9 +83,13 @@
 @media only screen and (max-width: 1200px){
     .footer__top{
         flex-direction: column;
+        padding: 100px 10px 10px;
     }
     .footer__top > div{
         width: 90%;
         margin: auto;
+    }
+    .footer__top > div.form{
+        width: 100%;
     }
 }

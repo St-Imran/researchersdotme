@@ -14,3 +14,16 @@
 .footer__main footer h2{
     margin-bottom: 40px;
 }
+.address{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    flex-direction: column;
+    padding-bottom:50px ;
+}
+.address > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}

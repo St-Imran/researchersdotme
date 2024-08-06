@@ -114,7 +114,101 @@
     text-align:center;
     margin:50px auto;
 }
+.page_block {
+    position: relative;
+    padding: 40px 0;
+}
+.two_column__header {
+    font-size: 1.375rem;
+    line-height: 1.4545454545;
+    margin-bottom: 20px;
+}
+.two_column__header:after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 6px;
+    background: currentColor;
+    margin-top: 24px;
+}
+.two_column__fwheader{
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 2.875rem;
+    line-height: 3.25rem;
+}
+.two_column__subheading {
+    font-weight: 600;
+    margin-bottom: 1em;
+    text-transform: capitalize;
+}
+.two_column__body p{
+    font-size: 1rem;
+    letter-spacing: .4px;
+    line-height: 1.4375rem;
+    font-weight: 400;
+}
+.page_block__bg_img { 
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.page_block__bg_img img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+}
 
+.forr_cta {
+    display: flex;
+    align-items: center;
+    color: #000;
+    text-decoration: none
+}
+
+.forr_cta>span {
+    position: relative
+}
+
+.forr_cta>span::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width .3s
+}
+.forr_cta:focus>span::after, .forr_cta:hover>span::after {
+    width: 100%;
+}
+
+.forr_cta::after {
+    content: "";
+    display: inline-block;
+    margin-left: 5px;
+    flex: 23px 0 0;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg width='11' height='7' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23000' fill='none' fill-rule='evenodd'%3E%3Cpath d='M.5 3.5h9' stroke-linecap='square'/%3E%3Cpath d='M7.5.5l3 3-3 3'/%3E%3C/g%3E%3C/svg%3E");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #ffde00;
+    background-size: 11px 7px!important;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s,-webkit-transform .3s
+}
+.forr_cta:focus::after, .forr_cta:hover::after {
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+}
 @media only screen and (max-width:1200px) {
     .hero__wrapper .text {
         align-items: center;
@@ -135,5 +229,16 @@
         width: 100%;
         margin: auto;
         text-align: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .two_column_content .row:last_child .two_column__item {
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+    .two_column__header {
+        font-size: 2rem;
+        line-height: 1.0625;
     }
 }
