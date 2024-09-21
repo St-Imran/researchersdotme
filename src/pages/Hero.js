@@ -6,13 +6,17 @@ import Image from 'next/image';
 import HomeCrousel from '../Common/Crousel/HomeCrousel';
 
 function Hero() {
-    // const imageUrls = [
-    //     '/img/crousel_image_1.jpeg',
-    //     '/img/crousel_image_2.jpeg',
-    //     '/img/crousel_image_3.jpeg'
-    // ];
+    const imageUrls = [
+        '/img/crousel_image_1.jpeg',
+        '/img/crousel_image_2.jpeg',
+        '/img/crousel_image_3.jpeg',
+        '/image1.jpeg',
+        '/image2.jpeg',
+        '/image3.jpeg',
+        '/image4.jpeg',
+    ];
 
-
+debugger
     return (
         <>
             <section style={styles.gradiant2}>
@@ -57,7 +61,7 @@ function Hero() {
                 <div className="container">
                     <div className="row">
                         <div className="col overflow-hidden">
-                            <HomeCrousel/>
+                            <HomeCrousel images={imageUrls}/>
                         </div>
                     </div>
                 </div>
