@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
-  const [dragTranslate, setDragTranslate] = useState(0);
+  const [scrollStart, setScrollStart] = useState(0);
   const thumbnailRef = useRef(null);
-  
+
   const thumbnailWidth = 210; // Width of one thumbnail (including margin)
 
   const goToNext = () => {
@@ -25,11 +25,12 @@ const Carousel = ({ images }) => {
   };
 
   const scrollThumbnails = (index) => {
-    const maxScroll = -(images.length - 1) * thumbnailWidth;
-    const newTranslate = Math.max(Math.min(0, -(index * thumbnailWidth)), maxScroll); // Keep within bounds
-    setDragTranslate(newTranslate);
+    const scrollAmount = index * thumbnailWidth;
     if (thumbnailRef.current) {
-      thumbnailRef.current.style.transform = `translateX(${newTranslate}px)`;
+      thumbnailRef.current.scrollTo({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -43,28 +44,26 @@ const Carousel = ({ images }) => {
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setDragStart(e.clientX);
+    if (thumbnailRef.current) {
+      setScrollStart(thumbnailRef.current.scrollLeft);
+    }
   };
 
   const handleMouseMove = (e) => {
-    if (isDragging) {
-      const dragMove = e.clientX - dragStart;
-      const newTranslate = dragTranslate + dragMove;
-      if (thumbnailRef.current) {
-        thumbnailRef.current.style.transform = `translateX(${newTranslate}px)`;
-      }
+    if (isDragging && thumbnailRef.current) {
+      const dragMove = dragStart - e.clientX;
+      thumbnailRef.current.scrollLeft = scrollStart + dragMove;
     }
   };
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    const index = Math.round(-dragTranslate / thumbnailWidth);
-    goToSlide(index); // Snap to the closest thumbnail
   };
 
   return (
-    <div className="carousel" 
-         onMouseLeave={handleMouseUp} // End dragging when leaving the carousel
-         onMouseMove={isDragging ? handleMouseMove : undefined} // Only handle mouse move if dragging
+    <div
+      className="carousel"
+      onMouseMove={isDragging ? handleMouseMove : undefined} // Only handle mouse move if dragging
     >
       {/* Main Image */}
       <div className="main-image">
@@ -81,21 +80,27 @@ const Carousel = ({ images }) => {
 
       {/* Draggable Thumbnails */}
       <div
-        className={`thumbnails ${isDragging ? 'grabbing' : ''}`}
+        className={`thumbnails ${isDragging ? "grabbing" : ""}`}
         ref={thumbnailRef}
         onMouseDown={handleMouseDown} // Start dragging on mouse down
         onMouseUp={handleMouseUp} // Stop dragging on mouse up
-        style={{ cursor: isDragging ? 'grabbing' : 'grab', transition: 'none' }}
+        style={{
+          cursor: isDragging ? "grabbing" : "grab",
+          overflowX: "hidden",
+        }}
       >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`thumbnail ${currentIndex === index ? 'active' : ''}`}
-            onClick={() => goToSlide(index)} // Change image on click
-          >
-            <img src={image} alt={`Thumbnail ${index}`} />
-          </div>
-        ))}
+        <div className="thumbnail-container" style={{ display: "flex" }}>
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`thumbnail ${currentIndex === index ? "active" : ""}`}
+              onClick={() => goToSlide(index)} // Change image on click
+              draggable="false"
+            >
+              <img src={image} alt={`Thumbnail ${index}`} draggable="false" />
+            </div>
+          ))}
+        </div>
       </div>
 
       <style jsx>{`
@@ -106,10 +111,11 @@ const Carousel = ({ images }) => {
 
         .main-image img {
           width: 100%;
-          height: auto;
+          height: 550px;
         }
 
-        .prev, .next {
+        .prev,
+        .next {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
@@ -131,7 +137,12 @@ const Carousel = ({ images }) => {
         .thumbnails {
           display: flex;
           margin-top: 15px;
-          overflow: hidden; /* Prevent overflow when dragging */
+          overflow-x: hidden;
+          transition: all 0.4s ease;
+        }
+
+        .thumbnail-container {
+          display: flex;
         }
 
         .thumbnail {
@@ -145,6 +156,8 @@ const Carousel = ({ images }) => {
           object-fit: cover;
           opacity: 0.6;
           transition: opacity 0.3s ease;
+          pointer-events: none;
+          user-select: none;
         }
 
         .thumbnail.active img {

@@ -28,14 +28,16 @@ const styles = {
     maxWidth: "50px",
   },
 };
-const Services = () => {
+const MarketResearchAndMeasurement = () => {
   return (
     <>
       <div style={styles.main}>
         <div className="container">
           <div className="row">
             <div className="col text-center my-5">
-              <h1 className="display-4 font-weight-bolder">Our Services</h1>
+              <h1 className="display-4 font-weight-bolder">
+                Market Research And Measurement
+              </h1>
               <p className="lead">
                 Lorem ipsum dolor sit amet at enim hac integer volutpat maecenas
                 pulvinar.
@@ -50,15 +52,13 @@ const Services = () => {
               >
                 <div className="card-img-overlay d-flex flex-column">
                   <div className="card-body">
-                    <small className="card-meta mb-2">
-                      Unraveling practicality
-                    </small>
+                    <small className="card-meta mb-2">Mystery Shopping</small>
                     <h4 className="card-title mt-0 ">
                       <Link
                         className="text-dark"
-                        href="/services/innerPages/feasibilityStudies"
+                        href="/services/innerPages/mystreyShopping"
                       >
-                        FEASIBILITY STUDIES
+                        Mystery Shopping
                       </Link>
                     </h4>
                     <small>
@@ -69,14 +69,14 @@ const Services = () => {
                   <div className="card-footer">
                     <div className="media">
                       <Link
-                        href="/services/innerPages/feasibilityStudies"
+                        href="/services/innerPages/mystreyShopping"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">FEASIBILITY STUDIES</small>
+                        <small className="text-dark">Mystery Shopping</small>
                       </Link>
                     </div>
                   </div>
@@ -101,9 +101,9 @@ const Services = () => {
                     <h4 className="card-title mt-0 ">
                       <Link
                         className="text-dark"
-                        href="/services/innerPages/dataStoryTelling"
+                        href="/services/innerPages/customerExperienceAndHappiness"
                       >
-                        Data Story Telling
+                        Customers Experience And Happiness
                       </Link>
                     </h4>
                     <small>
@@ -114,14 +114,16 @@ const Services = () => {
                   <div className="card-footer">
                     <div className="media">
                       <Link
-                        href="/services/innerPages/dataStoryTelling"
+                        href="/services/innerPages/customerExperienceAndHappiness"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">Data Story Telling</small>
+                        <small className="text-dark">
+                          Customers Experience And Happiness
+                        </small>
                       </Link>
                     </div>
                   </div>
@@ -148,9 +150,9 @@ const Services = () => {
                     <h4 className="card-title mt-0 ">
                       <Link
                         className="text-dark"
-                        href="/services/marketResearchAndMeasurement"
+                        href="/services/innerPages/employeeEngagementAndSatisfaction"
                       >
-                        Market Research And Measurement
+                        EMPLOYEE SATISFACTION AND ENGAGEMENT
                       </Link>
                     </h4>
                     <small>Customer Experience And Happiness</small>
@@ -158,7 +160,7 @@ const Services = () => {
                   <div className="card-footer">
                     <div className="media">
                       <Link
-                        href="/services/marketResearchAndMeasurement"
+                        href="/services/innerPages/employeeEngagementAndSatisfaction"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
@@ -166,7 +168,7 @@ const Services = () => {
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
                         <small className="text-dark">
-                          Market Research And Measurement
+                          EMPLOYEE SATISFACTION AND ENGAGEMENT
                         </small>
                       </Link>
                     </div>
@@ -190,20 +192,28 @@ const Services = () => {
                   <div className="card-body">
                     <small className="card-meta mb-2">Master The Data</small>
                     <h4 className="card-title mt-0 ">
-                      <Link className="text-dark" href="/services/analytics">
-                        Analytics
+                      <Link
+                        className="text-dark"
+                        href="/services/innerPages/qAnalysis"
+                      >
+                        QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ
                       </Link>
                     </h4>
                     <small>Performance monitoring</small>
                   </div>
                   <div className="card-footer">
                     <div className="media">
-                      <Link href="/services/analytics" className="media-body">
+                      <Link
+                        href="/services/innerPages/qAnalysis"
+                        className="media-body"
+                      >
                         <h6 className="my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">Analytics</small>
+                        <small className="text-dark">
+                          QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ
+                        </small>
                       </Link>
                     </div>
                   </div>
@@ -228,9 +238,9 @@ const Services = () => {
                     <h4 className="card-title mt-0 ">
                       <Link
                         className="text-dark"
-                        href="/services/businessIntelligence"
+                        href="/services/innerPages/brandPositioningAndBenchmarking"
                       >
-                        Business Intelligence
+                        BRAND POSITIONING AND BENCHMARKING
                       </Link>
                     </h4>
                     <small>
@@ -240,7 +250,7 @@ const Services = () => {
                   <div className="card-footer">
                     <div className="media">
                       <Link
-                        href="/services/businessIntelligence"
+                        href="/services/innerPages/brandPositioningAndBenchmarking"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
@@ -248,7 +258,7 @@ const Services = () => {
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
                         <small className="text-dark">
-                          Business Intelligence
+                          BRAND POSITIONING AND BENCHMARKING
                         </small>
                       </Link>
                     </div>
@@ -274,9 +284,9 @@ const Services = () => {
                     <h4 className="card-title mt-0 ">
                       <Link
                         className="text-dark"
-                        href="/services/businessAnalytics"
+                        href="/services/innerPages/competitorAnalysis"
                       >
-                        Business Analysis
+                        СОMРЕTІTОR АNАLУЅІЅ
                       </Link>
                     </h4>
                     <small>
@@ -286,14 +296,14 @@ const Services = () => {
                   <div className="card-footer">
                     <div className="media">
                       <Link
-                        href="/services/businessAnalytics"
+                        href="/services/innerPages/competitorAnalysis"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">Business Analysis</small>
+                        <small className="text-dark">СОMРЕTІTОR АNАLУЅІЅ</small>
                       </Link>
                     </div>
                   </div>
@@ -318,8 +328,11 @@ const Services = () => {
                       Digital transformation
                     </small>
                     <h4 className="card-title mt-0 ">
-                      <Link className="text-dark" href="/services/technology">
-                        Technology
+                      <Link
+                        className="text-dark"
+                        href="/services/innerPages/marketingConsulting"
+                      >
+                        MАRKЕTІNG СОNЅULTІNG
                       </Link>
                     </h4>
                     <small>
@@ -328,49 +341,8 @@ const Services = () => {
                   </div>
                   <div className="card-footer">
                     <div className="media">
-                      <Link href="/services/technology" className="media-body">
-                        <h6 className="my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">Technology</small>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <div
-                className="card text-dark card-has-bg click-col"
-                style={styles.bg6}
-              >
-                <Image
-                  className="card-img d-none"
-                  src="/card1.webp"
-                  width={600}
-                  height={900}
-                  alt="Picture"
-                />
-                <div className="card-img-overlay d-flex flex-column">
-                  <div className="card-body">
-                    <small className="card-meta mb-2">Thought Leadership</small>
-                    <h4 className="card-title mt-0 ">
                       <Link
-                        className="text-dark"
-                        href="/services/innerPages/designingAndImplementationOfLoyaltyAndRewardsProgram"
-                      >
-                        Designing & Implementation of Loyalty & Rewards program
-                      </Link>
-                    </h4>
-                    <small>
-                      <i className="far fa-clock"></i> October 15, 2020
-                    </small>
-                  </div>
-                  <div className="card-footer">
-                    <div className="media">
-                      <Link
-                        href="/services/innerPages/designingAndImplementationOfLoyaltyAndRewardsProgram"
+                        href="/services/innerPages/marketingConsulting"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
@@ -378,8 +350,7 @@ const Services = () => {
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
                         <small className="text-dark">
-                          Designing & Implementation of Loyalty & Rewards
-                          program
+                          MАRKЕTІNG СОNЅULTІNG
                         </small>
                       </Link>
                     </div>
@@ -394,4 +365,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default MarketResearchAndMeasurement;

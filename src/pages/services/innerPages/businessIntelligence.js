@@ -1,14 +1,14 @@
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-function Technology() {
+function BusinessIntelligence() {
   return (
     <>
       <Typography component="div" className="title__section">
-        <Typography variant="h1">Technology</Typography>
+        <Typography variant="h1">BUSINESS INTELLIGENCE</Typography>
       </Typography>
       <Typography component="div" className="container">
         <Typography component="div" className="story__content">
-          <Typography variant="h3">Technology</Typography>
+          <Typography variant="h3">BUSINESS INTELLIGENCE</Typography>
           <p>
             Data storytelling for business is the key to turning raw data into a
             compelling narrative that drives results in the modern UAE
@@ -306,4 +306,4 @@ function Technology() {
   );
 }
 
-export default Technology;
+export default BusinessIntelligence;

@@ -1,10 +1,10 @@
-export default function ContactUs () {
-    const styles = {
-        main:{
-            minHeight: '95vh'
-        }
-    }
-    return (
-        <div style={styles.main}> Here in Contact us page </div>
-    );
+import Typography from "@mui/material/Typography";
+import style from "./Contact.module.css";
+
+export default function ContactUs() {
+  return (
+    <Typography component="div" className={style.contact__section}>
+      <Typography variant="h1">Contact Us</Typography>
+    </Typography>
+  );
 }

@@ -1,14 +1,16 @@
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-function MarketResearchAndMeasureMent() {
+function CustomerExperienceAndHappiness() {
   return (
     <>
       <Typography component="div" className="title__section">
-        <Typography variant="h1">Market Research and Measurement</Typography>
+        <Typography variant="h1">CUSTOMER EXPERIENCE AND HAPPINESS</Typography>
       </Typography>
       <Typography component="div" className="container">
         <Typography component="div" className="story__content">
-          <Typography variant="h3">Market Research and Measurement</Typography>
+          <Typography variant="h3">
+            CUSTOMER EXPERIENCE AND HAPPINESS
+          </Typography>
           <p>
             Data storytelling for business is the key to turning raw data into a
             compelling narrative that drives results in the modern UAE
@@ -128,4 +130,4 @@ function MarketResearchAndMeasureMent() {
   );
 }
 
-export default MarketResearchAndMeasureMent;
+export default CustomerExperienceAndHappiness;

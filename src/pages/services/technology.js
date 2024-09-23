@@ -28,16 +28,14 @@ const styles = {
     maxWidth: "50px",
   },
 };
-const BusinessIntelligence = () => {
+const Technology = () => {
   return (
     <>
       <div style={styles.main}>
         <div className="container">
           <div className="row">
             <div className="col text-center my-5">
-              <h1 className="display-4 font-weight-bolder">
-                Business Intelligence
-              </h1>
+              <h1 className="display-4 font-weight-bolder">Technology</h1>
               <p className="lead">
                 Lorem ipsum dolor sit amet at enim hac integer volutpat maecenas
                 pulvinar.
@@ -56,9 +54,9 @@ const BusinessIntelligence = () => {
                     <h4 className="card-title mt-0 ">
                       <Link
                         className="text-dark"
-                        href="/services/innerPages/ibmCognosAnalytics"
+                        href="/services/digitalTransformation"
                       >
-                        IBM Cognos Analytics
+                        Digital Transformation
                       </Link>
                     </h4>
                     <small>
@@ -69,7 +67,7 @@ const BusinessIntelligence = () => {
                   <div className="card-footer">
                     <div className="media">
                       <Link
-                        href="/services/innerPages/ibmCognosAnalytics"
+                        href="/services/digitalTransformation"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
@@ -77,7 +75,7 @@ const BusinessIntelligence = () => {
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
                         <small className="text-dark">
-                          IBM Cognos Analytics
+                          Digital Transformation
                         </small>
                       </Link>
                     </div>
@@ -103,9 +101,9 @@ const BusinessIntelligence = () => {
                     <h4 className="card-title mt-0 ">
                       <Link
                         className="text-dark"
-                        href="/services/innerPages/tableau"
+                        href="/services/artificialIntelligence"
                       >
-                        Tableau
+                        Artificial Intelligence
                       </Link>
                     </h4>
                     <small>
@@ -116,14 +114,16 @@ const BusinessIntelligence = () => {
                   <div className="card-footer">
                     <div className="media">
                       <Link
-                        href="/services/innerPages/tableau"
+                        href="/services/artificialIntelligence"
                         className="media-body"
                       >
                         <h6 className="my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">Tableau</small>
+                        <small className="text-dark">
+                          Artificial Intelligence
+                        </small>
                       </Link>
                     </div>
                   </div>
@@ -148,26 +148,20 @@ const BusinessIntelligence = () => {
                       Employee Satisfaction
                     </small>
                     <h4 className="card-title mt-0 ">
-                      <Link
-                        className="text-dark"
-                        href="/services/innerPages/microsoftPowerBi"
-                      >
-                        Microsoft Power BI
+                      <Link className="text-dark" href="/services/blockchain">
+                        Blockchain
                       </Link>
                     </h4>
                     <small>Customer Experience And Happiness</small>
                   </div>
                   <div className="card-footer">
                     <div className="media">
-                      <Link
-                        href="/services/innerPages/microsoftPowerBi"
-                        className="media-body"
-                      >
+                      <Link href="/services/blockchain" className="media-body">
                         <h6 className="my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">Microsoft Power BI</small>
+                        <small className="text-dark">Blockchain</small>
                       </Link>
                     </div>
                   </div>
@@ -190,26 +184,20 @@ const BusinessIntelligence = () => {
                   <div className="card-body">
                     <small className="card-meta mb-2">Master The Data</small>
                     <h4 className="card-title mt-0 ">
-                      <Link
-                        className="text-dark"
-                        href="/services/innerPages/qlikviewQliksense"
-                      >
-                        Qlikview/Qliksense
+                      <Link className="text-dark" href="/services/web30">
+                        Web 3.0
                       </Link>
                     </h4>
                     <small>Performance monitoring</small>
                   </div>
                   <div className="card-footer">
                     <div className="media">
-                      <Link
-                        href="/services/innerPages/qlikviewQliksense"
-                        className="media-body"
-                      >
+                      <Link href="/services/web30" className="media-body">
                         <h6 className="my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">Qlikview/Qliksense</small>
+                        <small className="text-dark">Web 3.0</small>
                       </Link>
                     </div>
                   </div>
@@ -223,4 +211,4 @@ const BusinessIntelligence = () => {
   );
 };
 
-export default BusinessIntelligence;
+export default Technology;
