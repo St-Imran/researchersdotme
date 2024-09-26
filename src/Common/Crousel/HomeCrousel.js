@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const Carousel = ({ images }) => {
+const Carousel = ({ media }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
@@ -10,12 +10,12 @@ const Carousel = ({ images }) => {
   const thumbnailWidth = 210; // Width of one thumbnail (including margin)
 
   const goToNext = () => {
-    const newIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    const newIndex = currentIndex === media.length - 1 ? 0 : currentIndex + 1;
     goToSlide(newIndex);
   };
 
   const goToPrevious = () => {
-    const newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    const newIndex = currentIndex === 0 ? media.length - 1 : currentIndex - 1;
     goToSlide(newIndex);
   };
 
@@ -37,7 +37,7 @@ const Carousel = ({ images }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       goToNext();
-    }, 3000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -65,9 +65,30 @@ const Carousel = ({ images }) => {
       className="carousel"
       onMouseMove={isDragging ? handleMouseMove : undefined} // Only handle mouse move if dragging
     >
-      {/* Main Image */}
-      <div className="main-image">
-        <img src={images[currentIndex]} alt={`Slide ${currentIndex}`} />
+      {/* Main Media */}
+      <div className="main-media">
+        {media[currentIndex].type === "image" ? (
+          <img src={media[currentIndex].src} alt={`Slide ${currentIndex}`} />
+        ) : media[currentIndex].type === "youtube" ||
+          media[currentIndex].type === "vimeo" ? (
+          <iframe
+            src={`${media[currentIndex].src}?autoplay=1&mute=1`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            style={{ width: "100%", height: "550px" }}
+          ></iframe>
+        ) : media[currentIndex].type === "instagram" ||
+          media[currentIndex].type === "twitter" ? (
+          <iframe
+            src={media[currentIndex].src}
+            frameBorder="0"
+            style={{ width: "100%", height: "550px" }}
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          ></iframe>
+        ) : (
+          <video src={media[currentIndex].src} controls autoPlay muted />
+        )}
       </div>
 
       {/* Navigation Arrows */}
@@ -90,14 +111,25 @@ const Carousel = ({ images }) => {
         }}
       >
         <div className="thumbnail-container" style={{ display: "flex" }}>
-          {images.map((image, index) => (
+          {media.map((item, index) => (
             <div
               key={index}
               className={`thumbnail ${currentIndex === index ? "active" : ""}`}
-              onClick={() => goToSlide(index)} // Change image on click
+              onClick={() => goToSlide(index)} // Change media on click
               draggable="false"
             >
-              <img src={image} alt={`Thumbnail ${index}`} draggable="false" />
+              {item.type === "video" ? (
+                <video src={item.src} muted draggable="false" />
+              ) : (
+                // <iframe
+                //   src={item.src}
+                //   frameBorder="0"
+                //   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                //   allowFullScreen
+                //   style={{ width: "200px", height: "105px" }}
+                // ></iframe>
+                <img src={item.thumbnail} draggable="false" />
+              )}
             </div>
           ))}
         </div>
@@ -109,7 +141,9 @@ const Carousel = ({ images }) => {
           max-width: 100%;
         }
 
-        .main-image img {
+        .main-media img,
+        .main-media video,
+        .main-media iframe {
           width: 100%;
           height: 550px;
         }
@@ -150,7 +184,8 @@ const Carousel = ({ images }) => {
           cursor: pointer;
         }
 
-        .thumbnail img {
+        .thumbnail img,
+        .thumbnail video {
           width: 200px;
           height: 105px;
           object-fit: cover;
@@ -160,12 +195,14 @@ const Carousel = ({ images }) => {
           user-select: none;
         }
 
-        .thumbnail.active img {
+        .thumbnail.active img,
+        .thumbnail.active video {
           opacity: 1;
           border: 2px solid #000;
         }
 
-        .thumbnail:hover img {
+        .thumbnail:hover img,
+        .thumbnail:hover video {
           opacity: 1;
         }
 

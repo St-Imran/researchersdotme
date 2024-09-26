@@ -18,8 +18,25 @@ function Hero() {
     "/img/crousel_image_2.jpeg",
     "/img/crousel_image_3.jpeg",
   ];
+  // const media = [
+  //   { type: "video", src: "/video/Brand.mp4" },
+  //   { type: "video", src: "/video/Research.mp4" },
+  //   { type: "video", src: "/video/Expanding.mp4" },
+  //   { type: "video", src: "/video/financial.mp4" },
+  //   { type: "video", src: "/video/Scaling.mp4" },
+  // ];
 
-  debugger;
+  const media = [
+    {
+      type: "youtube",
+      src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg",
+    },
+    { type: "video", src: "/video/Brand.mp4" },
+    { type: "video", src: "/video/Research.mp4" },
+    { type: "video", src: "/video/Scaling.mp4" },
+  ];
+
   return (
     <>
       <section style={styles.gradiant2}>
@@ -97,7 +114,7 @@ function Hero() {
         <div className="container">
           <div className="row">
             <div className="col overflow-hidden">
-              <HomeCrousel images={imageUrls} />
+              <HomeCrousel media={media} />
             </div>
           </div>
         </div>
