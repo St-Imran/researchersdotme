@@ -1,0 +1,33 @@
+.sidebar {
+    width: 250px;
+    padding: 10px 0;
+    position: sticky;
+    top: 90px;
+    left: 0px;
+    height: calc(100vh - 90px);
+    overflow: auto;
+}
+
+.sidebar_navitem a {
+    padding: 8px;
+    display: inline-block;
+    width: 100%;
+    color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1)) !important;
+    cursor: pointer;
+}
+
+.sidebar_navitem a:hover {
+    background-color: #ccc;
+    color: #fff;
+}
+
+.subSection li a {
+    padding-left: 16px;
+}
+
+.subSection .secHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
