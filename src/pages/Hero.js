@@ -1,6 +1,6 @@
 // import Crousel from '@/Common/Crousel/Crousel';
 import style from "./Hero.module.css";
-import { styles } from "./Hero.styles";
+import { styles } from "../styles/Hero.styles";
 import Classess from "./page.module.css";
 import Image from "next/image";
 import HomeCrousel from "../Common/Crousel/HomeCrousel";
