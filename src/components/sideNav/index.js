@@ -1,14 +1,19 @@
 import { data } from "@/pages/services/data";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./sidenav.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
-const SideNav = () => {
+const SideNav = ({ setSidebarOpen }) => {
     const router = useRouter();
     const [expanded, setExpanded] = useState([]);
+    const [isOpen, setIsOpen] = useState(true);
+
+    useEffect(() => {
+        setSidebarOpen(isOpen);
+    }, [isOpen, setSidebarOpen]);
 
     const updateExpanded = (url) => {
         const exp = [...expanded];
@@ -18,9 +23,17 @@ const SideNav = () => {
             ...exp
         ]);
     }
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
-        <div className={styles.sidebar}>
+        <div className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}>
+            <button
+                className={`btn btn-close position-absolute top-0 end-0 ${styles.sideClose}`}
+                onClick={toggleSidebar}
+            >
+            </button>
             <ul className="nav flex-column">
                 {data.map((item, i) => (
                     <li key={'side-item-' + i} className={styles.sidebar_navitem}>

@@ -6,394 +6,394 @@ import Image from "next/image";
 import HomeCrousel from "../Common/Crousel/HomeCrousel";
 
 function Hero() {
-  const imageUrls = [
-    "/img/crousel_image_1.jpeg",
-    "/img/crousel_image_2.jpeg",
-    "/img/crousel_image_3.jpeg",
-    "/image1.jpeg",
-    "/image2.jpeg",
-    "/image3.jpeg",
-    "/image4.jpeg",
-    "/img/crousel_image_1.jpeg",
-    "/img/crousel_image_2.jpeg",
-    "/img/crousel_image_3.jpeg",
-  ];
-  // const media = [
-  //   { type: "video", src: "/video/Brand.mp4" },
-  //   { type: "video", src: "/video/Research.mp4" },
-  //   { type: "video", src: "/video/Expanding.mp4" },
-  //   { type: "video", src: "/video/financial.mp4" },
-  //   { type: "video", src: "/video/Scaling.mp4" },
-  // ];
+    const imageUrls = [
+        "/img/crousel_image_1.jpeg",
+        "/img/crousel_image_2.jpeg",
+        "/img/crousel_image_3.jpeg",
+        "/image1.jpeg",
+        "/image2.jpeg",
+        "/image3.jpeg",
+        "/image4.jpeg",
+        "/img/crousel_image_1.jpeg",
+        "/img/crousel_image_2.jpeg",
+        "/img/crousel_image_3.jpeg",
+    ];
+    // const media = [
+    //   { type: "video", src: "/video/Brand.mp4" },
+    //   { type: "video", src: "/video/Research.mp4" },
+    //   { type: "video", src: "/video/Expanding.mp4" },
+    //   { type: "video", src: "/video/financial.mp4" },
+    //   { type: "video", src: "/video/Scaling.mp4" },
+    // ];
 
-  const media = [
-    {
-      type: "youtube",
-      src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg",
-    },
-    { type: "video", src: "/video/Brand.mp4" },
-    { type: "video", src: "/video/Research.mp4" },
-    { type: "video", src: "/video/Scaling.mp4" },
-  ];
+    const media = [
+        {
+            type: "youtube",
+            src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg",
+        },
+        { type: "video", src: "/video/Brand.mp4" },
+        { type: "video", src: "/video/Research.mp4" },
+        { type: "video", src: "/video/Scaling.mp4" },
+    ];
 
-  return (
-    <>
-      <section style={styles.gradiant2}>
-        <div className={Classess.container}>
-          <div className={style.hero__wrapper}>
-            <div className={style.text}>
-              <h1 style={styles.headingColor}>
-                REMOVE THE GUESSWORK AND MAKE THE RIGHT DECISION
-              </h1>
-              <p>
-                Welcome To Researchers! We Help You Unlock Your Business
-                Potentials Through Our <b>"ProfitPulse"</b> Approach, With Zero
-                Data Pollution.
-              </p>
-              <button>Sign Up</button>
-            </div>
-            <div className={style.frame}>
-              <Image
-                src="/guessWork.png"
-                width={400}
-                height={400}
-                alt="Picture of the author"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className={`${style.hero__wrapper} ${style.no__img}`}>
-        <div className={Classess.container}>
-          <div className="row justify-content-center">
-            <div className="col-md-8">
-              <div className={style.text}>
-                <h2 className="mb-4">
-                  As a full-service agency, we provide qualitative and
-                  quantitative research services worldwide.
-                </h2>
-                <p className="mb-4">
-                  Through our well-trained professional researchers, we take the
-                  task off your table. At Researchers, we operate a full-service
-                  agency. We conduct the feasibility study with a thorough
-                  market analysis and customer need using natural field data to
-                  make a beneficial decision that propels your business ahead of
-                  the competition.
-                </p>
-                <button>Schedule a Demo</button>
-              </div>
-              <div className={style.about_info_boxes}>
-                <ul className="mt-5">
-                  <li>
-                    <div>What are your present business bottlenecks?</div>
-                  </li>
-                  <li>
-                    <div>Are you stuck in the middle of making a decision?</div>
-                  </li>
-                  <li>
-                    <div>
-                      Do you want to discover why people aren't purchasing your
-                      goods and services?
+    return (
+        <>
+            <section style={styles.gradiant2}>
+                <div className={Classess.container}>
+                    <div className={style.hero__wrapper}>
+                        <div className={style.text}>
+                            <h1 style={styles.headingColor}>
+                                REMOVE THE GUESSWORK AND MAKE THE RIGHT DECISION
+                            </h1>
+                            <p>
+                                Welcome To Researchers! We Help You Unlock Your Business
+                                Potentials Through Our <b>"ProfitPulse"</b> Approach, With Zero
+                                Data Pollution.
+                            </p>
+                            <button>Sign Up</button>
+                        </div>
+                        <div className={style.frame}>
+                            <Image
+                                src="/guessWork.png"
+                                width={400}
+                                height={400}
+                                alt="Picture of the author"
+                            />
+                        </div>
                     </div>
-                  </li>
-                  <li>
-                    <div>
-                      Are you interested in introducing a new service, product,
-                      or even marketing campaign but need clarification on what
-                      your target market wants?
+                </div>
+            </section>
+            <section className={`${style.hero__wrapper} ${style.no__img}`}>
+                <div className={Classess.container}>
+                    <div className="row justify-content-center">
+                        <div className="col-md-8">
+                            <div className={style.text}>
+                                <h2 className="mb-4">
+                                    As a full-service agency, we provide qualitative and
+                                    quantitative research services worldwide.
+                                </h2>
+                                <p className="mb-4">
+                                    Through our well-trained professional researchers, we take the
+                                    task off your table. At Researchers, we operate a full-service
+                                    agency. We conduct the feasibility study with a thorough
+                                    market analysis and customer need using natural field data to
+                                    make a beneficial decision that propels your business ahead of
+                                    the competition.
+                                </p>
+                                <button>Schedule a Demo</button>
+                            </div>
+                            <div className={style.about_info_boxes}>
+                                <ul className="mt-5">
+                                    <li>
+                                        <div>What are your present business bottlenecks?</div>
+                                    </li>
+                                    <li>
+                                        <div>Are you stuck in the middle of making a decision?</div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            Do you want to discover why people aren't purchasing your
+                                            goods and services?
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            Are you interested in introducing a new service, product,
+                                            or even marketing campaign but need clarification on what
+                                            your target market wants?
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className="container">
-          <div className="row">
-            <div className="col overflow-hidden">
-              <HomeCrousel media={media} />
-            </div>
-          </div>
-        </div>
-      </section>
-      <div className="container">
-        <div className="row mb-5">
-          <div className="col col-md-9">
-            <h2 className="fs-1 mb-4 fw-bolder">
-              Research With A Consultative Approach
-            </h2>
-            <p className="fw-semibold ">
-              Today’s leaders are navigating an unprecedented, complex
-              environment. Forrester Decisions represents a new option for
-              business and technology leaders who need help solving problems,
-              making decisions, and taking action to deliver results. Leaders
-              who are looking to achieve break-out growth. Each research service
-              includes:
-            </p>
-          </div>
-        </div>
-      </div>
-      <section className={style.page_block}>
-        <div className={style.page_block__bg_img}>
-          <Image
-            src="/one.webp"
-            width={1440}
-            className="featureImage"
-            height={600}
-            alt="section image"
-          />
-        </div>
-        <div className={style.two_column_content}>
-          <div className="container">
-            <div className="align-items-start">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-9">
-                    <h2 className={style.two_column__fwheader}>
-                      Lorem, ipsum.
-                    </h2>
-                    <div className={style.two_column__body}>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Commodi, repellat quam et a neque accusamus magnam
-                        placeat, iste nostrum dolor iusto harum officiis alias
-                        soluta in corrupti, earum quidem itaque.
-                      </p>
+                </div>
+            </section>
+            <section>
+                <div className="container">
+                    <div className="row">
+                        <div className="col overflow-hidden">
+                            <HomeCrousel media={media} />
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="row align-items-start">
-              <div className="col-md-6">
-                <div className={style.two_column__subheading}>
-                  Lorem, ipsum.
-                </div>
-                <h3 className={style.two_column__header}>
-                  Lorem ipsum dolor sit.
-                </h3>
-                <div className={style.two_column__body}>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dignissimos quisquam veniam debitis sapiente dolore
-                    doloremque voluptates voluptate, quia cumque minima.
-                  </p>
-                </div>
-                <div className={style.forr_ctas}>
-                  <div className={style.forr_ctas__row}>
-                    <a
-                      className={style.forr_cta}
-                      href="/resources/establish-customer-experience/journey-mapping/"
-                      target="_self"
-                    >
-                      <span>Download Now</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className={style.two_column__subheading}>Lorem.</div>
-                <h3 className={style.two_column__header}>
-                  Lorem ipsum dolor sit.
-                </h3>
-                <div className={style.two_column__body}>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Labore nesciunt molestias vero fugiat illo impedit
-                    perferendis dignissimos! Eveniet, iste voluptate?
-                  </p>
-                </div>
-                <div className={style.forr_ctas}>
-                  <div className={style.forr_ctas__row}>
-                    <a
-                      className={style.forr_cta}
-                      href="/resources/b2b-marketing-planning/marketing-plan-on-a-page/"
-                      target="_self"
-                    >
-                      <span>Download Now</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className={style.page_block}>
-        <div className={style.page_block__bg_img}>
-          <Image
-            src="/two.webp"
-            width={1440}
-            className="featureImage"
-            height={600}
-            alt="section image"
-          />
-        </div>
-        <div className={style.two_column_content}>
-          <div className="container">
-            <div className="align-items-start">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-9">
-                    <h2 className={style.two_column__fwheader}>
-                      Lorem ipsum dolor sit.
-                    </h2>
-                    <div className={style.two_column__body}>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Et suscipit accusamus aspernatur voluptates non officia,
-                        ea vitae corporis adipisci iure expedita pariatur
-                        veritatis cumque nemo asperiores quidem doloremque
-                        architecto ducimus optio tenetur. Laborum, excepturi
-                        placeat?
-                      </p>
+            </section>
+            <div className="container">
+                <div className="row mb-5">
+                    <div className="col col-md-9">
+                        <h2 className="fs-1 mb-4 fw-bolder">
+                            Research With A Consultative Approach
+                        </h2>
+                        <p className="fw-semibold ">
+                            Today’s leaders are navigating an unprecedented, complex
+                            environment. Forrester Decisions represents a new option for
+                            business and technology leaders who need help solving problems,
+                            making decisions, and taking action to deliver results. Leaders
+                            who are looking to achieve break-out growth. Each research service
+                            includes:
+                        </p>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-            <div className="row align-items-start">
-              <div className="col-md-6">
-                <div className={style.two_column__subheading}>E-book</div>
-                <h3 className={style.two_column__header}>
-                  Kickstart Your CX Transformation
-                </h3>
-                <div className={style.two_column__body}>
-                  <p>
-                    This complimentary guide will show you how to leverage
-                    customer journey maps to spur investment and interest in CX,
-                    as well as boost performance.
-                  </p>
+            <section className={style.page_block}>
+                <div className={style.page_block__bg_img}>
+                    <Image
+                        src="/one.webp"
+                        width={1440}
+                        className="featureImage"
+                        height={600}
+                        alt="section image"
+                    />
                 </div>
-                <div className={style.forr_ctas}>
-                  <div className={style.forr_ctas__row}>
-                    <a
-                      className={style.forr_cta}
-                      href="/resources/establish-customer-experience/journey-mapping/"
-                      target="_self"
-                    >
-                      <span>Download Now</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className={style.two_column__subheading}>Template</div>
-                <h3 className={style.two_column__header}>
-                  The Six Elements Of A Meaningful Marketing Plan{" "}
-                </h3>
-                <div className={style.two_column__body}>
-                  <p>
-                    Without the right inputs, a marketing annual plan may simply
-                    be a list of tactics. Learn how to build a plan that drives
-                    business value.
-                  </p>
-                </div>
-                <div className={style.forr_ctas}>
-                  <div className={style.forr_ctas__row}>
-                    <a
-                      className={style.forr_cta}
-                      href="/resources/b2b-marketing-planning/marketing-plan-on-a-page/"
-                      target="_self"
-                    >
-                      <span>Download Now</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className={style.page_block}>
-        <div className={style.page_block__bg_img}>
-          <Image
-            src="/three.webp"
-            width={1440}
-            className="featureImage"
-            height={600}
-            alt="section image"
-          />
-        </div>
-        <div className={style.two_column_content}>
-          <div className="container">
-            <div className="align-items-start">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-9">
-                    <h2 className={style.two_column__fwheader}>
-                      Lorem-sum dolor sit.
-                    </h2>
-                    <div className={style.two_column__body}>
-                      <p>
-                        Et suscipit accusamus aspernatur voluptates non officia,
-                        ea vitae corporis adipisci iure expedita pariatur
-                        veritatis cumque nemo asperiores quidem doloremque
-                        architecto ducimus optio tenetur. Laborum, excepturi
-                        placeat?
-                      </p>
+                <div className={style.two_column_content}>
+                    <div className="container">
+                        <div className="align-items-start">
+                            <div className="col-md-12">
+                                <div className="row">
+                                    <div className="col-md-9">
+                                        <h2 className={style.two_column__fwheader}>
+                                            Lorem, ipsum.
+                                        </h2>
+                                        <div className={style.two_column__body}>
+                                            <p>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                Commodi, repellat quam et a neque accusamus magnam
+                                                placeat, iste nostrum dolor iusto harum officiis alias
+                                                soluta in corrupti, earum quidem itaque.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row align-items-start">
+                            <div className="col-md-6">
+                                <div className={style.two_column__subheading}>
+                                    Lorem, ipsum.
+                                </div>
+                                <h3 className={style.two_column__header}>
+                                    Lorem ipsum dolor sit.
+                                </h3>
+                                <div className={style.two_column__body}>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        Dignissimos quisquam veniam debitis sapiente dolore
+                                        doloremque voluptates voluptate, quia cumque minima.
+                                    </p>
+                                </div>
+                                <div className={style.forr_ctas}>
+                                    <div className={style.forr_ctas__row}>
+                                        <a
+                                            className={style.forr_cta}
+                                            href="/resources/establish-customer-experience/journey-mapping/"
+                                            target="_self"
+                                        >
+                                            <span>Download Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className={style.two_column__subheading}>Lorem.</div>
+                                <h3 className={style.two_column__header}>
+                                    Lorem ipsum dolor sit.
+                                </h3>
+                                <div className={style.two_column__body}>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        Labore nesciunt molestias vero fugiat illo impedit
+                                        perferendis dignissimos! Eveniet, iste voluptate?
+                                    </p>
+                                </div>
+                                <div className={style.forr_ctas}>
+                                    <div className={style.forr_ctas__row}>
+                                        <a
+                                            className={style.forr_cta}
+                                            href="/resources/b2b-marketing-planning/marketing-plan-on-a-page/"
+                                            target="_self"
+                                        >
+                                            <span>Download Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="row align-items-start">
-              <div className="col-md-6">
-                <div className={style.two_column__subheading}>Evant</div>
-                <h3 className={style.two_column__header}>
-                  Kickstart Your CX Transformation Lorem, ipsum.
-                </h3>
-                <div className={style.two_column__body}>
-                  <p>
-                    This complimentary guide will show you how to leverage
-                    customer journey maps to spur investment and interest in CX,
-                    as well as boost performance.
-                  </p>
+            </section>
+            <section className={style.page_block}>
+                <div className={style.page_block__bg_img}>
+                    <Image
+                        src="/two.webp"
+                        width={1440}
+                        className="featureImage"
+                        height={600}
+                        alt="section image"
+                    />
                 </div>
-                <div className={style.forr_ctas}>
-                  <div className={style.forr_ctas__row}>
-                    <a
-                      className={style.forr_cta}
-                      href="/resources/establish-customer-experience/journey-mapping/"
-                      target="_self"
-                    >
-                      <span>Download Now</span>
-                    </a>
-                  </div>
+                <div className={style.two_column_content}>
+                    <div className="container">
+                        <div className="align-items-start">
+                            <div className="col-md-12">
+                                <div className="row">
+                                    <div className="col-md-9">
+                                        <h2 className={style.two_column__fwheader}>
+                                            Lorem ipsum dolor sit.
+                                        </h2>
+                                        <div className={style.two_column__body}>
+                                            <p>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                Et suscipit accusamus aspernatur voluptates non officia,
+                                                ea vitae corporis adipisci iure expedita pariatur
+                                                veritatis cumque nemo asperiores quidem doloremque
+                                                architecto ducimus optio tenetur. Laborum, excepturi
+                                                placeat?
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row align-items-start">
+                            <div className="col-md-6">
+                                <div className={style.two_column__subheading}>E-book</div>
+                                <h3 className={style.two_column__header}>
+                                    Kickstart Your CX Transformation
+                                </h3>
+                                <div className={style.two_column__body}>
+                                    <p>
+                                        This complimentary guide will show you how to leverage
+                                        customer journey maps to spur investment and interest in CX,
+                                        as well as boost performance.
+                                    </p>
+                                </div>
+                                <div className={style.forr_ctas}>
+                                    <div className={style.forr_ctas__row}>
+                                        <a
+                                            className={style.forr_cta}
+                                            href="/resources/establish-customer-experience/journey-mapping/"
+                                            target="_self"
+                                        >
+                                            <span>Download Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className={style.two_column__subheading}>Template</div>
+                                <h3 className={style.two_column__header}>
+                                    The Six Elements Of A Meaningful Marketing Plan{" "}
+                                </h3>
+                                <div className={style.two_column__body}>
+                                    <p>
+                                        Without the right inputs, a marketing annual plan may simply
+                                        be a list of tactics. Learn how to build a plan that drives
+                                        business value.
+                                    </p>
+                                </div>
+                                <div className={style.forr_ctas}>
+                                    <div className={style.forr_ctas__row}>
+                                        <a
+                                            className={style.forr_cta}
+                                            href="/resources/b2b-marketing-planning/marketing-plan-on-a-page/"
+                                            target="_self"
+                                        >
+                                            <span>Download Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div className="col-md-6">
-                <div className={style.two_column__subheading}>Evant</div>
-                <h3 className={style.two_column__header}>
-                  The Six Elements Of A Meaningful Marketing Plan
-                </h3>
-                <div className={style.two_column__body}>
-                  <p>
-                    Without the right inputs, a marketing annual plan may simply
-                    be a list of tactics. Learn how to build a plan that drives
-                    business value.
-                  </p>
+            </section>
+            <section className={style.page_block}>
+                <div className={style.page_block__bg_img}>
+                    <Image
+                        src="/three.webp"
+                        width={1440}
+                        className="featureImage"
+                        height={600}
+                        alt="section image"
+                    />
                 </div>
-                <div className={style.forr_ctas}>
-                  <div className={style.forr_ctas__row}>
-                    <a
-                      className={style.forr_cta}
-                      href="/resources/b2b-marketing-planning/marketing-plan-on-a-page/"
-                      target="_self"
-                    >
-                      <span>Download Now</span>
-                    </a>
-                  </div>
+                <div className={style.two_column_content}>
+                    <div className="container">
+                        <div className="align-items-start">
+                            <div className="col-md-12">
+                                <div className="row">
+                                    <div className="col-md-9">
+                                        <h2 className={style.two_column__fwheader}>
+                                            Lorem-sum dolor sit.
+                                        </h2>
+                                        <div className={style.two_column__body}>
+                                            <p>
+                                                Et suscipit accusamus aspernatur voluptates non officia,
+                                                ea vitae corporis adipisci iure expedita pariatur
+                                                veritatis cumque nemo asperiores quidem doloremque
+                                                architecto ducimus optio tenetur. Laborum, excepturi
+                                                placeat?
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row align-items-start">
+                            <div className="col-md-6">
+                                <div className={style.two_column__subheading}>Evant</div>
+                                <h3 className={style.two_column__header}>
+                                    Kickstart Your CX Transformation Lorem, ipsum.
+                                </h3>
+                                <div className={style.two_column__body}>
+                                    <p>
+                                        This complimentary guide will show you how to leverage
+                                        customer journey maps to spur investment and interest in CX,
+                                        as well as boost performance.
+                                    </p>
+                                </div>
+                                <div className={style.forr_ctas}>
+                                    <div className={style.forr_ctas__row}>
+                                        <a
+                                            className={style.forr_cta}
+                                            href="/resources/establish-customer-experience/journey-mapping/"
+                                            target="_self"
+                                        >
+                                            <span>Download Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className={style.two_column__subheading}>Evant</div>
+                                <h3 className={style.two_column__header}>
+                                    The Six Elements Of A Meaningful Marketing Plan
+                                </h3>
+                                <div className={style.two_column__body}>
+                                    <p>
+                                        Without the right inputs, a marketing annual plan may simply
+                                        be a list of tactics. Learn how to build a plan that drives
+                                        business value.
+                                    </p>
+                                </div>
+                                <div className={style.forr_ctas}>
+                                    <div className={style.forr_ctas__row}>
+                                        <a
+                                            className={style.forr_cta}
+                                            href="/resources/b2b-marketing-planning/marketing-plan-on-a-page/"
+                                            target="_self"
+                                        >
+                                            <span>Download Now</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+            </section>
+        </>
+    );
 }
 export default Hero;
