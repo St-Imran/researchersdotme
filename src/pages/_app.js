@@ -1,7 +1,7 @@
 // pages/_app.js
 import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "../common/Header/Header";
-import Footer from "../common/Footer/Footer";
+import Header from "../Common/Header/Header";
+import Footer from "../Common/Footer/Footer";
 import "./Component/Card.css";
 import "./services/Services.css";
 

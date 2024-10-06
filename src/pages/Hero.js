@@ -3,7 +3,7 @@ import style from "./Hero.module.css";
 import { styles } from "../styles/Hero.styles";
 import Classess from "./page.module.css";
 import Image from "next/image";
-import HomeCrousel from "../common/Crousel/HomeCrousel";
+import HomeCrousel from "../Common/Crousel/HomeCrousel";
 
 function Hero() {
   const imageUrls = [
