@@ -1,0 +1,148 @@
+.main {
+  font-family: Arial, sans-serif;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 50px;
+  background: linear-gradient(135deg, #1d1d1d, #4c4c4c);
+  color: white;
+}
+
+.heroContent {
+  max-width: 50%;
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.heroDescription {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.heroButton {
+  background-color: #ff5e57;
+  padding: 15px 30px;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.heroButton:hover {
+  background-color: #ff3c2f;
+}
+
+/* Services Section */
+.services {
+  padding: 80px 50px;
+  background-color: #f9f9f9;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.serviceList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.serviceItem {
+  width: 30%;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.serviceItem h3 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.serviceItem p {
+  color: #666;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 80px 50px;
+  background-color: #1d1d1d;
+  color: white;
+}
+
+.testimonialList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.testimonialItem {
+  width: 40%;
+  padding: 20px;
+  background-color: #2c2c2c;
+  border-radius: 8px;
+}
+
+.testimonialItem span {
+  display: block;
+  margin-top: 10px;
+  color: #aaa;
+}
+
+/* Case Studies Section */
+.caseStudies {
+  padding: 80px 50px;
+  background-color: #f0f0f0;
+}
+
+.caseStudyList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.caseStudyItem {
+  width: 30%;
+  text-align: center;
+}
+
+.caseStudyItem h3 {
+  margin-top: 20px;
+}
+
+/* Contact Section */
+.contact {
+  padding: 80px 50px;
+  text-align: center;
+  background-color: #4c4c4c;
+  color: white;
+}
+
+.contactText {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.contactButton {
+  background-color: #ff5e57;
+  padding: 15px 30px;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contactButton:hover {
+  background-color: #ff3c2f;
+}

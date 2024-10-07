@@ -4,7 +4,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.hero__wrapper>div {
+.hero__wrapper > div {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,7 @@
   flex-direction: column;
 }
 
-.hero__wrapper.no__img>div {
+.hero__wrapper.no__img > div {
   width: 100%;
   align-items: center;
 }
@@ -96,11 +96,11 @@
     flex-direction: column;
   }
 
-  .hero__wrapper>div {
+  .hero__wrapper > div {
     text-align: center;
   }
 
-  .hero__wrapper>div,
+  .hero__wrapper > div,
   .about_info_boxes ul li {
     width: 100%;
   }
@@ -183,11 +183,11 @@
   text-decoration: none;
 }
 
-.forr_cta>span {
+.forr_cta > span {
   position: relative;
 }
 
-.forr_cta>span::after {
+.forr_cta > span::after {
   content: "";
   display: block;
   width: 0;
@@ -199,8 +199,8 @@
   transition: width 0.3s;
 }
 
-.forr_cta:focus>span::after,
-.forr_cta:hover>span::after {
+.forr_cta:focus > span::after,
+.forr_cta:hover > span::after {
   width: 100%;
 }
 
@@ -246,7 +246,7 @@
     gap: 30px;
   }
 
-  .hero__wrapper>div {
+  .hero__wrapper > div {
     width: 100%;
     margin: auto;
     text-align: center;
@@ -267,5 +267,4 @@
     font-size: 2rem;
     line-height: 1.0625;
   }
-
 }

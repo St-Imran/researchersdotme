@@ -1,9 +1,9 @@
-// import Crousel from '@/Common/Crousel/Crousel';
 import style from "./Hero.module.css";
-import { styles } from "../styles/Hero.styles";
 import Classess from "./page.module.css";
 import Image from "next/image";
-import HomeCrousel from "../Common/Crousel/HomeCrousel";
+import HomeCrousel from "../../Common/Crousel/HomeCrousel";
+import { media } from "../../constants/media";
+import Banner from "./banner";
 
 function Hero() {
   const imageUrls = [
@@ -18,52 +18,10 @@ function Hero() {
     "/img/crousel_image_2.jpeg",
     "/img/crousel_image_3.jpeg",
   ];
-  // const media = [
-  //   { type: "video", src: "/video/Brand.mp4" },
-  //   { type: "video", src: "/video/Research.mp4" },
-  //   { type: "video", src: "/video/Expanding.mp4" },
-  //   { type: "video", src: "/video/financial.mp4" },
-  //   { type: "video", src: "/video/Scaling.mp4" },
-  // ];
-
-  const media = [
-    {
-      type: "youtube",
-      src: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg",
-    },
-    { type: "video", src: "/video/Brand.mp4" },
-    { type: "video", src: "/video/Research.mp4" },
-    { type: "video", src: "/video/Scaling.mp4" },
-  ];
 
   return (
     <>
-      <section style={styles.gradiant2}>
-        <div className={Classess.container}>
-          <div className={style.hero__wrapper}>
-            <div className={style.text}>
-              <h1 style={styles.headingColor}>
-                REMOVE THE GUESSWORK AND MAKE THE RIGHT DECISION
-              </h1>
-              <p>
-                Welcome To Researchers! We Help You Unlock Your Business
-                Potentials Through Our <b>"ProfitPulse"</b> Approach, With Zero
-                Data Pollution.
-              </p>
-              <button>Sign Up</button>
-            </div>
-            <div className={style.frame}>
-              <Image
-                src="/guessWork.png"
-                width={400}
-                height={400}
-                alt="Picture of the author"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Banner />
       <section className={`${style.hero__wrapper} ${style.no__img}`}>
         <div className={Classess.container}>
           <div className="row justify-content-center">
