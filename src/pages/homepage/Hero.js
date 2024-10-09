@@ -6,19 +6,6 @@ import { media } from "../../constants/media";
 import Banner from "./banner";
 
 function Hero() {
-  const imageUrls = [
-    "/img/crousel_image_1.jpeg",
-    "/img/crousel_image_2.jpeg",
-    "/img/crousel_image_3.jpeg",
-    "/image1.jpeg",
-    "/image2.jpeg",
-    "/image3.jpeg",
-    "/image4.jpeg",
-    "/img/crousel_image_1.jpeg",
-    "/img/crousel_image_2.jpeg",
-    "/img/crousel_image_3.jpeg",
-  ];
-
   return (
     <>
       <Banner />
