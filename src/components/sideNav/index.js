@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./sidenav.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const SideNav = ({ setSidebarOpen }) => {
     const router = useRouter();
@@ -30,9 +32,14 @@ const SideNav = ({ setSidebarOpen }) => {
     return (
         <div className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}>
             <button
-                className={`btn btn-close position-absolute top-0 end-0 ${styles.sideClose}`}
+                className={`btn position-absolute top-0 end-0 ${styles.sideClose}`}
                 onClick={toggleSidebar}
             >
+                {isOpen ? (
+                    <CloseIcon sx={{ color: 'white' }} />
+                ) : (
+                    <MenuIcon sx={{ color: 'white' }} />
+                )}
             </button>
             <ul className="nav flex-column">
                 {data.map((item, i) => (
