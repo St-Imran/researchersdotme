@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./sidenav.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const SideNav = ({ setSidebarOpen }) => {

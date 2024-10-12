@@ -13,7 +13,7 @@ function FeasibilityStudies() {
     setExpanded((prevExpanded) => !prevExpanded);
   };
   return (
-    <div className="container-fluid px-5">
+    <div className="container-fluid px-3 px-md-5">
       <div className="row">
         <div className="col-md-8 m-auto text-center my-5 py-5">
           <h1 className="display-4 font-weight-bolder text-center">
