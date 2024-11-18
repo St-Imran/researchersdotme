@@ -52,17 +52,17 @@ const Services = () => {
                       <small className="card-meta mb-2">
                         Unraveling practicality
                       </small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         FEASIBILITY STUDIES
                       </h4>
-                      <small>
+                      <small className="card-meta">
                         <i className="far fa-clock"></i>Ever wondered how ideas
                         transform into successful business projects?
                       </small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -92,17 +92,17 @@ const Services = () => {
                   <div className="card-img-overlay d-flex flex-column">
                     <div className="card-body">
                       <small className="card-meta mb-2">Marketing approach</small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         Data Story Telling
                       </h4>
-                      <small>
+                      <small className="card-meta">
                         <i className="far fa-clock"></i> The key to turning raw
                         data into a compelling narrative
                       </small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -134,14 +134,14 @@ const Services = () => {
                       <small className="card-meta mb-2">
                         Employee Satisfaction
                       </small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         Market Research And Measurement
                       </h4>
-                      <small>Customer Experience And Happiness</small>
+                      <small className="card-meta">Customer Experience And Happiness</small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -170,18 +170,18 @@ const Services = () => {
                   <div className="card-img-overlay d-flex flex-column">
                     <div className="card-body">
                       <small className="card-meta mb-2">Master The Data</small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         Analytics
                       </h4>
-                      <small>Performance monitoring</small>
+                      <small className="card-meta">Performance monitoring</small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
-                        <small className="text-dark">Analytics</small>\
+                        <small className="text-dark">Analytics</small>
                       </div>
                     </div>
                   </div>
@@ -207,16 +207,16 @@ const Services = () => {
                   <div className="card-img-overlay d-flex flex-column">
                     <div className="card-body">
                       <small className="card-meta mb-2">Faster decisions</small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         Business Intelligence
                       </h4>
-                      <small>
+                      <small className="card-meta">
                         The collection and analysis of business information
                       </small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -248,16 +248,16 @@ const Services = () => {
                   <div className="card-img-overlay d-flex flex-column">
                     <div className="card-body">
                       <small className="card-meta mb-2">In-depth process</small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         Business Analysis
                       </h4>
-                      <small>
+                      <small className="card-meta">
                         Insights to facilitate informed decision-making
                       </small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -286,16 +286,16 @@ const Services = () => {
                       <small className="card-meta mb-2">
                         Digital transformation
                       </small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         Technology
                       </h4>
-                      <small>
+                      <small className="card-meta">
                         A strategic approach to leverage its full potential
                       </small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -325,16 +325,16 @@ const Services = () => {
                   <div className="card-img-overlay d-flex flex-column">
                     <div className="card-body">
                       <small className="card-meta mb-2">Thought Leadership</small>
-                      <h4 className="card-title mt-0 ">
+                      <h4 className="h1 card-title mt-0 ">
                         Designing & Implementation of Loyalty & Rewards program
                       </h4>
-                      <small>
+                      <small className="card-meta">
                         <i className="far fa-clock"></i> October 15, 2020
                       </small>
                     </div>
                     <div className="card-footer">
                       <div className="media">
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>

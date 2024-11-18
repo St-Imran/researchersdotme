@@ -15,29 +15,36 @@
   padding: 0px;
   box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.319);
   transition: height 0.3s linear, top 0.3s linear;
+
   & * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+
   & a {
     color: inherit;
     text-decoration: none;
   }
+
   .logo {
-    width: 233px;
+    width: 135px;
+    height: 30px;
   }
 }
+
 .header ul {
   list-style: none;
   display: flex;
   justify-content: center;
 }
+
 .header ul li a,
 .header .contact-link a {
   padding: 20px;
   transition: all 0.4s;
   cursor: pointer;
+
   &:hover {
     background-color: white;
     color: black;
@@ -48,23 +55,28 @@
   content: ">";
   transform: rotate(90deg);
 }
+
 .header .contact-link:hover {
   background-color: black;
   color: white;
   transform: scale(1.1);
 }
+
 .header .contact-link a {
   display: flex;
   align-items: center;
 }
+
 .header .contact-link svg {
   margin-right: 10px;
 }
+
 .header .buttons {
   display: flex;
   align-items: center;
   gap: 30px;
 }
+
 .header .toggleButton {
   display: none;
   cursor: pointer;
@@ -77,9 +89,11 @@
       height: 25px;
     }
   }
+
   .header ul {
     flex-direction: column;
   }
+
   .header nav {
     position: absolute;
     top: 100%;
@@ -89,23 +103,28 @@
     opacity: 0;
     transition: all 0.3s ease-out;
   }
+
   .header nav.open {
     opacity: 1;
     left: 0px;
   }
+
   .header nav ul {
     flex-direction: column;
   }
+
   .header nav ul li {
     width: 100%;
     transition: all 0.4s;
     padding: 10px 0px;
     border-bottom: 1px solid #fff;
   }
+
   .header nav ul li:hover {
     padding-left: 20px;
     transform: translateX(20px);
   }
+
   .header .toggleButton {
     order: 2;
     display: block;

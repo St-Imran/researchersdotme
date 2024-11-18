@@ -12,7 +12,7 @@ function Hero() {
       <section className={`${style.hero__wrapper} ${style.no__img}`}>
         <div className={Classess.container}>
           <div className="row justify-content-center">
-            <div className="col-md-8">
+            <div className="col-md-10">
               <div className={style.text}>
                 <h2 className="mb-4">
                   As a full-service agency, we provide qualitative and
@@ -28,28 +28,60 @@ function Hero() {
                 </p>
                 <button>Schedule a Demo</button>
               </div>
-              <div className={style.about_info_boxes}>
-                <ul className="mt-5">
-                  <li>
-                    <div>What are your present business bottlenecks?</div>
-                  </li>
-                  <li>
-                    <div>Are you stuck in the middle of making a decision?</div>
-                  </li>
-                  <li>
-                    <div>
-                      Do you want to discover why people aren't purchasing your
-                      goods and services?
+            </div>
+            <div className="col-md-12">
+              <div className="row mt-5">
+                <div className="col-xl-4 col-lg-4 col-md-12">
+                  <div class={style.single_feature_box}>
+                    <div class={style.img_holder}>
+                      <div class={style.inner}>
+                        <Image
+                          src="/feature-1.jpg"
+                          width={363}
+                          height={363}
+                          alt="bottleneck image"
+                        />
+                      </div>
+                      <div class={style.title}>
+                        <h3>What are your <br /> present business <br /> bottlenecks?</h3>
+                      </div>
                     </div>
-                  </li>
-                  <li>
-                    <div>
-                      Are you interested in introducing a new service, product,
-                      or even marketing campaign but need clarification on what
-                      your target market wants?
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-12">
+                  <div className={style.single_feature_box} data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class={style.img_holder}>
+                      <div class={style.inner}>
+                        <Image
+                          src="/feature-2.jpg"
+                          width={363}
+                          height={363}
+                          alt="bottleneck image"
+                        />
+                      </div>
+                      <div class={style.title}>
+                        <h3>Are you stuck <br />in the middle of <br />making a decision?</h3>
+                      </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-lg-4 col-md-12">
+                  <div className={style.single_feature_box} data-wow-delay="00ms" data-wow-duration="1500ms">
+                    <div class={style.img_holder}>
+                      <div class={style.inner}>
+                        <Image
+                          src="/feature-3.jpg"
+                          width={363}
+                          height={363}
+                          alt="bottleneck image"
+                        />
+                      </div>
+                      <div class={style.title}>
+                        <h3>Want to discover <br /> why people aren't <br /> purchasing?</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -134,7 +166,7 @@ function Hero() {
                       href="/resources/establish-customer-experience/journey-mapping/"
                       target="_self"
                     >
-                      <span>Download Now</span>
+                      <span>Get Your Free Report Today</span>
                     </a>
                   </div>
                 </div>
@@ -158,7 +190,7 @@ function Hero() {
                       href="/resources/b2b-marketing-planning/marketing-plan-on-a-page/"
                       target="_self"
                     >
-                      <span>Download Now</span>
+                      <span>Access Exclusive Research </span>
                     </a>
                   </div>
                 </div>
@@ -220,7 +252,7 @@ function Hero() {
                       href="/resources/establish-customer-experience/journey-mapping/"
                       target="_self"
                     >
-                      <span>Download Now</span>
+                      <span>Trusted Research, Ready for You—Download Now!</span>
                     </a>
                   </div>
                 </div>

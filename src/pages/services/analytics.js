@@ -51,7 +51,7 @@ const Analytics = () => {
                 <div className="card-img-overlay d-flex flex-column">
                   <div className="card-body">
                     <small className="card-meta mb-2">Mystery Shopping</small>
-                    <h4 className="card-title mt-0 ">
+                    <h4 className="h1 card-title mt-0 ">
                       <Link
                         className="text-dark"
                         href="/services/innerPages/dashboardAndReporting"
@@ -59,7 +59,7 @@ const Analytics = () => {
                         Dashboard and Reporting
                       </Link>
                     </h4>
-                    <small>
+                    <small className="card-meta">
                       <i className="far fa-clock"></i>Ever wondered how ideas
                       transform into successful business projects?
                     </small>
@@ -70,7 +70,7 @@ const Analytics = () => {
                         href="/services/innerPages/dashboardAndReporting"
                         className="media-body"
                       >
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -98,7 +98,7 @@ const Analytics = () => {
                 <div className="card-img-overlay d-flex flex-column">
                   <div className="card-body">
                     <small className="card-meta mb-2">Marketing approach</small>
-                    <h4 className="card-title mt-0 ">
+                    <h4 className="h1 card-title mt-0 ">
                       <Link
                         className="text-dark"
                         href="/services/innerPages/dataAnalytics"
@@ -106,7 +106,7 @@ const Analytics = () => {
                         Data analytics
                       </Link>
                     </h4>
-                    <small>
+                    <small className="card-meta">
                       <i className="far fa-clock"></i> The key to turning raw
                       data into a compelling narrative
                     </small>
@@ -117,7 +117,7 @@ const Analytics = () => {
                         href="/services/innerPages/dataAnalytics"
                         className="media-body"
                       >
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -145,7 +145,7 @@ const Analytics = () => {
                     <small className="card-meta mb-2">
                       Employee Satisfaction
                     </small>
-                    <h4 className="card-title mt-0 ">
+                    <h4 className="h1 card-title mt-0 ">
                       <Link
                         className="text-dark"
                         href="/services/innerPages/masterDataManagement"
@@ -153,7 +153,7 @@ const Analytics = () => {
                         Master Data Management (MDM)
                       </Link>
                     </h4>
-                    <small>Customer Experience And Happiness</small>
+                    <small className="card-meta">Customer Experience And Happiness</small>
                   </div>
                   <div className="card-footer">
                     <div className="media">
@@ -161,7 +161,7 @@ const Analytics = () => {
                         href="/services/innerPages/masterDataManagement"
                         className="media-body"
                       >
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -189,7 +189,7 @@ const Analytics = () => {
                 <div className="card-img-overlay d-flex flex-column">
                   <div className="card-body">
                     <small className="card-meta mb-2">Master The Data</small>
-                    <h4 className="card-title mt-0 ">
+                    <h4 className="h1 card-title mt-0 ">
                       <Link
                         className="text-dark"
                         href="/services/innerPages/ԛuаntіtаtіvеAndQuаlіtаtіvеAnalysis"
@@ -197,7 +197,7 @@ const Analytics = () => {
                         QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ
                       </Link>
                     </h4>
-                    <small>Performance monitoring</small>
+                    <small className="card-meta">Performance monitoring</small>
                   </div>
                   <div className="card-footer">
                     <div className="media">
@@ -205,7 +205,7 @@ const Analytics = () => {
                         href="/services/innerPages/ԛuаntіtаtіvеAndQuаlіtаtіvеAnalysis"
                         className="media-body"
                       >
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -233,7 +233,7 @@ const Analytics = () => {
                 <div className="card-img-overlay d-flex flex-column">
                   <div className="card-body">
                     <small className="card-meta mb-2">Faster decisions</small>
-                    <h4 className="card-title mt-0 ">
+                    <h4 className="h1 card-title mt-0 ">
                       <Link
                         className="text-dark"
                         href="/services/innerPages/dataQuality"
@@ -241,7 +241,7 @@ const Analytics = () => {
                         Data Quality
                       </Link>
                     </h4>
-                    <small>
+                    <small className="card-meta">
                       The collection and analysis of business information
                     </small>
                   </div>
@@ -251,7 +251,7 @@ const Analytics = () => {
                         href="/services/innerPages/dataQuality"
                         className="media-body"
                       >
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
@@ -277,7 +277,7 @@ const Analytics = () => {
                 <div className="card-img-overlay d-flex flex-column">
                   <div className="card-body">
                     <small className="card-meta mb-2">In-depth process</small>
-                    <h4 className="card-title mt-0 ">
+                    <h4 className="h1 card-title mt-0 ">
                       <Link
                         className="text-dark"
                         href="/services/innerPages/dataIntegration"
@@ -285,7 +285,7 @@ const Analytics = () => {
                         Data Integration
                       </Link>
                     </h4>
-                    <small>
+                    <small className="card-meta">
                       Insights to facilitate informed decision-making
                     </small>
                   </div>
@@ -295,7 +295,7 @@ const Analytics = () => {
                         href="/services/innerPages/dataIntegration"
                         className="media-body"
                       >
-                        <h6 className="my-0 text-dark d-block">
+                        <h6 className="h2 my-0 text-dark d-block">
                           View In Details
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>

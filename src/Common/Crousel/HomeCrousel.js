@@ -87,7 +87,7 @@ const Carousel = ({ media }) => {
             allowFullScreen
           ></iframe>
         ) : (
-          <video src={media[currentIndex].src} controls autoPlay muted />
+          <video src={media[currentIndex].src} controls autoPlay muted controlsList="nofullscreen" />
         )}
       </div>
 
