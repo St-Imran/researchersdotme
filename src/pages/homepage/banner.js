@@ -17,7 +17,7 @@ function Banner() {
               Potentials Through Our <b>"ProfitPulse"</b> Approach, With Zero
               Data Pollution.
             </p>
-            <button>Sign Up</button>
+            <button>Explore Now</button>
           </div>
           <div className={style.frame}>
             <Image

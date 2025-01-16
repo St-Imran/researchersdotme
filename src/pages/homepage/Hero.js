@@ -32,9 +32,9 @@ function Hero() {
             <div className="col-md-12">
               <div className="row mt-5">
                 <div className="col-xl-4 col-lg-4 col-md-12">
-                  <div class={style.single_feature_box}>
-                    <div class={style.img_holder}>
-                      <div class={style.inner}>
+                  <div className={style.single_feature_box}>
+                    <div className={style.img_holder}>
+                      <div className={style.inner}>
                         <Image
                           src="/feature-1.jpg"
                           width={363}
@@ -42,7 +42,7 @@ function Hero() {
                           alt="bottleneck image"
                         />
                       </div>
-                      <div class={style.title}>
+                      <div className={style.title}>
                         <h3>What are your <br /> present business <br /> bottlenecks?</h3>
                       </div>
                     </div>
@@ -50,8 +50,8 @@ function Hero() {
                 </div>
                 <div className="col-xl-4 col-lg-4 col-md-12">
                   <div className={style.single_feature_box} data-wow-delay="00ms" data-wow-duration="1500ms">
-                    <div class={style.img_holder}>
-                      <div class={style.inner}>
+                    <div className={style.img_holder}>
+                      <div className={style.inner}>
                         <Image
                           src="/feature-2.jpg"
                           width={363}
@@ -59,7 +59,7 @@ function Hero() {
                           alt="bottleneck image"
                         />
                       </div>
-                      <div class={style.title}>
+                      <div className={style.title}>
                         <h3>Are you stuck <br />in the middle of <br />making a decision?</h3>
                       </div>
                     </div>
@@ -67,8 +67,8 @@ function Hero() {
                 </div>
                 <div className="col-xl-4 col-lg-4 col-md-12">
                   <div className={style.single_feature_box} data-wow-delay="00ms" data-wow-duration="1500ms">
-                    <div class={style.img_holder}>
-                      <div class={style.inner}>
+                    <div className={style.img_holder}>
+                      <div className={style.inner}>
                         <Image
                           src="/feature-3.jpg"
                           width={363}
@@ -76,7 +76,7 @@ function Hero() {
                           alt="bottleneck image"
                         />
                       </div>
-                      <div class={style.title}>
+                      <div className={style.title}>
                         <h3>Want to discover <br /> why people aren't <br /> purchasing?</h3>
                       </div>
                     </div>

@@ -26,8 +26,17 @@
 
 .hero__wrapper .text h1 {
   font-size: 40px;
-  font-weight: 800;
+  font-weight: 700;
   font-family: Arial, Helvetica, sans-serif;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 6px;
+    background: currentColor;
+    margin-top: 20px;
+  }
 }
 
 .hero__wrapper .text h2 {
@@ -39,7 +48,6 @@
 .hero__wrapper .text p {
   font-size: 18px;
   line-height: 28px;
-  text-align: justify;
   letter-spacing: 1px;
   word-spacing: 5px;
 }
@@ -51,11 +59,13 @@
   font-size: 16px;
   min-width: 188px;
   border: none;
-  line-height: 23px;
   color: #000;
   font-weight: 600;
-  box-shadow: 0px 0px 7px 0px black;
-  border-radius: 7px;
+  transition: all 0.4s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .hero__wrapper.no__img {
