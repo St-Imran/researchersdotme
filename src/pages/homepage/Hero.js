@@ -4,8 +4,10 @@ import Image from "next/image";
 import HomeCrousel from "../../Common/Crousel/HomeCrousel";
 import { media } from "../../constants/media";
 import Banner from "./banner";
+import { useRouter } from 'next/navigation'
 
 function Hero() {
+  const router = useRouter();
   return (
     <>
       <Banner />
@@ -26,15 +28,19 @@ function Hero() {
                   make a beneficial decision that propels your business ahead of
                   the competition.
                 </p>
-                <button>Schedule a Demo</button>
+                <button onClick={() => router.push('/contact')}>
+                  Become a Client <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                  </svg>
+                </button>
               </div>
             </div>
             <div className="col-md-12">
               <div className="row mt-5">
                 <div className="col-xl-4 col-lg-4 col-md-12">
-                  <div class={style.single_feature_box}>
-                    <div class={style.img_holder}>
-                      <div class={style.inner}>
+                  <div className={style.single_feature_box}>
+                    <div className={style.img_holder}>
+                      <div className={style.inner}>
                         <Image
                           src="/feature-1.jpg"
                           width={363}
@@ -42,7 +48,7 @@ function Hero() {
                           alt="bottleneck image"
                         />
                       </div>
-                      <div class={style.title}>
+                      <div className={style.title}>
                         <h3>What are your <br /> present business <br /> bottlenecks?</h3>
                       </div>
                     </div>
@@ -50,8 +56,8 @@ function Hero() {
                 </div>
                 <div className="col-xl-4 col-lg-4 col-md-12">
                   <div className={style.single_feature_box} data-wow-delay="00ms" data-wow-duration="1500ms">
-                    <div class={style.img_holder}>
-                      <div class={style.inner}>
+                    <div className={style.img_holder}>
+                      <div className={style.inner}>
                         <Image
                           src="/feature-2.jpg"
                           width={363}
@@ -59,7 +65,7 @@ function Hero() {
                           alt="bottleneck image"
                         />
                       </div>
-                      <div class={style.title}>
+                      <div className={style.title}>
                         <h3>Are you stuck <br />in the middle of <br />making a decision?</h3>
                       </div>
                     </div>
@@ -67,8 +73,8 @@ function Hero() {
                 </div>
                 <div className="col-xl-4 col-lg-4 col-md-12">
                   <div className={style.single_feature_box} data-wow-delay="00ms" data-wow-duration="1500ms">
-                    <div class={style.img_holder}>
-                      <div class={style.inner}>
+                    <div className={style.img_holder}>
+                      <div className={style.inner}>
                         <Image
                           src="/feature-3.jpg"
                           width={363}
@@ -76,7 +82,7 @@ function Hero() {
                           alt="bottleneck image"
                         />
                       </div>
-                      <div class={style.title}>
+                      <div className={style.title}>
                         <h3>Want to discover <br /> why people aren't <br /> purchasing?</h3>
                       </div>
                     </div>

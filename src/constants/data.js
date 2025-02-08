@@ -27,72 +27,39 @@ export const data = [
       },
       {
         heading: "Marketing approach",
-        title: "Customers Experience And Happiness",
+        title: "Customers Experience and Happiness",
         subTitle: "The key to turning raw data into a compelling narrative",
         url: "/services/innerPages/customerExperienceAndHappiness",
       },
       {
         heading: "Employee Satisfaction",
-        title: "AEMPLOYEE SATISFACTION AND ENGAGEMENT",
+        title: "Employee Satisfaction and Engagement",
         subTitle: "Customer Experience And Happiness",
         url: "/services/innerPages/employeeEngagementAndSatisfaction",
       },
       {
         heading: "Master The Data",
-        title: "Quаntіtаtіvе Аnd Quаlіtаtіvе Аnаlуѕіѕ",
+        title: "Qualitative and Quantitative Surveys",
         subTitle: "Performance monitoring",
         url: "/services/innerPages/qAnalysis",
       },
       {
         heading: "Faster decisions",
-        title: "BRAND POSITIONING AND BENCHMARKING",
+        title: "Brand Positioning & Benchmarking",
         subTitle: "The collection and analysis of business information",
         url: "/services/innerPages/brandPositioningAndBenchmarking",
       },
       {
         heading: "In-depth process",
-        title: "СОMРЕTІTОR АNАLУЅІЅ",
+        title: "Competitor Analysis",
         subTitle: "Insights to facilitate informed decision-making",
         url: "/services/innerPages/competitorAnalysis",
       },
       {
         heading: "Digital transformation",
-        title: "MАRKЕTІNG СОNЅULTІNG",
+        title: "Marketing Consulting",
         subTitle: "A strategic approach to leverage its full potential",
         url: "/services/innerPages/marketingConsulting",
-        subSections: [
-          {
-            heading: "Mystery Shopping",
-            title: "Dashboard and Reporting",
-            subTitle:
-              "Ever wondered how ideas transform into successful business projects?",
-            url: "/services/innerPages/dashboardAndReporting",
-          },
-          {
-            heading: "Marketing approach",
-            title: "Data analytics",
-            subTitle: "The key to turning raw data into a compelling narrative",
-            url: "/services/innerPages/dataAnalytics",
-          },
-          {
-            heading: "Employee Satisfaction",
-            title: "Master Data Management (MDM)",
-            subTitle: "Customer Experience And Happiness",
-            url: "/services/innerPages/masterDataManagement",
-          },
-          {
-            heading: "Master The Data",
-            title: "QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ",
-            subTitle: "Performance monitoring",
-            url: "/services/innerPages/%D4%9Bu%D0%B0nt%D1%96t%D0%B0t%D1%96v%D0%B5AndQu%D0%B0l%D1%96t%D0%B0t%D1%96v%D0%B5Analysis",
-          },
-          {
-            heading: "",
-            title: "",
-            subTitle: "",
-            url: "",
-          },
-        ],
       },
     ],
   },
@@ -101,29 +68,113 @@ export const data = [
     title: "Analytics",
     subTitle: "Performance monitoring",
     url: "/services/analytics",
+    subSections: [
+      {
+        title: "Dashboard and Reporting",
+        url: "/services/innerPages/dashboardAndReporting",
+      },
+      {
+        title: "Data analytics",
+        url: "/services/innerPages/dataAnalytics",
+      },
+      {
+        title: "Master Data Management (MDM)",
+        url: "/services/innerPages/masterDataManagement",
+      },
+      {
+        title: "Data Quality",
+        url: "/services/innerPages/dataQuality",
+      },
+      {
+        title: "Data Integration",
+        url: "/services/innerPages/dataIntegration",
+      },
+    ],
   },
   {
     heading: "Faster decisions",
     title: "Business Intelligence",
     subTitle: "The collection and analysis of business information",
     url: "/services/businessIntelligence",
+    subSections: [
+      // {
+      //   title: "Business Intelligence",
+      //   url: "/services/innerPages/ibmCognosAnalytics",
+      // },
+      {
+        title: "IBM Cognos Analytics",
+        url: "/services/innerPages/ibmCognosAnalytics",
+      },
+      {
+        title: "Tableau",
+        url: "/services/innerPages/tableau",
+      },
+      {
+        title: "Microsoft Power BI",
+        url: "/services/innerPages/microsoftPowerBi",
+      },
+      {
+        title: "Qlikview/Qliksense",
+        url: "/services/innerPages/qlikviewQliksense",
+      },
+    ]
   },
   {
     heading: "In-depth process",
     title: "Business Analysis",
     subTitle: "Insights to facilitate informed decision-making",
     url: "/services/businessAnalytics",
+    subSections: [
+      {
+        title: 'Product Analysis',
+        url: '/services/innerPages/productAnalysis',
+      },
+      {
+        title: 'Process Analysis',
+        url: '/services/innerPages/processAnalysis',
+      },
+    ]
   },
   {
     heading: "Digital transformation",
     title: "Technology",
     subTitle: "A strategic approach to leverage its full potential",
     url: "/services/technology",
+    subSections: [
+      {
+        title: "Technology",
+        url: "/services/technology",
+      },
+      {
+        title: "Digital Transformation",
+        url: "/services/digitalTransformation",
+      },
+      {
+        title: "Artificial Intelligence",
+        url: "/services/artificialIntelligence",
+      },
+      {
+        title: "Blockchain",
+        url: "/services/blockchain",
+      },
+      {
+        title: "Web 3.0",
+        url: "/services/web30",
+      },
+    ]
   },
   {
-    heading: "Thought Leadership",
-    title: "Designing & Implementation of Loyalty & Rewards program",
-    subTitle: "October 15, 2020",
-    url: "/services/innerPages/designingAndImplementationOfLoyaltyAndRewardsProgram",
+    heading: "",
+    title: "Loyalty",
+    subTitle: "",
+    url: "",
+    subSections: [
+      {
+        heading: "Thought Leadership",
+        title: "Designing & Implementation of Loyalty & Rewards program",
+        subTitle: "October 15, 2020",
+        url: "/services/innerPages/designingAndImplementationOfLoyaltyAndRewardsProgram",
+      }
+    ]
   },
 ];

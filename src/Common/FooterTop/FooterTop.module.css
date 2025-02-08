@@ -5,38 +5,47 @@
   align-items: flex-start;
   justify-content: center;
 }
+
 .footer__top ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .footer__top ul li a {
   transition: all 0.4s;
 }
+
 .footer__top ul li a:hover {
   /* letter-spacing: 1px; */
   padding-left: 10px;
 }
-.footer__top > div {
+
+.footer__top>div {
   width: 25%;
   padding: 20px;
 }
-.footer__top > div.form {
+
+.footer__top>div.form {
   width: 50%;
 }
-.footer__top > div h2 {
+
+.footer__top>div h2 {
   margin-bottom: 10px;
 }
+
 .footer__top .form form {
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding: 0px 0px 20px;
 }
+
 .footer__top nav ul {
   padding: 0px;
 }
+
 .footer__top form input,
 .footer__top form textarea {
   padding: 10px;
@@ -50,34 +59,41 @@
   transition: all 0.4s;
   background-color: transparent;
 }
+
 .footer__top form input:hover,
 .footer__top form textarea:hover {
   transform: translateY(-5px);
   backdrop-filter: blur(5px);
   color: white;
 }
+
 .footer__top form input:hover::placeholder,
 .footer__top form textarea:hover::placeholder {
   color: white;
 }
+
 .footer__top form input::placeholder,
 .footer__top form textarea::placeholder {
   color: white;
 }
+
 .footer__top form input[type="submit"] {
   color: rgb(255, 255, 255);
   transition: all 0.3s;
 }
+
 .footer__top form input[type="submit"]:hover {
   background-color: #000;
 }
+
 .social__icons {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
 }
-.social__icons > svg:hover {
+
+.social__icons>svg:hover {
   cursor: pointer;
   transform: scale(1.2);
   transition: all 0.4s ease;
@@ -88,11 +104,13 @@
     flex-direction: column;
     padding: 100px 10px 10px;
   }
-  .footer__top > div {
+
+  .footer__top>div {
     width: 90%;
     margin: auto;
   }
-  .footer__top > div.form {
+
+  .footer__top>div.form {
     width: 100%;
   }
 }

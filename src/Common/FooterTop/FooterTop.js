@@ -1,4 +1,9 @@
 import styles from "./FooterTop.module.css";
+let inputFiled = {
+  appearance: 'textfield',
+  webkitAppearance: 'none',
+  mozAppearance: 'textfield'
+}
 function FooterTop() {
   return (
     <section className={styles.footer__top}>
@@ -7,7 +12,7 @@ function FooterTop() {
         <form action="">
           <input type="text" placeholder="Name" />
           <input type="email" placeholder="Email" />
-          <input type="number" placeholder="Phone" />
+          <input type="tel" placeholder="Phone" style={inputFiled} />
           <textarea
             name="message"
             placeholder="Message"

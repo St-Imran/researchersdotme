@@ -1,5 +1,5 @@
 .contact__section {
-  height: 500px;
+  height: 315px;
   background-color: black;
   background-image: url("/img/contactus.jpg");
   background-size: cover;
@@ -12,9 +12,11 @@
   color: #fff;
   text-transform: uppercase;
 }
+
 .contact__section h1 {
   font-size: max(3vw, 30px);
 }
+
 .contact__section::before {
   content: "";
   position: absolute;

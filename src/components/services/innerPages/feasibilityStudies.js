@@ -507,7 +507,7 @@ function FeasibilityStudies() {
             </Accordion>
           </div>
         </div>
-        <div className="row py-4 py-lg-5 justify-content-center">
+        {/* <div className="row py-4 py-lg-5 justify-content-center">
           <div className="col-md-8 text-center">
             <h2>Identify viable growth opportunities for your Business</h2>
             <p>
@@ -516,7 +516,7 @@ function FeasibilityStudies() {
             </p>
             <button className="btn btn-primary">BECOME A CLIENT</button>
           </div>
-        </div>
+        </div> */}
       </section>
     </div>
   );

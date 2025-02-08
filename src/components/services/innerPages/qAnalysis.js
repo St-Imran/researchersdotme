@@ -6,13 +6,13 @@ function QAnalysis() {
     <>
       <Typography component="div" className="title__section">
         <Typography variant="h1">
-          QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ
+          Qualitative and Quantitative Analysis
         </Typography>
       </Typography>
       <Typography component="div" className="container">
         <Typography component="div" className="story__content">
           <Typography variant="h3">
-            QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ
+            Qualitative and Quantitative Analysis
           </Typography>
           <p>
             Data storytelling for business is the key to turning raw data into a

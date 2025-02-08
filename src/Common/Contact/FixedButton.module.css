@@ -1,14 +1,20 @@
-.fixedButton{
+.fixedButton {
     font-family: Arial, Helvetica, sans-serif;
     position: fixed;
     right: 0px;
-    bottom: 10%;
-    background-color: black;
+    bottom: 50%;
+    transform: translateY(50%);
+    background-color: #f1eeee;
     color: white;
     text-decoration: none;
     cursor: pointer;
-    padding: 15px 20px 15px 30px;
+    padding: 10px;
     border-radius: 5px 0px 0px 5px;
     letter-spacing: 1.5px;
     z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
