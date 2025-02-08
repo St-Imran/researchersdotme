@@ -13,7 +13,7 @@ export const styles = {
   },
   gradiant2: {
     padding: "100px 0px",
-    background: "linear-gradient(45deg,#E7E7E7,#E7E7E7)",
+    background: "linear-gradient(45deg,#ffde00,#00d1c3)",
   },
   gradiant3: {
     padding: "100px 0px",

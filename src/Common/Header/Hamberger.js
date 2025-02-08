@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./Hamberger.module.css";
 
-const Hamberger = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Hamberger = ({ navOpener, isOpen }) => {
 
   const toggleHandler = () => {
-    setIsOpen(!isOpen);
-    props.navOpener();
+    navOpener();
   };
 
   return (

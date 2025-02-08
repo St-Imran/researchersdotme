@@ -20,7 +20,7 @@ function Header() {
           <Image src={Logo} alt="Company Logo" className={styles.logo} />
         </Link>
       </div>
-      <nav className={isOpen ? styles.open : ""} onClick={toggleHandler}>
+      <nav className={isOpen ? styles.open : ""} >
         <ul className={styles.navigation}>
           <li>
             <Link href="/about">About Us</Link>
@@ -47,7 +47,7 @@ function Header() {
       </nav>
       <div className={styles.buttons}>
         <div className={styles.toggleButton}>
-          <Hamberger navOpener={toggleHandler} />
+          <Hamberger navOpener={toggleHandler} isOpen={isOpen} />
         </div>
         <div className={styles["contact-link"]}>
           <a href="https://wa.me/+919999888676">
