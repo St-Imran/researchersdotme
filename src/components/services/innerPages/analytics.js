@@ -3,6 +3,7 @@ import Image from "next/image";
 function Analytics() {
   return (
     <>
+    {}
       <Typography component="div" className="title__section">
         <Typography variant="h1">Dashboard Reporting.</Typography>
       </Typography>
