@@ -1,20 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,531;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,531;1,600;1,700;1,800;1,900&display=swap');
+
 .contact__section {
-  height: 315px;
-  background-color: black;
-  background-image: url("/img/contactus.jpg");
+  background-color: #EBFFF4;
   background-size: cover;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   z-index: 0;
   color: #fff;
-  text-transform: uppercase;
+  padding: 120px 100px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.contact__section p {
+  color: #4f5752;
+  margin: 20px 0px;
+  font-size: 30px;
+}
+
+.contact__section .button {
+  background-color: #074D29;
+  padding: 10px 20px;
+  color: white;
+  font-size: 30px;
+  font-weight: 200;
+  border: none;
+  cursor: pointer;
+}
+
+.contact__section .image {
+  height: 100%;
+  max-width: 675px;
+  width: 50%;
+  position: absolute;
+  top: 0px;
+  right: 0;
 }
 
 .contact__section h1 {
-  font-size: max(3vw, 30px);
+  color: #0D934E;
+  line-height: 70px;
+  font-size: 50px;
 }
 
 .contact__section::before {
@@ -22,8 +47,47 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.77);
   z-index: -1;
+}
+
+@media (max-width:1073px) {
+  .contact__section {
+    height: 550px;
+    padding: 12px 10px;
+  }
+
+  .contact__section h1 {
+    line-height: 50px;
+    font-size: 40px;
+  }
+
+  .contact__section p {
+    color: #4f5752;
+    margin: 20px 0px;
+    font-size: 25px;
+  }
+
+  .contact__section .button {
+    padding: 10px 20px;
+    font-size: 25px;
+  }
+
+  .contact__section .after {
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    background-color: #109D54;
+  }
+
+  .contact__section .image {
+    height: 100%;
+    width: 70%;
+    position: absolute;
+    top: unset;
+    bottom: 0px;
+    right: 50%;
+    transform: translateX(50%);
+  }
 }

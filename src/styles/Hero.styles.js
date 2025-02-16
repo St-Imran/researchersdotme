@@ -14,6 +14,7 @@ export const styles = {
   gradiant2: {
     padding: "100px 0px",
     background: "linear-gradient(45deg,#ffde00,#00d1c3)",
+    position: 'relative'
   },
   gradiant3: {
     padding: "100px 0px",

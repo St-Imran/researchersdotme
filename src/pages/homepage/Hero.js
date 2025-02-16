@@ -4,7 +4,8 @@ import Image from "next/image";
 import HomeCrousel from "../../Common/Crousel/HomeCrousel";
 import { media } from "../../constants/media";
 import Banner from "./banner";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import Cards from './Cards';
 
 function Hero() {
   const router = useRouter();
@@ -36,20 +37,21 @@ function Hero() {
               </div>
             </div>
             <div className="col-md-12">
-              <div className="row mt-5">
+              <Cards />
+              {/* <div className="row mt-5">
                 <div className="col-xl-4 col-lg-4 col-md-12">
                   <div className={style.single_feature_box}>
                     <div className={style.img_holder}>
                       <div className={style.inner}>
                         <Image
-                          src="/feature-1.jpg"
+                          src="/Web-Banner-01.jpg"
                           width={363}
-                          height={363}
+                          height={563}
                           alt="bottleneck image"
                         />
                       </div>
                       <div className={style.title}>
-                        <h3>What are your <br /> present business <br /> bottlenecks?</h3>
+                        <h3>What are your present business bottlenecks?</h3>
                       </div>
                     </div>
                   </div>
@@ -59,14 +61,14 @@ function Hero() {
                     <div className={style.img_holder}>
                       <div className={style.inner}>
                         <Image
-                          src="/feature-2.jpg"
+                          src="/Web-Banner-02.jpg"
                           width={363}
-                          height={363}
+                          height={563}
                           alt="bottleneck image"
                         />
                       </div>
                       <div className={style.title}>
-                        <h3>Are you stuck <br />in the middle of <br />making a decision?</h3>
+                        <h3>Are you stuck in the middle of making a decision?</h3>
                       </div>
                     </div>
                   </div>
@@ -76,19 +78,19 @@ function Hero() {
                     <div className={style.img_holder}>
                       <div className={style.inner}>
                         <Image
-                          src="/feature-3.jpg"
+                          src="/Web-Banner-03.jpg"
                           width={363}
-                          height={363}
+                          height={563}
                           alt="bottleneck image"
                         />
                       </div>
                       <div className={style.title}>
-                        <h3>Want to discover <br /> why people aren't <br /> purchasing?</h3>
+                        <h3>Want to discover why people aren't purchasing?</h3>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
