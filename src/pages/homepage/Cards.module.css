@@ -113,3 +113,34 @@
         }
     }
 }
+
+@media (max-width: 480px) {
+    .h3 {
+        font-size: 1rem;
+    }
+
+    .content {
+        top: 20px;
+        left: 20px;
+        width: 85%;
+
+        &::before {
+            height: 50px;
+            width: 3px;
+            left: -10px;
+            top: 0px;
+        }
+    }
+
+    .Cardbutton {
+        padding: 7px 15px 7px 8px;
+        font-size: 0.6rem;
+        letter-spacing: 0.5px;
+
+        &::after {
+            top: 8px;
+            height: 12px;
+            width: 15px;
+        }
+    }
+}

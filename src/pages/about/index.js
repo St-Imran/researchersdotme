@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./about.module.css";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 const About = () => {
+  const router = useRouter();
   return (
     <>
       {/* <Title
@@ -131,7 +133,7 @@ const About = () => {
       <div className={styles.about__cta}>
         <h2>Enjoy the development of innovative products that resonate with your customers. </h2>
         <p>Let us assist you optimize marketing campaigns by leveraging consumer insights and savor higher conversion rates and ROI</p>
-        <button>BECOME A CLIENT</button>
+        <button onClick={() => router.push('/contact')}>BECOME A CLIENT</button>
       </div>
     </>
   );
