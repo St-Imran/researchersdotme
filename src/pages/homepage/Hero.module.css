@@ -23,6 +23,13 @@
   right: 5%;
 }
 
+@media (max-width: 480px) {
+  .hero__wrapper .frame {
+      width: 400px;
+      opacity: 0.1;
+  }
+}
+
 .hero__wrapper .text {
   align-items: flex-start;
 }
