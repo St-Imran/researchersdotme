@@ -10,7 +10,7 @@ function Banner() {
         <div className={style.hero__wrapper}>
           <div className={style.text}>
             <h1 style={styles.headingColor}>
-              REMOVE THE GUESSWORK AND MAKE THE RIGHT DECISION --
+              REMOVE THE GUESSWORK AND MAKE THE RIGHT DECISION
             </h1>
             <p>
               Welcome To Researchers! We Help You Unlock Your Business
