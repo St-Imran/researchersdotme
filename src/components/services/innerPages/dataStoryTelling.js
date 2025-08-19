@@ -34,9 +34,9 @@ function DataStoryTelling() {
             UAE market to make informed decisions and shape strategic marketing
             approaches.
           </p>
-          <Typography variant="h6">
+          <h3 className="fw-bold my-5">
             The Core Components of Data Storytelling
-          </Typography>
+          </h3>
           <p style={{ fontWeight: "bold" }}>
             In data storytelling, a strategic blend of narrative, visuals, and
             data visualization forms the bedrock of effective communication.
@@ -81,9 +81,9 @@ function DataStoryTelling() {
             narrative, ensuring that your data story is equipped with the
             necessary depth and clarity.
           </p>
-          <Typography variant="h6">Types of Data Storytelling</Typography>
-          <Typography component="div" className="row">
+          <Typography component="div" className="row my-5">
             <Typography component="div" className="col-md-6">
+              <h4 className="m-0">Types of Data Storytelling</h4>
               <ol>
                 <li>
                   <p>
@@ -114,18 +114,20 @@ function DataStoryTelling() {
                 </li>
               </ol>
             </Typography>
-            <Typography component="div" className="col-md-6">
-              <Image
-                src="/rese-11.jpg"
-                width={500}
-                height={300}
-                alt="Types of Data Storytelling"
-              />
-            </Typography>
+            <div className="col-md-6">
+              <div className="position-relative h-100">
+                <div className="ratio ratio-16x9"></div>
+                <img
+                  src="/rese-11.jpg"
+                  className="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-5"
+                  alt="Types of Data Storytelling"
+                />
+              </div>
+            </div>
           </Typography>
-          <Typography variant="h6">
+          <h3 className="fw-bold my-5">
             Why Choose Researchers.me for Your Data Storytelling in UAE?
-          </Typography>
+          </h3>
 
           <p>
             At Researchers.me, our team, specializing in data storytelling for
@@ -153,10 +155,9 @@ function DataStoryTelling() {
             determine the most effective channels, devise a robust media plan,
             and meticulously track results for continuous refinement.
           </p>
-          <Typography variant="h6">
+          <h3 className="fw-bold my-5">
             How We Conduct Data Storytelling in Dubai?
-          </Typography>
-
+          </h3>
           <p>
             At Researchers, our approach to data storytelling in the UAE is a
             finely tuned process that blends expertise with local market
@@ -220,9 +221,9 @@ function DataStoryTelling() {
             solutions that resonate with the local audience and drive tangible
             results for businesses operating in the region.
           </p>
-          <Typography variant="h6">
+          <h3 className="fw-bold my-5">
             Choose Us for Your Data Storytelling in the UAE
-          </Typography>
+          </h3>
           <p>
             When you opt for Data Storytelling services at Researchers.me,
             you’re choosing a dedicated partner committed to providing
@@ -233,74 +234,74 @@ function DataStoryTelling() {
             Services at our data storytelling company are crafted to empower
             your business endeavors in Dubai, UAE, and the wider Gulf Region.
           </p>
-          <Typography variant="h6">
+          <h3 className="fw-bold my-5">
             Frequently Asked Questions (FAQ) on Data Storytelling in UAE
-          </Typography>
+          </h3>
           <ol>
             <li>
               <strong>
                 What is Data Storytelling, and why is it important for
                 businesses?
               </strong>
+              <p>
+                Data storytelling is the process of turning complex data into a
+                narrative that drives insights and actions. It’s crucial for
+                businesses as it helps in making informed decisions and crafting
+                effective marketing strategies.
+              </p>
             </li>
           </ol>
-          <p>
-            Data storytelling is the process of turning complex data into a
-            narrative that drives insights and actions. It’s crucial for
-            businesses as it helps in making informed decisions and crafting
-            effective marketing strategies.
-          </p>
 
           <ol start="2">
             <li>
               <strong>How can Data Storytelling benefit my business?</strong>
+              <p>
+                Data storytelling enables better decision-making, drives growth
+                through targeted marketing efforts, improves customer experience,
+                and increases engagement with interactive visualizations.
+              </p>
             </li>
           </ol>
-          <p>
-            Data storytelling enables better decision-making, drives growth
-            through targeted marketing efforts, improves customer experience,
-            and increases engagement with interactive visualizations.
-          </p>
           <ol start="3">
             <li>
               <strong>
                 Can Data Storytelling work for startups and established
                 enterprises alike?
               </strong>
+              <p>
+                Absolutely. Our expertise in data storytelling is designed to cater
+                to the unique needs of both startups and established enterprises,
+                providing tailored strategies for growth and success.
+              </p>
             </li>
           </ol>
-          <p>
-            Absolutely. Our expertise in data storytelling is designed to cater
-            to the unique needs of both startups and established enterprises,
-            providing tailored strategies for growth and success.
-          </p>
           <ol start="4">
             <li>
               <strong>
                 What sets Researchers apart in the field of Data Storytelling?
               </strong>
+              <p>
+                Our team combines extensive experience in data analysis and
+                visualization with a deep understanding of the UAE market. We
+                provide customized solutions that drive tangible results for
+                businesses of all sizes.
+              </p>
             </li>
           </ol>
-          <p>
-            Our team combines extensive experience in data analysis and
-            visualization with a deep understanding of the UAE market. We
-            provide customized solutions that drive tangible results for
-            businesses of all sizes.
-          </p>
           <ol start="5">
             <li>
               <strong>
                 How long does it typically take to see the impact of Data
                 Storytelling on business outcomes?
               </strong>
+              <p>
+                The impact of data storytelling can vary depending on factors such
+                as industry, audience, and implementation. However, businesses often
+                start seeing positive results within the first few months of
+                implementing a data-driven strategy.
+              </p>
             </li>
           </ol>
-          <p>
-            The impact of data storytelling can vary depending on factors such
-            as industry, audience, and implementation. However, businesses often
-            start seeing positive results within the first few months of
-            implementing a data-driven strategy.
-          </p>
         </Typography>
       </Typography>
     </>
