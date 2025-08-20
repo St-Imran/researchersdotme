@@ -1,11 +1,9 @@
 import style from "./Hero.module.css";
 import Classess from "./page.module.css";
 import Image from "next/image";
-import HomeCrousel from "../../Common/Crousel/HomeCrousel";
-import { media } from "../../constants/media";
 import Banner from "./banner";
-import { useRouter } from 'next/navigation';
-import Cards from './Cards';
+import { useRouter } from "next/navigation";
+import Cards from "./Cards";
 
 function Hero() {
   const router = useRouter();
@@ -29,9 +27,20 @@ function Hero() {
                   make a beneficial decision that propels your business ahead of
                   the competition.
                 </p>
-                <button onClick={() => router.push('/contact')}>
-                  Become a Client <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                <button onClick={() => router.push("/contact")}>
+                  Become a Client{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-up-right"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"
+                    />
                   </svg>
                 </button>
               </div>
@@ -98,9 +107,7 @@ function Hero() {
       <section>
         <div className="container">
           <div className="row">
-            <div className="col overflow-hidden">
-              <HomeCrousel media={media} />
-            </div>
+            <div className="col overflow-hidden"></div>
           </div>
         </div>
       </section>

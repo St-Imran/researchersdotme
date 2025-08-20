@@ -1,8 +1,6 @@
 import Image from "next/image";
 import styles from "./Home.module.css";
 import Link from "next/link";
-import HomeCrousel from "../../Common/Crousel/HomeCrousel";
-import { media } from "../../constants/media";
 
 export default function Home() {
   return (
