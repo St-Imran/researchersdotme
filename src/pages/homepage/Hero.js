@@ -47,7 +47,7 @@ function Hero() {
             </div>
             <div className="col-md-12">
               <Cards />
-              {/* <div className="row mt-5">
+              {/* <div className="row mt-5"> 
                 <div className="col-xl-4 col-lg-4 col-md-12">
                   <div className={style.single_feature_box}>
                     <div className={style.img_holder}>
