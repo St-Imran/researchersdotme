@@ -20,7 +20,7 @@ function Header() {
           <Image src={Logo} alt="Company Logo" className={styles.logo} />
         </Link>
       </div>
-      <nav className={isOpen ? styles.open : ""} >
+      <nav className={isOpen ? styles.open : ""}>
         <ul className={styles.navigation}>
           <li>
             <Link href="/about">About Us</Link>
@@ -40,9 +40,9 @@ function Header() {
           <li>
             <Link href="/cases">Case Studies</Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/ckEditor">Write here</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
       <div className={styles.buttons}>
