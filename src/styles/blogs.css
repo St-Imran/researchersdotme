@@ -1,0 +1,229 @@
+
+.prose { 
+  line-height: 1.7;
+  max-width: none;
+  color: #374151;
+}
+
+/* Ensure scroll position resets for blog pages */
+html {
+  scroll-behavior: auto !important;
+}
+
+.prose h1, .prose h2, .prose h3 { margin: 1.5rem 0 1rem; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1rem; }
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: #111827;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.prose strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.prose a {
+  color: #22c55e;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.prose a:hover {
+  color: #16a34a;
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  border-left: 4px solid #22c55e;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.prose code {
+  background: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.prose pre {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.prose img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  margin-bottom: 1.25rem;
+}
+
+.image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.prose th, .prose td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.prose th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+/* Green variant for info boxes */
+.prose-green h1, .prose-green h2, .prose-green h3, .prose-green h4, .prose-green h5, .prose-green h6 {
+  color: #166534;
+}
+
+.prose-green strong {
+  color: #166534;
+}
+
+.prose-green a {
+  color: #16a34a;
+}
+
+/* Prevent accidental horizontal scroll gaps on small screens */
+html, body { overflow-x: hidden; }
+
+html, body {
+  height: 100%;
+}
+
+/* Simple TOC - Clean design matching screenshot */
+.toc-container {
+  position: sticky;
+  top: 2rem;
+  transform: translateX(-30px);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.toc-container.toc-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* TOC Item Styles */
+.toc-item {
+  padding: 4px 0 !important;
+  margin-bottom: 12px !important;
+  background-color: transparent !important;
+}
+
+.toc-item .toc-text {
+  font-weight: 500 !important;
+  color: #666 !important;
+  transition: all 0.3s ease !important;
+}
+
+.toc-item:hover .toc-text {
+  color: #333 !important;
+}
+
+.toc-item.toc-active .toc-text {
+  color: #22c55e !important; /* Use a vivid green */
+  font-weight: 700 !important;
+  transform: scale(1.05);
+  text-decoration: underline;
+  text-decoration-color: #22c55e;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 960px) {
+  .toc-container {
+    position: static !important;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .toc-item .toc-text {
+    color: #22c55e !important;
+    text-decoration: underline;
+    text-decoration-color: #22c55e;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    font-weight: 700 !important;
+  }
+
+  .prose h3 { /* Targeting FAQ questions */
+    font-size: 1.25rem;
+  }
+
+  .toc-item.toc-active .toc-text {
+    transform: none;
+  }
+}
+
