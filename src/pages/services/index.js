@@ -1,5 +1,5 @@
 const { default: CardMenu } = require("@/Common/CardMenu/CardMenu");
-const { servicesCardData } = require("./servicesStaticData/cardsData");
+const { servicesCardData } = require("../../constants/servicesCardData");
 
 const Services = () => {
   return (
