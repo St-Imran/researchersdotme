@@ -5,13 +5,13 @@
   top: 90px;
   left: 0;
   z-index: 99;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 90px);
   overflow: auto;
-  background-color: #003d2d;
-  background: linear-gradient(325deg, #ffe42b, #0f857d);
+  /* background-color: #003d2d; */
+  background: #005596;
   transition: transform 0.3s ease;
-  border-radius: 0px 0px 20px 0px;
-  box-shadow: 2px 2px 2px 0px silver;
+  /* border-radius: 0px 0px 20px 0px; */
+  /* box-shadow: 2px 2px 2px 0px silver; */
 }
 
 @media only screen and (max-width: 768px) {

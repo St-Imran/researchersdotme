@@ -8,7 +8,7 @@ function FooterTop() {
   return (
     <section className={styles.footer__top}>
       <div className={styles.form}>
-        <h2>CONTACT US</h2>
+        <h2>Contact Us</h2>
         <form action="">
           <input type="text" placeholder="Name" />
           <input type="email" placeholder="Email" />
@@ -23,7 +23,7 @@ function FooterTop() {
         </form>
       </div>
       <div className={styles.tech}>
-        <h2>TECHNOLOGIES</h2>
+        <h2>Technology</h2>
         <nav>
           <ul>
             <li>
@@ -63,7 +63,7 @@ function FooterTop() {
         </nav>
       </div>
       <div className={styles.service}>
-        <h2></h2>
+        <h2>Others</h2>
         <nav>
           <ul>
             <li>

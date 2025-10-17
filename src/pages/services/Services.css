@@ -81,10 +81,9 @@ a {
 }
 
 .card .card-meta {
-  color: rgb(255 0 0 / 62%);
-  text-transform: uppercase;
+  color: rgb(26 26 26 / 62%);
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 0px;
 }
 
 .card .card-body {
