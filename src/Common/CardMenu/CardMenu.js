@@ -12,7 +12,7 @@ const Card = ({ title, subtitle, description, bg, link }) => (
         <div className="card-img-overlay d-flex flex-column">
           <div className="card-body">
             <small className="card-meta mb-2">{subtitle}</small>
-            <h4 className="h1 card-title mt-0">{title}</h4>
+            <h4 className="h2 card-title mt-0">{title}</h4>
             <small className="card-meta">{description}</small>
           </div>
           <div className="card-footer">

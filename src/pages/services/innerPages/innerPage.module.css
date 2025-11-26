@@ -2,6 +2,7 @@
   display: flex;
   column-gap: 15px;
   position: relative;
+  background: linear-gradient(90deg, rgb(255, 222, 0), rgb(0, 209, 195));
 }
 
 .rightPanel {
@@ -17,7 +18,7 @@
 }
 
 .rightPanel {
-  box-shadow: 0px 0px 4px 0px silver;
+  /* box-shadow: 0px 0px 4px 0px silver; */
   margin: 0px 20px 20px auto;
   overflow: hidden;
 }
