@@ -10,17 +10,19 @@ const Services = () => {
   const [selectedSubSubCategory, setSelectedSubSubCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [breadcrumbs, setBreadcrumbs] = useState([]);
-  const [navigationData, setNavigationData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const mainCategories = ["All", ...navigationData.map((cat) => cat.title)];
+  // Extract unique categories from services
+  const mainCategories = ["All", ...new Set(allServices.map((service) => service.category || service.mainCategory).filter(Boolean))];
 
   useEffect(() => {
     fetch("http://localhost:5000/api/services")
       .then((res) => res.json())
       .then((data) => {
-        setNavigationData(data);
+        // Store the flat array of services directly
+        setAllServices(data);
+        setFilteredServices(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -28,12 +30,6 @@ const Services = () => {
         setLoading(false);
       });
   }, []);
-
-  useEffect(() => {
-    const extractedServices = extractAllServices();
-    setAllServices(extractedServices);
-    setFilteredServices(extractedServices);
-  }, [navigationData]);
 
   useEffect(() => {
     filterServices();
@@ -46,57 +42,12 @@ const Services = () => {
     allServices,
   ]);
 
-  const extractAllServices = () => {
-    const services = [];
-    navigationData.forEach((mainCat, mainIndex) => {
-      if (mainCat.subSections && mainCat.subSections.length > 0) {
-        mainCat.subSections.forEach((subCat, subIndex) => {
-          if (subCat.subSections && subCat.subSections.length > 0) {
-            subCat.subSections.forEach((subSubCat, subSubIndex) => {
-              services.push({
-                id: `${mainIndex}-${subIndex}-${subSubIndex}`,
-                title: subSubCat.title,
-                heading: subSubCat.heading || subCat.heading,
-                subtitle: subSubCat.subTitle || subCat.subTitle,
-                mainCategory: mainCat.title,
-                mainCategoryHeading: mainCat.heading,
-                subCategory: subCat.title,
-                subCategoryHeading: subCat.heading,
-                subSubCategory: subSubCat.title,
-                url: subSubCat.url,
-                level: 3,
-                description:
-                  subSubCat.subTitle ||
-                  subCat.subTitle ||
-                  mainCat.subTitle ||
-                  "",
-              });
-            });
-          } else {
-            services.push({
-              id: `${mainIndex}-${subIndex}`,
-              title: subCat.title,
-              heading: subCat.heading || mainCat.heading,
-              subtitle: subCat.subTitle || mainCat.subTitle,
-              mainCategory: mainCat.title,
-              mainCategoryHeading: mainCat.heading,
-              subCategory: subCat.title,
-              url: subCat.url,
-              level: 2,
-              description: subCat.subTitle || mainCat.subTitle || "",
-            });
-          }
-        });
-      }
-    });
-    return services;
-  };
-
   const filterServices = () => {
     let filtered = allServices;
     if (selectedCategory !== "All") {
       filtered = filtered.filter(
-        (service) => service.mainCategory === selectedCategory
+        (service) => service.category === selectedCategory || 
+                     service.mainCategory === selectedCategory
       );
     }
     if (selectedSubCategory) {
@@ -113,8 +64,8 @@ const Services = () => {
       filtered = filtered.filter(
         (service) =>
           service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (service.subtitle &&
-            service.subtitle
+          (service.subTitle &&
+            service.subTitle
               .toLowerCase()
               .includes(searchTerm.toLowerCase())) ||
           (service.heading &&
@@ -165,21 +116,22 @@ const Services = () => {
 
   const getSubCategories = () => {
     if (selectedCategory === "All") return [];
-    const mainCat = navigationData.find(
-      (cat) => cat.title === selectedCategory
-    );
-    return mainCat?.subSections || [];
+    // Get unique sub-categories for the selected main category
+    const subCats = allServices
+      .filter((service) => service.category === selectedCategory || service.mainCategory === selectedCategory)
+      .map((service) => service.subCategory)
+      .filter(Boolean);
+    return [...new Set(subCats)];
   };
 
   const getSubSubCategories = () => {
     if (!selectedSubCategory) return [];
-    const mainCat = navigationData.find(
-      (cat) => cat.title === selectedCategory
-    );
-    const subCat = mainCat?.subSections?.find(
-      (sub) => sub.title === selectedSubCategory
-    );
-    return subCat?.subSections || [];
+    // Get unique sub-sub-categories for the selected sub-category
+    const subSubCats = allServices
+      .filter((service) => service.subCategory === selectedSubCategory)
+      .map((service) => service.subSubCategory)
+      .filter(Boolean);
+    return [...new Set(subSubCats)];
   };
 
   const handleSearch = (e) => setSearchTerm(e.target.value);
@@ -286,13 +238,13 @@ const Services = () => {
               </button>
               {getSubCategories().map((subCat) => (
                 <button
-                  key={subCat.title}
+                  key={subCat}
                   className={`${styles.filterBtn} ${
-                    selectedSubCategory === subCat.title ? styles.active : ""
+                    selectedSubCategory === subCat ? styles.active : ""
                   }`}
-                  onClick={() => handleSubCategoryClick(subCat.title)}
+                  onClick={() => handleSubCategoryClick(subCat)}
                 >
-                  {subCat.title}
+                  {subCat}
                 </button>
               ))}
             </div>
@@ -312,15 +264,15 @@ const Services = () => {
               </button>
               {getSubSubCategories().map((subSubCat) => (
                 <button
-                  key={subSubCat.title}
+                  key={subSubCat}
                   className={`${styles.filterBtn} ${
-                    selectedSubSubCategory === subSubCat.title
+                    selectedSubSubCategory === subSubCat
                       ? styles.active
                       : ""
                   }`}
-                  onClick={() => handleSubSubCategoryClick(subSubCat.title)}
+                  onClick={() => handleSubSubCategoryClick(subSubCat)}
                 >
-                  {subSubCat.title}
+                  {subSubCat}
                 </button>
               ))}
             </div>
@@ -329,83 +281,12 @@ const Services = () => {
         {filteredServices.length > 0 ? (
           <div className={styles.servicesGrid}>
             {filteredServices.map((service, index) => {
-              // Map service titles to component file names
-              const titleToComponent = {
-                // Market Research Services
-                "Feasibility Studies": "feasibilityStudies",
-                "Mystery Shopping": "mystreyShopping",
-                "Brand Positioning & Benchmarking":
-                  "brandPositioningAndBenchmarking",
-                "Competitor Analysis": "competitorAnalysis",
-                "Market Research & Measurement": "marketResearchAndmeasurement",
-
-                // Business Consulting Services
-                "Strategy & Advisory": "strategyAndConsultation",
-                "Marketing Consulting": "marketingConsulting",
-                "Business Consultation & Implementation":
-                  "businessConsultationAndImplementation",
-
-                // Analytics & Data Services
-                Analytics: "analytics",
-                "Data Analytics": "dataAnalytics",
-                "Data Story Telling": "dataStoryTelling",
-                "Data Quality": "dataQuality",
-                "Data Integration": "dataIntegration",
-                "Dashboard & Reporting": "dashboardAndReporting",
-                "Customer Experience & Happiness":
-                  "customerExperienceAndHappiness",
-                "Master Data Management": "masterDataManagement",
-                "Business Intelligence": "businessIntelligence",
-                "IBM Cognos Analytics": "ibmCognosAnalytics",
-                "Microsoft Power BI": "microsoftPowerBi",
-                Tableau: "tableau",
-                "Qlik View / Qlik Sense": "qlikviewQliksense",
-                "Q Analysis": "qAnalysis",
-                "Product Analysis": "productAnalysis",
-                "Process Analysis": "processAnalysis",
-                "Employee Engagement & Satisfaction":
-                  "employeeEngagementAndSatisfaction",
-
-                // Technology Services
-                "Artificial Intelligence": "artificialIntelligence",
-                Blockchain: "blockchain",
-                "Web 3.0": "web30",
-                "Web 3.0 Strategy & Consultation":
-                  "web30StrategyAndConsultation",
-                "Blockchain Infra Consulting": "blockchainInfraConsulting",
-                "Asset Tokenization": "assetTokenization",
-                "DeFi Consultation": "deFiConsultation",
-                Tokenomics: "tokenomics",
-                "Market Making": "marketMaking",
-                "On-Chain Ecosystem Consulting": "onChainEcosystemConsulting",
-                Technology: "technology",
-                "UI/UX": "uiUx",
-                Ideation: "ideation",
-                "Designing & Implementation of Loyalty & Rewards Program":
-                  "designingAndImplementationOfLoyaltyAndRewardsProgram",
-              };
-
-              // Use existing URL if valid, otherwise map to component
-              let serviceUrl;
-              if (service.url && service.url !== "javascript:void(0)") {
-                serviceUrl = service.url;
-              } else if (titleToComponent[service.title]) {
-                serviceUrl = `/services/innerPages/${
-                  titleToComponent[service.title]
-                }`;
-              } else {
-                // Fallback: create slug-based URL for services without mapping
-                const serviceSlug = service.title
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/g, "")
-                  .replace(/\s+/g, "-")
-                  .replace(/-+/g, "-");
-                serviceUrl = `/services/innerPages/${serviceSlug}`;
-              }
+              // Use the slug from the database directly
+              const serviceUrl = `/services/${service.slug}`;
 
               return (
                 <Link
-                  key={service.id}
+                  key={service._id || service.slug || index}
                   href={serviceUrl}
                   className={styles.serviceCard}
                 >
@@ -414,20 +295,20 @@ const Services = () => {
                     style={{ background: getCategoryColor(index) }}
                   >
                     <div className={styles.serviceLevel}>
-                      {service.level === 3
-                        ? "Specialized Service"
-                        : "Service Category"}
+                      {service.category || "Service"}
                     </div>
                     <h3 className={styles.serviceTitle}>{service.title}</h3>
-                    {service.heading && (
+                    {service.heading && service.heading !== service.title && (
                       <p className={styles.serviceHeading}>{service.heading}</p>
                     )}
                   </div>
                   <div className={styles.serviceContent}>
                     <div className={styles.categoryPath}>
-                      <span className={styles.pathItem}>
-                        {service.mainCategory}
-                      </span>
+                      {(service.category || service.mainCategory) && (
+                        <span className={styles.pathItem}>
+                          {service.category || service.mainCategory}
+                        </span>
+                      )}
                       {service.subCategory && (
                         <>
                           <span className={styles.pathSeparator}>›</span>
@@ -445,9 +326,9 @@ const Services = () => {
                         </>
                       )}
                     </div>
-                    {service.description && (
+                    {(service.description || service.subTitle) && (
                       <p className={styles.serviceDescription}>
-                        {service.description}
+                        {service.description || service.subTitle}
                       </p>
                     )}
                     <div className={styles.learnMore}>Learn More →</div>
