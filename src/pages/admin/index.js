@@ -20,13 +20,20 @@ export default function AdminDashboard() {
       fetch(getApiUrl("/api/case-studies")).then(r => r.json())
     ])
     .then(([services, blogs, caseStudies]) => {
+      console.log("Services data:", services);
+      console.log("Blogs data:", blogs);
+      console.log("Case Studies data:", caseStudies);
+      
       setStats({
-        services: services.length || 0,
-        blogs: blogs.length || 0,
-        caseStudies: caseStudies.length || 0
+        services: Array.isArray(services) ? services.length : 0,
+        blogs: Array.isArray(blogs) ? blogs.length : 0,
+        caseStudies: Array.isArray(caseStudies) ? caseStudies.length : 0
       });
     })
-    .catch(err => console.error("Error fetching stats:", err));
+    .catch(err => {
+      console.error("Error fetching stats:", err);
+      console.error("API URL:", getApiUrl("/api/services"));
+    });
   }, []);
 
   const adminCards = [
