@@ -31,7 +31,7 @@ For Vercel deployments, you need to set the environment variable in the Vercel d
 2. Navigate to **Settings** → **Environment Variables**
 3. Add the following variable:
    - **Key**: `NEXT_PUBLIC_API_URL`
-   - **Value**: `https://rdot-me-backend-services.vercel.app`
+   - **Value**: `https://rdot-me-backend-services-imran-khans-projects-b3df5052.vercel.app`
    - **Environment**: Select the appropriate environments:
      - **Production** (main branch)
      - **Preview** (test-app branch)
@@ -42,7 +42,7 @@ For Vercel deployments, you need to set the environment variable in the Vercel d
 
 - `NEXT_PUBLIC_API_URL`: The base URL for the backend API
   - Local: `http://localhost:5000`
-  - Production: `https://rdot-me-backend-services.vercel.app`
+  - Production: `https://rdot-me-backend-services-imran-khans-projects-b3df5052.vercel.app`
 
 ## Usage in Code
 
