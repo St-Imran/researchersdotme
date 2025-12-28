@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./ManageServices.module.css";
+import { getApiUrl } from "../../config/api";
 
 export default function ManageServices() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function ManageServices() {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/services");
+      const response = await fetch(getApiUrl("/api/services"));
       const data = await response.json();
       setServices(data);
       setLoading(false);
@@ -33,7 +34,7 @@ export default function ManageServices() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/services/${slug}`, {
+      const response = await fetch(getApiUrl(`/api/services/${slug}`), {
         method: "DELETE"
       });
 

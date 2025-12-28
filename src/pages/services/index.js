@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./Services.module.css";
+import { getApiUrl } from "../../config/api";
 
 const Services = () => {
   const [allServices, setAllServices] = useState([]);
@@ -17,7 +18,7 @@ const Services = () => {
   const mainCategories = ["All", ...new Set(allServices.map((service) => service.category || service.mainCategory).filter(Boolean))];
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/services")
+    fetch(getApiUrl("/api/services"))
       .then((res) => res.json())
       .then((data) => {
         // Store the flat array of services directly

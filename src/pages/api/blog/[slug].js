@@ -1,11 +1,13 @@
 // Proxy API endpoint for individual blog details - fetches from backend
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 export default async function handler(req, res) {
   const { slug } = req.query;
 
   if (req.method === "GET") {
     try {
       // Fetch from backend
-      const backendUrl = `http://localhost:5000/api/blog/${slug}`;
+      const backendUrl = `${API_BASE_URL}/api/blog/${slug}`;
       const response = await fetch(backendUrl);
 
       if (!response.ok) {

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./ServiceDetail.module.css";
+import { getApiUrl } from "../../config/api";
 
 const ServiceDetail = () => {
   const router = useRouter();
@@ -16,7 +17,7 @@ const ServiceDetail = () => {
     setLoading(true);
     
     // Fetch service directly from backend by slug
-    fetch(`http://localhost:5000/api/services/${slug}`)
+    fetch(getApiUrl(`/api/services/${slug}`))
       .then((res) => {
         if (!res.ok) {
           throw new Error('Service not found');

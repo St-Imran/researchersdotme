@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "./AddService.module.css";
+import { getApiUrl } from "../../config/api";
 
 const AddService = () => {
   const router = useRouter();
@@ -119,7 +120,7 @@ const AddService = () => {
         order: parseInt(formData.order) || 0
       };
 
-      const response = await fetch("http://localhost:5000/api/services", {
+      const response = await fetch(getApiUrl("/api/services"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

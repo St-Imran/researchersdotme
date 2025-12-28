@@ -1,4 +1,6 @@
 // Proxy API endpoint for blogs - fetches from backend
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
@@ -11,7 +13,7 @@ export default async function handler(req, res) {
       if (limit) queryParams.append("limit", limit);
 
       const queryString = queryParams.toString();
-      const backendUrl = `http://localhost:5000/api/blogs${
+      const backendUrl = `${API_BASE_URL}/api/blogs${
         queryString ? `?${queryString}` : ""
       }`;
 

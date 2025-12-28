@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./Admin.module.css";
+import { getApiUrl } from "../../config/api";
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -14,9 +15,9 @@ export default function AdminDashboard() {
   useEffect(() => {
     // Fetch counts from backend
     Promise.all([
-      fetch("http://localhost:5000/api/services").then(r => r.json()),
-      fetch("http://localhost:5000/api/blogs").then(r => r.json()),
-      fetch("http://localhost:5000/api/case-studies").then(r => r.json())
+      fetch(getApiUrl("/api/services")).then(r => r.json()),
+      fetch(getApiUrl("/api/blogs")).then(r => r.json()),
+      fetch(getApiUrl("/api/case-studies")).then(r => r.json())
     ])
     .then(([services, blogs, caseStudies]) => {
       setStats({
