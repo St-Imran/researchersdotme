@@ -24,10 +24,7 @@ export default async function handler(req, res) {
     res.status(405).json({ message: "Method not allowed" });
   }
 }
-    {
-      id: 1,
-      title: "Market Entry Strategy for Tech Startup",
-      client: "TechVision UAE",
+
       industry: "Technology",
       challenge:
         "A Silicon Valley tech startup needed to understand the UAE market before launching their SaaS product.",

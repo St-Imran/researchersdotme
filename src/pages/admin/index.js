@@ -13,27 +13,61 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
+    console.log("Admin dashboard useEffect running...");
+    console.log("API Base URL:", getApiUrl("/api/services"));
+    
     // Fetch counts from backend
-    Promise.all([
-      fetch(getApiUrl("/api/services")).then(r => r.json()),
-      fetch(getApiUrl("/api/blogs")).then(r => r.json()),
-      fetch(getApiUrl("/api/case-studies")).then(r => r.json())
-    ])
-    .then(([services, blogs, caseStudies]) => {
-      console.log("Services data:", services);
-      console.log("Blogs data:", blogs);
-      console.log("Case Studies data:", caseStudies);
-      
-      setStats({
-        services: Array.isArray(services) ? services.length : 0,
-        blogs: Array.isArray(blogs) ? blogs.length : 0,
-        caseStudies: Array.isArray(caseStudies) ? caseStudies.length : 0
-      });
-    })
-    .catch(err => {
-      console.error("Error fetching stats:", err);
-      console.error("API URL:", getApiUrl("/api/services"));
-    });
+    const fetchStats = async () => {
+      const newStats = {
+        services: 0,
+        blogs: 0,
+        caseStudies: 0
+      };
+
+      // Fetch services
+      try {
+        const servicesRes = await fetch(getApiUrl("/api/services"));
+        console.log("Services response status:", servicesRes.status);
+        if (servicesRes.ok) {
+          const services = await servicesRes.json();
+          console.log("Services data:", services);
+          newStats.services = Array.isArray(services) ? services.length : 0;
+        }
+      } catch (err) {
+        console.error("Error fetching services:", err.message);
+      }
+
+      // Fetch blogs
+      try {
+        const blogsRes = await fetch(getApiUrl("/api/blogs"));
+        console.log("Blogs response status:", blogsRes.status);
+        if (blogsRes.ok) {
+          const blogs = await blogsRes.json();
+          console.log("Blogs data:", blogs);
+          newStats.blogs = Array.isArray(blogs) ? blogs.length : 0;
+        }
+      } catch (err) {
+        console.error("Error fetching blogs:", err.message);
+      }
+
+      // Fetch case studies
+      try {
+        const caseStudiesRes = await fetch(getApiUrl("/api/case-studies"));
+        console.log("Case studies response status:", caseStudiesRes.status);
+        if (caseStudiesRes.ok) {
+          const caseStudies = await caseStudiesRes.json();
+          console.log("Case Studies data:", caseStudies);
+          newStats.caseStudies = Array.isArray(caseStudies) ? caseStudies.length : 0;
+        }
+      } catch (err) {
+        console.error("Error fetching case studies:", err.message);
+      }
+
+      console.log("Setting stats to:", newStats);
+      setStats(newStats);
+    };
+    
+    fetchStats();
   }, []);
 
   const adminCards = [
