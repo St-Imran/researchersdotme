@@ -3,19 +3,16 @@ import Image from "next/image";
 function BrandPositioningAndBenchmarking() {
   return (
     <>
-      <Typography component="div" className="title__section">
+      <Typography component="div" className="title__section Benchmarkingscaled">
         <Typography variant="h1">BRAND POSITIONING AND BENCHMARKING</Typography>
       </Typography>
       <Typography component="div" className="container">
         <Typography component="div" className="story__content">
-          <Typography variant="h3">
-            BRAND POSITIONING AND BENCHMARKING
-          </Typography>
-          <p>
-            Data storytelling for business is the key to turning raw data into a
-            compelling narrative that drives results in the modern UAE
-            marketplace.
-          </p>
+          <h2 className="fw-bolder">BRAND POSITIONING AND BENCHMARKING</h2>
+          <p>The process of re-establishing your brand in the minds of your customers is known as "brand positioning." It is a strategy used to set your company apart from the competition.</p>
+          <p>While benchmarking is concerned with product performance, it is also determining how a brand wants its product to appear in the eyes of the consumer.</p>
+
+          <p>Doing something memorable that makes your brand appear fаvоrаblе, valuable, and responsible to the consumer is part of effective brand positioning.</p>
           <Typography variant="h6">
             The Core Components of Data Storytelling
           </Typography>

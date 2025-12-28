@@ -153,7 +153,9 @@ const Analytics = () => {
                         Master Data Management (MDM)
                       </Link>
                     </h4>
-                    <small className="card-meta">Customer Experience And Happiness</small>
+                    <small className="card-meta">
+                      Customer Experience And Happiness
+                    </small>
                   </div>
                   <div className="card-footer">
                     <div className="media">
@@ -194,7 +196,7 @@ const Analytics = () => {
                         className="text-dark"
                         href="/services/innerPages/ԛuаntіtаtіvеAndQuаlіtаtіvеAnalysis"
                       >
-                        QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ
+                        QUANTITATIVE AND QUALITATIVE ANALYSIS
                       </Link>
                     </h4>
                     <small className="card-meta">Performance monitoring</small>
@@ -210,7 +212,7 @@ const Analytics = () => {
                           <Image src="/link.svg" height={20} width={22} />
                         </h6>
                         <small className="text-dark">
-                          QUАNTІTАTІVЕ АND QUАLІTАTІVЕ АNАLУЅІЅ
+                          QUANTITATIVE AND QUALITATIVE ANALYSIS
                         </small>
                       </Link>
                     </div>

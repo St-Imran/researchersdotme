@@ -1,0 +1,545 @@
+﻿{
+    "value":  [
+                  {
+                      "heading":  "Unlocking Insights, Driving Strategy",
+                      "title":  "Market Research Services",
+                      "subTitle":  "Delivering actionable research to help you understand customers, competitors, and emerging opportunities.",
+                      "url":  "/services/innerPages/feasibilityStudies",
+                      "subSections":  [
+                                          {
+                                              "heading":  "Building Stronger Brands Through Insight",
+                                              "title":  "Brand Research",
+                                              "subTitle":  "Helping you uncover brand perceptions and positioning to strengthen identity and drive loyalty.",
+                                              "url":  "/services/innerPages/mystreyShopping",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "Brand Awareness \u0026 Health Tracking",
+                                                                      "title":  "Brand Awareness \u0026 Health Tracking",
+                                                                      "subTitle":  "Brand Awareness \u0026 Health Tracking",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Brand Positioning \u0026 Perception Research",
+                                                                      "title":  "Brand Positioning \u0026 Perception Research",
+                                                                      "subTitle":  "Brand Positioning \u0026 Perception Research",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Brand Identity Research",
+                                                                      "title":  "Brand Identity Research",
+                                                                      "subTitle":  "Brand Identity Research",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Brand Strategy \u0026 Equity",
+                                                                      "title":  "Brand Strategy \u0026 Equity",
+                                                                      "subTitle":  "Brand Strategy \u0026 Equity",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Brand Benchmarking (formerly: Brand Energizer, Brand Guidance)",
+                                                                      "title":  "Brand Benchmarking (formerly: Brand Energizer, Brand Guidance)",
+                                                                      "subTitle":  "Brand Benchmarking (formerly: Brand Energizer, Brand Guidance)",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Brand Tracking Studies",
+                                                                      "title":  "Brand Tracking Studies",
+                                                                      "subTitle":  "Brand Tracking Studies",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  }
+                                                              ]
+                                          },
+                                          {
+                                              "heading":  "Understanding Choices That Drive Purchases",
+                                              "title":  "Consumer \u0026 Shopper Research",
+                                              "subTitle":  "Delivering deep insights into consumer behavior and shopper journeys to shape winning strategies.",
+                                              "url":  "/services/innerPages/mystreyShopping",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "Consumer \u0026 Shopper Behaviour",
+                                                                      "title":  "Consumer \u0026 Shopper Behaviour",
+                                                                      "subTitle":  "Consumer \u0026 Shopper Behaviour",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Usage \u0026 Attitude Research",
+                                                                      "title":  "Usage \u0026 Attitude Research",
+                                                                      "subTitle":  "Usage \u0026 Attitude Research",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Lifestyle \u0026 Sociocultural Studies",
+                                                                      "title":  "Lifestyle \u0026 Sociocultural Studies",
+                                                                      "subTitle":  "Lifestyle \u0026 Sociocultural Studies",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Customer Segmentation \u0026 Profiling",
+                                                                      "title":  "Customer Segmentation \u0026 Profiling",
+                                                                      "subTitle":  "Customer Segmentation \u0026 Profiling",
+                                                                      "url":  "/services/innerPages/brandPositioningAndBenchmarking"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Customer Satisfaction \u0026 Loyalty",
+                                                                      "title":  "Customer Satisfaction \u0026 Loyalty",
+                                                                      "subTitle":  "Customer Satisfaction \u0026 Loyalty",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Voice of Customer (VoC) Analytics",
+                                                                      "title":  "Voice of Customer (VoC) Analytics",
+                                                                      "subTitle":  "Voice of Customer (VoC) Analytics",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Customer Experience Research",
+                                                                      "title":  "Customer Experience Research",
+                                                                      "subTitle":  "Customer Experience Research",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Shopper \u0026 Retail Studies",
+                                                                      "title":  "Shopper \u0026 Retail Studies",
+                                                                      "subTitle":  "Shopper \u0026 Retail Studies",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Customer Journey \u0026 Happiness Studies",
+                                                                      "title":  "Customer Journey \u0026 Happiness Studies",
+                                                                      "subTitle":  "Customer Journey \u0026 Happiness Studies",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Qualitative \u0026 Quantitative Surveys",
+                                                                      "title":  "Qualitative \u0026 Quantitative Surveys",
+                                                                      "subTitle":  "Qualitative \u0026 Quantitative Surveys",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Online Communities \u0026 Panels",
+                                                                      "title":  "Online Communities \u0026 Panels",
+                                                                      "subTitle":  "Online Communities \u0026 Panels",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "KnowledgePanel Surveys",
+                                                                      "title":  "KnowledgePanel Surveys",
+                                                                      "subTitle":  "KnowledgePanel Surveys",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Omnibus \u0026 Public Opinion Polling",
+                                                                      "title":  "Omnibus \u0026 Public Opinion Polling",
+                                                                      "subTitle":  "Omnibus \u0026 Public Opinion Polling",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Stakeholder Perceptions Research",
+                                                                      "title":  "Stakeholder Perceptions Research",
+                                                                      "subTitle":  "Stakeholder Perceptions Research",
+                                                                      "url":  "/services/innerPages/competitorAnalysis"
+                                                                  }
+                                                              ]
+                                          },
+                                          {
+                                              "heading":  "From Ideas to Impactful Products",
+                                              "title":  "Innovation \u0026 Product Research",
+                                              "subTitle":  "Evaluating customer needs, testing product concepts, packaging, and usage patterns to ensure innovations are relevant, competitive, and built for long-term success.",
+                                              "url":  "/services/innerPages/mystreyShopping",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "Concept Validation Testing",
+                                                                      "title":  "Concept Validation Testing",
+                                                                      "subTitle":  "Concept Validation Testing",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Ideation Research \u0026 Workshops",
+                                                                      "title":  "Ideation Research \u0026 Workshops",
+                                                                      "subTitle":  "Ideation Research \u0026 Workshops",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Innovation \u0026 Product Development",
+                                                                      "title":  "Innovation \u0026 Product Development",
+                                                                      "subTitle":  "Innovation \u0026 Product Development",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Product Testing \u0026 Optimization",
+                                                                      "title":  "Product Testing \u0026 Optimization",
+                                                                      "subTitle":  "Product Testing \u0026 Optimization",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Packaging Research",
+                                                                      "title":  "Packaging Research",
+                                                                      "subTitle":  "Packaging Research",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Usage \u0026 Attitude Studies",
+                                                                      "title":  "Usage \u0026 Attitude Studies",
+                                                                      "subTitle":  "Usage \u0026 Attitude Studies",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "Product Analysis",
+                                                                      "title":  "Product Analysis",
+                                                                      "subTitle":  "Product Analysis",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  }
+                                                              ]
+                                          },
+                                          {
+                                              "heading":  "Creating Messages That Resonate",
+                                              "title":  "Marketing \u0026 Communication Research",
+                                              "subTitle":  "Evaluating brand messaging and media effectiveness to maximize impact and audience engagement.",
+                                              "url":  "javascript:void(0)",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Campaign Effectiveness Research",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Media \u0026 Marketing Testing",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Media Effectiveness Analysis",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/feasibilityStudies"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Purchase Tracker",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Unified Marketing Measurement \u0026 Optimization",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  }
+                                                              ]
+                                          },
+                                          {
+                                              "heading":  "Clarity in a Complex Market",
+                                              "title":  "Market \u0026 Business Intelligence",
+                                              "subTitle":  "Providing competitive, industry, and market intelligence to support smarter, future-ready decisions.",
+                                              "url":  "javascript:void(0)",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Market Assessment \u0026 Situation Analysis",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Market Sizing \u0026 Demand Forecasting",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Opportunity Sizing Research",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Competitive Benchmarking \u0026 Intelligence",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Category Fundamentals \u0026 Management",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Regulatory \u0026 Policy Research",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Public Policy \u0026 CSR Research",
+                                                                      "subTitle":  "",
+                                                                      "url":  "/services/innerPages/ideation"
+                                                                  }
+                                                              ]
+                                          }
+                                      ]
+                  },
+                  {
+                      "heading":  "Strategic Solutions for Growth",
+                      "title":  "Business Consulting Services",
+                      "subTitle":  "Guiding businesses with tailored strategies to scale, optimize, and succeed in dynamic markets.",
+                      "url":  "/services/innerPages/dataStoryTelling",
+                      "subSections":  [
+                                          {
+                                              "heading":  "Guiding Businesses with Expertise and Foresight",
+                                              "title":  "Strategy \u0026 Advisory ",
+                                              "subTitle":  "Providing tailored strategies and expert advice to navigate challenges and accelerate growth.",
+                                              "url":  "javascript:void(0)",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Business Growth Advisory",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Go-To-Market Strategy",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Entry-Level Marketing Plans",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Strategic Initiative Tracking",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Scenario Planning \u0026 What-if Analysis",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Feasibility Studies",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Profitability \u0026 Cost Analysis",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Revenue \u0026 Margin Insights",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Corporate Social Responsibility (CSR) \u0026 Green Initiatives",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  }
+                                                              ]
+                                          },
+                                          {
+                                              "heading":  "Strategies That Connect Brands to Growth",
+                                              "title":  "Marketing Consulting",
+                                              "subTitle":  "Offering expert marketing guidance to craft impactful campaigns and achieve measurable business results.",
+                                              "url":  "javascript:void(0)",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Marketing Strategy \u0026 Execution",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Digital Strategy Consulting",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Campaign Evaluation \u0026 Optimization",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Customer Insights Advisory",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Brand \u0026 Market Positioning",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  }
+                                                              ]
+                                          },
+                                          {
+                                              "heading":  "Creating Products Customers Truly Want",
+                                              "title":  "Innovation \u0026 Transformation",
+                                              "subTitle":  "Testing concepts and innovations to ensure market fit, relevance, and long-term success.",
+                                              "url":  "javascript:void(0)",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Innovation Consulting (Collective Innovation, Forecasting)",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Blockchain \u0026 Web 3.0 Consulting",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Blockchain Infra Consulting",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Asset Tokenization",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "DeFi Consultation",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  }
+                                                              ]
+                                          }
+                                      ]
+                  },
+                  {
+                      "heading":  "Turning Data Into Actionable Insights",
+                      "title":  "Analytics \u0026 Data Services",
+                      "subTitle":  "Empowering businesses with advanced analytics, data management, and insight-driven strategies to make smarter, faster, and future-ready decisions.",
+                      "url":  "/services/marketResearchAndMeasurement",
+                      "subSections":  [
+                                          {
+                                              "heading":  "Converting Information Into Intelligence",
+                                              "title":  "Data \u0026 Insights",
+                                              "subTitle":  "Turning raw data into meaningful insights that power smarter decisions and measurable results.",
+                                              "url":  "javascript:void(0)",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Data Analytics \u0026 Dashboard Reporting",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Data Storytelling",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Customer Experience Analytics",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Pricing \u0026 Profitability Analytics",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Unified Marketing Measurement",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  }
+                                                              ]
+                                          },
+                                          {
+                                              "heading":  "Organizing Data, Unlocking Value",
+                                              "title":  "Data Management",
+                                              "subTitle":  "Helping businesses collect, structure, and manage data for efficient use and strategic advantage.",
+                                              "url":  "/services/innerPages/customerExperienceAndHappiness",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Master Data Management",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Data Quality \u0026 Integration",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  }
+                                                              ]
+                                          }
+                                      ]
+                  },
+                  {
+                      "heading":  "Enhancing Journeys, Elevating Operations",
+                      "title":  "Experience \u0026 Operational Research",
+                      "subTitle":  "Transforming customer touchpoints and operations into competitive advantage.",
+                      "url":  "/services/analytics",
+                      "subSections":  [
+                                          {
+                                              "heading":  "Real Experiences, Real Business Impact",
+                                              "title":  "Mystery Shopping",
+                                              "subTitle":  "Evaluating customer journeys through firsthand assessments to improve service quality and performance.",
+                                              "url":  "/services/innerPages/dashboardAndReporting",
+                                              "subSections":  [
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "User Experience (UX) Testing",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Employee Satisfaction \u0026 Engagement",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Customer Counting",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  },
+                                                                  {
+                                                                      "heading":  "",
+                                                                      "title":  "Process Analysis",
+                                                                      "subTitle":  "",
+                                                                      "url":  "javascript:void(0)"
+                                                                  }
+                                                              ]
+                                          }
+                                      ]
+                  },
+                  {
+                      "heading":  "",
+                      "title":  "Market Entry \u0026 Expansion Advisory",
+                      "subTitle":  "",
+                      "url":  ""
+                  }
+              ],
+    "Count":  5
+}

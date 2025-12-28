@@ -1,357 +1,368 @@
-import React from "react";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-
-const styles = {
-  main: {
-    minHeight: "95vh",
-  },
-  bg: {
-    backgroundImage: "url('/card1.webp')",
-  },
-  bg2: {
-    backgroundImage: "url('/card2.webp')",
-  },
-  bg3: {
-    backgroundImage: "url('/card3.webp')",
-  },
-  bg4: {
-    backgroundImage: "url('/card3.webp')",
-  },
-  bg5: {
-    backgroundImage: "url('/card2.webp')",
-  },
-  bg6: {
-    backgroundImage: "url('/card1.webp')",
-  },
-  mxWidth: {
-    maxWidth: "50px",
-  },
-};
+import styles from "./Services.module.css";
+import { getApiUrl } from "../../config/api";
 
 const Services = () => {
+  const [allServices, setAllServices] = useState([]);
+  const [filteredServices, setFilteredServices] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedSubCategory, setSelectedSubCategory] = useState("");
+  const [selectedSubSubCategory, setSelectedSubSubCategory] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Extract unique categories from services
+  const mainCategories = ["All", ...new Set(allServices.map((service) => service.category || service.mainCategory).filter(Boolean))];
+
+  useEffect(() => {
+    fetch(getApiUrl("/api/services"))
+      .then((res) => res.json())
+      .then((data) => {
+        // Store the flat array of services directly
+        setAllServices(data);
+        setFilteredServices(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Failed to load services data");
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    filterServices();
+    updateBreadcrumbs();
+  }, [
+    selectedCategory,
+    selectedSubCategory,
+    selectedSubSubCategory,
+    searchTerm,
+    allServices,
+  ]);
+
+  const filterServices = () => {
+    let filtered = allServices;
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter(
+        (service) => service.category === selectedCategory || 
+                     service.mainCategory === selectedCategory
+      );
+    }
+    if (selectedSubCategory) {
+      filtered = filtered.filter(
+        (service) => service.subCategory === selectedSubCategory
+      );
+    }
+    if (selectedSubSubCategory) {
+      filtered = filtered.filter(
+        (service) => service.subSubCategory === selectedSubSubCategory
+      );
+    }
+    if (searchTerm) {
+      filtered = filtered.filter(
+        (service) =>
+          service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (service.subTitle &&
+            service.subTitle
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())) ||
+          (service.heading &&
+            service.heading.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (service.description &&
+            service.description
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase()))
+      );
+    }
+    setFilteredServices(filtered);
+  };
+
+  const updateBreadcrumbs = () => {
+    const crumbs = [];
+    if (selectedCategory !== "All")
+      crumbs.push({ label: selectedCategory, type: "main" });
+    if (selectedSubCategory)
+      crumbs.push({ label: selectedSubCategory, type: "sub" });
+    if (selectedSubSubCategory)
+      crumbs.push({ label: selectedSubSubCategory, type: "subsub" });
+    setBreadcrumbs(crumbs);
+  };
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setSelectedSubCategory("");
+    setSelectedSubSubCategory("");
+  };
+
+  const handleSubCategoryClick = (subCategory) => {
+    setSelectedSubCategory(subCategory);
+    setSelectedSubSubCategory("");
+  };
+
+  const handleSubSubCategoryClick = (subSubCategory) => {
+    setSelectedSubSubCategory(subSubCategory);
+  };
+
+  const handleBreadcrumbClick = (type) => {
+    if (type === "main") {
+      setSelectedSubCategory("");
+      setSelectedSubSubCategory("");
+    } else if (type === "sub") {
+      setSelectedSubSubCategory("");
+    }
+  };
+
+  const getSubCategories = () => {
+    if (selectedCategory === "All") return [];
+    // Get unique sub-categories for the selected main category
+    const subCats = allServices
+      .filter((service) => service.category === selectedCategory || service.mainCategory === selectedCategory)
+      .map((service) => service.subCategory)
+      .filter(Boolean);
+    return [...new Set(subCats)];
+  };
+
+  const getSubSubCategories = () => {
+    if (!selectedSubCategory) return [];
+    // Get unique sub-sub-categories for the selected sub-category
+    const subSubCats = allServices
+      .filter((service) => service.subCategory === selectedSubCategory)
+      .map((service) => service.subSubCategory)
+      .filter(Boolean);
+    return [...new Set(subSubCats)];
+  };
+
+  const handleSearch = (e) => setSearchTerm(e.target.value);
+
+  const getCategoryColor = (index) => {
+    const colors = [
+      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+    ];
+    return colors[index % colors.length];
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
-    <>
-      <div style={styles.main}>
-        <div className="container">
-          <div className="row">
-            <div className="col text-center my-5">
-              <h1 className="display-4 font-weight-bolder">Our Services</h1>
-              <p className="lead">
-                Lorem ipsum dolor sit amet at enim hac integer volutpat maecenas
-                pulvinar.
-              </p>
+    <div className={styles.servicesContainer}>
+      <div className="container">
+        <div className={styles.servicesHeader}>
+          <h1 className={styles.servicesTitle}>Our Services</h1>
+          <p className={styles.servicesDescription}>
+            Empowering businesses with comprehensive research, analytics, and
+            strategic consulting services tailored to drive growth and success
+            in the UAE and beyond.
+          </p>
+        </div>
+        <div className={styles.statsSection}>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>500+</div>
+            <div className={styles.statLabel}>Projects Completed</div>
+          </div>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>200+</div>
+            <div className={styles.statLabel}>Happy Clients</div>
+          </div>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>15+</div>
+            <div className={styles.statLabel}>Years Experience</div>
+          </div>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>98%</div>
+            <div className={styles.statLabel}>Client Satisfaction</div>
+          </div>
+        </div>
+        <div className={styles.searchSection}>
+          <input
+            type="text"
+            placeholder="Search services..."
+            className={styles.searchInput}
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        {breadcrumbs.length > 0 && (
+          <div className={styles.breadcrumbSection}>
+            <button
+              className={styles.breadcrumbItem}
+              onClick={() => handleCategoryClick("All")}
+            >
+              All Services
+            </button>
+            {breadcrumbs.map((crumb, index) => (
+              <span key={index}>
+                <span className={styles.breadcrumbSeparator}>/</span>
+                <button
+                  className={styles.breadcrumbItem}
+                  onClick={() => handleBreadcrumbClick(crumb.type)}
+                >
+                  {crumb.label}
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
+        <div className={styles.filterSection}>
+          <h3 className={styles.filterTitle}>Main Categories</h3>
+          <div className={styles.filterButtons}>
+            {mainCategories.map((category) => (
+              <button
+                key={category}
+                className={`${styles.filterBtn} ${
+                  selectedCategory === category ? styles.active : ""
+                }`}
+                onClick={() => handleCategoryClick(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+        {selectedCategory !== "All" && getSubCategories().length > 0 && (
+          <div className={styles.filterSection}>
+            <h3 className={styles.filterTitle}>Subcategories</h3>
+            <div className={styles.filterButtons}>
+              <button
+                className={`${styles.filterBtn} ${
+                  !selectedSubCategory ? styles.active : ""
+                }`}
+                onClick={() => setSelectedSubCategory("")}
+              >
+                All {selectedCategory}
+              </button>
+              {getSubCategories().map((subCat) => (
+                <button
+                  key={subCat}
+                  className={`${styles.filterBtn} ${
+                    selectedSubCategory === subCat ? styles.active : ""
+                  }`}
+                  onClick={() => handleSubCategoryClick(subCat)}
+                >
+                  {subCat}
+                </button>
+              ))}
             </div>
           </div>
-          <div className="row justify-content-center">
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link href="/services/innerPages/feasibilityStudies" >
-                <div className="card text-dark card-has-bg click-col" style={styles.bg} >
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">
-                        Unraveling practicality
-                      </small>
-                      <h4 className="h1 card-title mt-0 ">
-                        FEASIBILITY STUDIES
-                      </h4>
-                      <small className="card-meta">
-                        <i className="far fa-clock"></i>Ever wondered how ideas
-                        transform into successful business projects?
-                      </small>
-                    </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">FEASIBILITY STUDIES</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link
-                className="text-dark"
-                href="/services/innerPages/dataStoryTelling"
+        )}
+        {selectedSubCategory && getSubSubCategories().length > 0 && (
+          <div className={styles.filterSection}>
+            <h3 className={styles.filterTitle}>Services</h3>
+            <div className={styles.filterButtons}>
+              <button
+                className={`${styles.filterBtn} ${
+                  !selectedSubSubCategory ? styles.active : ""
+                }`}
+                onClick={() => setSelectedSubSubCategory("")}
               >
-                <div
-                  className="card text-dark card-has-bg click-col"
-                  style={styles.bg2}
+                All {selectedSubCategory}
+              </button>
+              {getSubSubCategories().map((subSubCat) => (
+                <button
+                  key={subSubCat}
+                  className={`${styles.filterBtn} ${
+                    selectedSubSubCategory === subSubCat
+                      ? styles.active
+                      : ""
+                  }`}
+                  onClick={() => handleSubSubCategoryClick(subSubCat)}
                 >
-                  <Image
-                    className="card-img d-none"
-                    src="/card2.webp"
-                    width={600}
-                    height={900}
-                    alt="Picture"
-                  />
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">Marketing approach</small>
-                      <h4 className="h1 card-title mt-0 ">
-                        Data Story Telling
-                      </h4>
-                      <small className="card-meta">
-                        <i className="far fa-clock"></i> The key to turning raw
-                        data into a compelling narrative
-                      </small>
-                    </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">Data Story Telling</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+                  {subSubCat}
+                </button>
+              ))}
             </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link
-                className="text-dark"
-                href="/services/marketResearchAndMeasurement"
-              >
-                <div
-                  className="card text-dark card-has-bg click-col"
-                  style={styles.bg3}
+          </div>
+        )}
+        {filteredServices.length > 0 ? (
+          <div className={styles.servicesGrid}>
+            {filteredServices.map((service, index) => {
+              // Use the slug from the database directly
+              const serviceUrl = `/services/${service.slug}`;
+
+              return (
+                <Link
+                  key={service._id || service.slug || index}
+                  href={serviceUrl}
+                  className={styles.serviceCard}
                 >
-                  <Image
-                    className="card-img d-none"
-                    src="/card3.webp"
-                    width={600}
-                    height={900}
-                    alt="Picture"
-                  />
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">
-                        Employee Satisfaction
-                      </small>
-                      <h4 className="h1 card-title mt-0 ">
-                        Market Research And Measurement
-                      </h4>
-                      <small className="card-meta">Customer Experience And Happiness</small>
+                  <div
+                    className={styles.serviceHeader}
+                    style={{ background: getCategoryColor(index) }}
+                  >
+                    <div className={styles.serviceLevel}>
+                      {service.category || "Service"}
                     </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">
-                          Market Research And Measurement
-                        </small>
-                      </div>
-                    </div>
+                    <h3 className={styles.serviceTitle}>{service.title}</h3>
+                    {service.heading && service.heading !== service.title && (
+                      <p className={styles.serviceHeading}>{service.heading}</p>
+                    )}
                   </div>
-                </div>
-              </Link>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link className="text-dark" href="/services/analytics">
-                <div
-                  className="card text-dark card-has-bg click-col"
-                  style={styles.bg4}
-                >
-                  <Image
-                    className="card-img d-none"
-                    src="/card3.webp"
-                    width={600}
-                    height={900}
-                    alt="Picture"
-                  />
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">Master The Data</small>
-                      <h4 className="h1 card-title mt-0 ">
-                        Analytics
-                      </h4>
-                      <small className="card-meta">Performance monitoring</small>
+                  <div className={styles.serviceContent}>
+                    <div className={styles.categoryPath}>
+                      {(service.category || service.mainCategory) && (
+                        <span className={styles.pathItem}>
+                          {service.category || service.mainCategory}
+                        </span>
+                      )}
+                      {service.subCategory && (
+                        <>
+                          <span className={styles.pathSeparator}>›</span>
+                          <span className={styles.pathItem}>
+                            {service.subCategory}
+                          </span>
+                        </>
+                      )}
+                      {service.subSubCategory && (
+                        <>
+                          <span className={styles.pathSeparator}>›</span>
+                          <span className={styles.pathItem}>
+                            {service.subSubCategory}
+                          </span>
+                        </>
+                      )}
                     </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">Analytics</small>
-                      </div>
-                    </div>
+                    {(service.description || service.subTitle) && (
+                      <p className={styles.serviceDescription}>
+                        {service.description || service.subTitle}
+                      </p>
+                    )}
+                    <div className={styles.learnMore}>Learn More →</div>
                   </div>
-                </div>
-              </Link>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link
-                className="text-dark"
-                href="/services/businessIntelligence"
-              >
-                <div
-                  className="card text-dark card-has-bg click-col"
-                  style={styles.bg5}
-                >
-                  <Image
-                    className="card-img d-none"
-                    src="/card2.webp"
-                    width={600}
-                    height={900}
-                    alt="Picture"
-                  />
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">Faster decisions</small>
-                      <h4 className="h1 card-title mt-0 ">
-                        Business Intelligence
-                      </h4>
-                      <small className="card-meta">
-                        The collection and analysis of business information
-                      </small>
-                    </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">
-                          Business Intelligence
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link
-                className="text-dark"
-                href="/services/businessAnalytics"
-              >
-                <div
-                  className="card text-dark card-has-bg click-col"
-                  style={styles.bg6}
-                >
-                  <Image
-                    className="card-img d-none"
-                    src="/card1.webp"
-                    width={600}
-                    height={900}
-                    alt="Picture"
-                  />
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">In-depth process</small>
-                      <h4 className="h1 card-title mt-0 ">
-                        Business Analysis
-                      </h4>
-                      <small className="card-meta">
-                        Insights to facilitate informed decision-making
-                      </small>
-                    </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">Business Analysis</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link className="text-dark" href="/services/technology">
-                <div
-                  className="card text-dark card-has-bg click-col"
-                  style={styles.bg6}
-                >
-                  <Image
-                    className="card-img d-none"
-                    src="/card1.webp"
-                    width={600}
-                    height={900}
-                    alt="Picture"
-                  />
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">
-                        Digital transformation
-                      </small>
-                      <h4 className="h1 card-title mt-0 ">
-                        Technology
-                      </h4>
-                      <small className="card-meta">
-                        A strategic approach to leverage its full potential
-                      </small>
-                    </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">Technology</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
-              <Link
-                className="text-dark"
-                href="/services/innerPages/designingAndImplementationOfLoyaltyAndRewardsProgram"
-              >
-                <div
-                  className="card text-dark card-has-bg click-col"
-                  style={styles.bg6}
-                >
-                  <Image
-                    className="card-img d-none"
-                    src="/card1.webp"
-                    width={600}
-                    height={900}
-                    alt="Picture"
-                  />
-                  <div className="card-img-overlay d-flex flex-column">
-                    <div className="card-body">
-                      <small className="card-meta mb-2">Thought Leadership</small>
-                      <h4 className="h1 card-title mt-0 ">
-                        Designing & Implementation of Loyalty & Rewards program
-                      </h4>
-                      <small className="card-meta">
-                        <i className="far fa-clock"></i> October 15, 2020
-                      </small>
-                    </div>
-                    <div className="card-footer">
-                      <div className="media">
-                        <h6 className="h2 my-0 text-dark d-block">
-                          View In Details
-                          <Image src="/link.svg" height={20} width={22} />
-                        </h6>
-                        <small className="text-dark">
-                          Designing & Implementation of Loyalty & Rewards
-                          program
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <div className={styles.emptyState}>
+            <h3>No services found</h3>
+            <p>
+              Try adjusting your search or filter criteria to find what you're
+              looking for.
+            </p>
+          </div>
+        )}
+        <div className={styles.ctaSection}>
+          <div className={styles.ctaContent}>
+            <h2 className={styles.ctaTitle}>
+              Ready to Transform Your Business?
+            </h2>
+            <p className={styles.ctaText}>
+              Let's discuss how our services can help you achieve your goals.
+              Contact us today for a free consultation.
+            </p>
+            <Link href="/contact" className={styles.ctaButton}>
+              Get Started
+            </Link>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
