@@ -337,10 +337,14 @@ const AddService = () => {
               <div className={styles.toolbarGroup}>
                 <select 
                   className={styles.toolbarSelect}
-                  onChange={(e) => setHeading(e.target.value)}
+                  onChange={(e) => {
+                    if(e.target.value) {
+                      setHeading(e.target.value);
+                    }
+                  }}
                   defaultValue=""
                 >
-                  <option value="" disabled>Heading</option>
+                  <option value="">Select Heading</option>
                   <option value="1">Heading 1</option>
                   <option value="2">Heading 2</option>
                   <option value="3">Heading 3</option>
@@ -348,10 +352,13 @@ const AddService = () => {
                 </select>
                 <select 
                   className={styles.toolbarSelect}
-                  onChange={(e) => { if(e.target.value) { setFontSize(e.target.value); e.target.value = ''; } }}
-                  defaultValue=""
+                  onChange={(e) => {
+                    if(e.target.value) {
+                      setFontSize(e.target.value);
+                    }
+                  }}
+                  defaultValue="3"
                 >
-                  <option value="" disabled>Font Size</option>
                   <option value="1">Small</option>
                   <option value="3">Normal</option>
                   <option value="5">Large</option>
