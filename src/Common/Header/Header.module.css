@@ -33,6 +33,7 @@
   padding: 0.5rem;
   background: rgba(102, 126, 234, 0.1);
   border-radius: 8px;
+  margin: 0 0.5rem;
 }
 
 .logo {
@@ -160,6 +161,12 @@
 
   .logo {
     width: 120px;
+    height: auto;
+  }
+
+  .logoContainer {
+    padding: 0.25rem 0.5rem;
+    margin: 0;
   }
 
   .navigation {
@@ -210,7 +217,8 @@
   .navItemMobile {
     display: block;
     width: 100%;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: none;
+    padding-bottom: 2rem;
   }
 
   .navItemMobile a {
@@ -221,6 +229,7 @@
     border-radius: 50px;
     text-align: center;
     font-weight: 600;
+    display: block;
   }
 
   .navItemMobile a:hover {
@@ -236,6 +245,11 @@
   .toggleButton {
     display: block;
     z-index: 1001;
+    margin-left: 0.5rem;
+  }
+
+  .headerActions {
+    gap: 0.5rem;
   }
 }
 

@@ -1,10 +1,10 @@
-#navicon * {
+.navicon * {
   margin: 0;
   padding: 0;
 }
 
 
-#navicon {
+.navicon {
   width: 30px;
   height: 20px;
   position: relative;
@@ -21,12 +21,12 @@
   margin-right: 20px;
 }
 
-#navicon span {
+.navicon span {
   display: block;
   position: absolute;
   height: 3px;
   width: 100%;
-  background: #fff;
+  background: #667eea;
   border-radius: 9px;
   opacity: 1;
   left: 0;
@@ -42,40 +42,40 @@
 
 
 
-#navicon span:nth-child(1) {
+.navicon span:nth-child(1) {
   top: 0px;
 }
 
-#navicon span:nth-child(2),
-#navicon span:nth-child(3) {
+.navicon span:nth-child(2),
+.navicon span:nth-child(3) {
   top: 10px;
 }
 
-#navicon span:nth-child(4) {
+.navicon span:nth-child(4) {
   top: 20px;
 }
 
-#navicon.open span:nth-child(1) {
+.navicon.open span:nth-child(1) {
   top: 18px;
   width: 0%;
   left: 50%;
 }
 
-#navicon.open span:nth-child(2) {
+.navicon.open span:nth-child(2) {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
-#navicon.open span:nth-child(3) {
+.navicon.open span:nth-child(3) {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
-#navicon.open span:nth-child(4) {
+.navicon.open span:nth-child(4) {
   top: 18px;
   width: 0%;
   left: 50%;
