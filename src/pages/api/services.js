@@ -20,6 +20,31 @@ export default async function handler(req, res) {
         error: error.message 
       });
     }
+  } else if (req.method === "POST") {
+    try {
+      const backendUrl = `${API_BASE_URL}/api/services`;
+      const response = await fetch(backendUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(req.body)
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || `Backend responded with status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      res.status(201).json(result);
+    } catch (error) {
+      console.error("Error creating service:", error);
+      res.status(500).json({ 
+        message: "Failed to create service", 
+        error: error.message 
+      });
+    }
   } else {
     res.status(405).json({ message: "Method not allowed" });
   }
