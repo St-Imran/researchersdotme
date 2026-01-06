@@ -153,14 +153,20 @@ export default function ManageServices() {
               </div>
               <div className={styles.serviceActions}>
                 <Link
-                  href={`/services/${service.slug}`}
+                  href={`/services/${service.slug || service._id}`}
                   target="_blank"
                   className={styles.viewButton}
                 >
                   👁️ View
                 </Link>
+                <Link
+                  href={`/admin/add-service?id=${service.slug || service._id}`}
+                  className={styles.editButton}
+                >
+                  ✏️ Edit
+                </Link>
                 <button
-                  onClick={() => handleDelete(service.slug, service.title)}
+                  onClick={() => handleDelete(service.slug || service._id, service.title)}
                   className={styles.deleteButton}
                 >
                   🗑️ Delete

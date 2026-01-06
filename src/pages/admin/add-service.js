@@ -2,14 +2,20 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "./AddService.module.css";
 import { getApiUrl } from "../../config/api";
+import ImageSeoModal from "../../components/ImageSeoModal/ImageSeoModal";
 
 const AddService = () => {
   const router = useRouter();
+  const { id } = router.query; // Get id (slug or _id) from query params for editing
   const contentRef = useRef(null);
   const imageInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [pendingImageFile, setPendingImageFile] = useState(null);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [serviceId, setServiceId] = useState(null);
   
   const [formData, setFormData] = useState({
     title: "",
@@ -99,14 +105,25 @@ const AddService = () => {
       return;
     }
 
+    // Store the file and show modal for alt text
+    setPendingImageFile(file);
+    setShowImageModal(true);
+    
+    // Reset file input
+    e.target.value = '';
+  };
+
+  const handleImageModalSubmit = async (altText) => {
+    if (!pendingImageFile) return;
+    
+    setShowImageModal(false);
     setUploadingImage(true);
     
     try {
       // Upload to server
-      const imagePath = await uploadImageToServer(file);
+      const imagePath = await uploadImageToServer(pendingImageFile);
       
       // Insert into editor
-      const altText = prompt('Enter image description (for SEO):', file.name.split('.')[0]) || 'Service Image';
       const imgHtml = `<img src="${imagePath}" alt="${altText}" style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px;" />`;
       
       // Focus the editor first
@@ -153,8 +170,7 @@ const AddService = () => {
       alert(`Failed to upload image: ${error.message}`);
     } finally {
       setUploadingImage(false);
-      // Reset file input
-      e.target.value = '';
+      setPendingImageFile(null);
     }
   };
 
@@ -190,6 +206,51 @@ const AddService = () => {
     }
   }, []);
 
+  // Load service data if editing
+  useEffect(() => {
+    if (id) {
+      setIsEditMode(true);
+      setServiceId(id);
+      setLoading(true);
+      
+      fetch(getApiUrl(`/api/services/${id}`))
+        .then((res) => {
+          if (!res.ok) throw new Error('Service not found');
+          return res.json();
+        })
+        .then((data) => {
+          // Convert arrays to newline/comma-separated strings for form
+          setFormData({
+            title: data.title || "",
+            slug: data.slug || "",
+            category: data.category || "",
+            heading: data.heading || "",
+            subTitle: data.subTitle || "",
+            description: data.description || "",
+            content: data.content || "",
+            image: data.image || "",
+            featured: data.featured || false,
+            features: Array.isArray(data.features) ? data.features.join("\n") : "",
+            benefits: Array.isArray(data.benefits) ? data.benefits.join("\n") : "",
+            keywords: Array.isArray(data.keywords) ? data.keywords.join(", ") : "",
+            order: data.order || 0,
+            status: data.status || "active"
+          });
+          
+          // Set content in editor
+          if (contentRef.current) {
+            contentRef.current.innerHTML = data.content || '';
+          }
+          
+          setLoading(false);
+        })
+        .catch((err) => {
+          setMessage({ type: "error", text: `Failed to load service: ${err.message}` });
+          setLoading(false);
+        });
+    }
+  }, [id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -216,28 +277,45 @@ const AddService = () => {
         order: parseInt(formData.order) || 0
       };
 
-      const response = await fetch(getApiUrl("/api/services"), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(serviceData)
-      });
+      let response;
+      if (isEditMode) {
+        // Update existing service
+        response = await fetch(getApiUrl(`/api/services/${serviceId}`), {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(serviceData)
+        });
+      } else {
+        // Create new service
+        response = await fetch(getApiUrl("/api/services"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(serviceData)
+        });
+      }
 
       if (!response.ok) {
-        throw new Error("Failed to create service");
+        throw new Error(isEditMode ? "Failed to update service" : "Failed to create service");
       }
 
       const result = await response.json();
       setMessage({ 
         type: "success", 
-        text: `Service "${formData.title}" created successfully!` 
+        text: isEditMode 
+          ? `Service "${formData.title}" updated successfully!` 
+          : `Service "${formData.title}" created successfully!`
       });
       
-      // Reset form
+      // Redirect after success
       setTimeout(() => {
-        if (confirm("Service created! Do you want to view it?")) {
+        if (confirm(`Service ${isEditMode ? 'updated' : 'created'}! Do you want to view it?`)) {
           router.push(`/services/${formData.slug}`);
+        } else if (isEditMode) {
+          router.push('/admin/manage-services');
         } else {
           // Reset form for next entry
           setFormData({
@@ -256,13 +334,16 @@ const AddService = () => {
             order: 0,
             status: "active"
           });
+          if (contentRef.current) {
+            contentRef.current.innerHTML = '';
+          }
         }
       }, 1000);
 
     } catch (error) {
       setMessage({ 
         type: "error", 
-        text: error.message || "Failed to create service. Make sure backend is running." 
+        text: error.message || `Failed to ${isEditMode ? 'update' : 'create'} service. Make sure backend is running.` 
       });
     } finally {
       setLoading(false);
@@ -270,10 +351,21 @@ const AddService = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <>
+      <ImageSeoModal
+        isOpen={showImageModal}
+        onClose={() => {
+          setShowImageModal(false);
+          setPendingImageFile(null);
+        }}
+        onSubmit={handleImageModalSubmit}
+        defaultValue={pendingImageFile ? pendingImageFile.name.split('.')[0].replace(/-|_/g, ' ') : ''}
+      />
+      
+      <div className={styles.container}>
       <div className={styles.header}>
-        <h1>Add New Service</h1>
-        <p>Create a new service that will appear on the services page and have its own detail page</p>
+        <h1>{isEditMode ? 'Edit Service' : 'Add New Service'}</h1>
+        <p>{isEditMode ? 'Update the service information below' : 'Create a new service that will appear on the services page and have its own detail page'}</p>
       </div>
 
       {message.text && (
@@ -647,7 +739,7 @@ const AddService = () => {
         <div className={styles.actions}>
           <button 
             type="button" 
-            onClick={() => router.push("/services")}
+            onClick={() => router.push(isEditMode ? "/admin/manage-services" : "/services")}
             className={styles.cancelButton}
             disabled={loading}
           >
@@ -658,11 +750,12 @@ const AddService = () => {
             className={styles.submitButton}
             disabled={loading}
           >
-            {loading ? "Creating Service..." : "Create Service"}
+            {loading ? (isEditMode ? "Updating Service..." : "Creating Service...") : (isEditMode ? "Update Service" : "Create Service")}
           </button>
         </div>
       </form>
     </div>
+    </>
   );
 };
 

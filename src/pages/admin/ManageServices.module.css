@@ -224,6 +224,7 @@
 }
 
 .viewButton,
+.editButton,
 .deleteButton {
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -243,6 +244,16 @@
 
 .viewButton:hover {
   background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.editButton {
+  background: #28a745;
+  color: white;
+}
+
+.editButton:hover {
+  background: #218838;
   transform: translateY(-2px);
 }
 
