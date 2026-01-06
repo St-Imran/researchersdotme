@@ -10,6 +10,8 @@ const Blogs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [breadcrumbs, setBreadcrumbs] = useState([]);
+  const [featuredBlogs, setFeaturedBlogs] = useState([]);
+  const [filteredFeaturedBlogs, setFilteredFeaturedBlogs] = useState([]);
 
   const categories = [
     "All",
@@ -38,6 +40,12 @@ const Blogs = () => {
       const data = await response.json();
       setBlogs(data);
       setFilteredBlogs(data);
+      
+      // Filter and sort featured blogs by date (newest first)
+      const featured = data
+        .filter((blog) => blog.featured)
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+      setFeaturedBlogs(featured);
     } catch (error) {
       console.error("Error fetching blogs:", error);
     } finally {
@@ -47,28 +55,33 @@ const Blogs = () => {
 
   const filterBlogs = () => {
     let filtered = blogs;
+    let filteredFeatured = featuredBlogs;
 
     // Filter by category
     if (selectedCategory !== "All") {
       filtered = filtered.filter((blog) => blog.category === selectedCategory);
+      filteredFeatured = filteredFeatured.filter((blog) => blog.category === selectedCategory);
     }
 
     // Filter by search term
     if (searchTerm) {
-      filtered = filtered.filter(
-        (blog) =>
-          (blog.title &&
-            blog.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (blog.description &&
-            blog.description
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase())) ||
-          (blog.excerpt &&
-            blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+      const searchFilter = (blog) =>
+        (blog.title &&
+          blog.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (blog.description &&
+          blog.description
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())) ||
+        (blog.excerpt &&
+          blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase()));
+      
+      filtered = filtered.filter(searchFilter);
+      filteredFeatured = filteredFeatured.filter(searchFilter);
     }
 
     setFilteredBlogs(filtered);
+    // Limit to top 3 featured blogs per category/filter
+    setFilteredFeaturedBlogs(filteredFeatured.slice(0, 3));
   };
 
   const updateBreadcrumbs = () => {
@@ -103,8 +116,6 @@ const Blogs = () => {
       </div>
     );
   }
-
-  const featuredBlogs = blogs.filter((blog) => blog.featured);
 
   return (
     <div className={styles.blogsContainer}>
@@ -148,15 +159,26 @@ const Blogs = () => {
         )}
 
         {/* Featured Blogs */}
-        {featuredBlogs.length > 0 &&
-          !searchTerm &&
-          selectedCategory === "All" && (
+        {filteredFeaturedBlogs.length > 0 && (
             <div className={styles.featuredSection}>
               <h2 className={styles.featuredTitle}>Featured Articles</h2>
+              <p className={styles.featuredSubtitle}>
+                {selectedCategory === "All" 
+                  ? "Discover our top articles and insights"
+                  : `Featured ${selectedCategory} articles`}
+              </p>
               <div className="row">
-                {featuredBlogs.slice(0, 3).map((blog) => (
-                  <div key={blog.id} className="col-md-4 mb-4">
-                    <Link href={blog.link} className={styles.blogCard}>
+                {filteredFeaturedBlogs.map((blog) => {
+                  // Dynamic column sizing based on number of featured blogs
+                  const colClass = filteredFeaturedBlogs.length === 1 
+                    ? "col-md-8 offset-md-2 mb-4"
+                    : filteredFeaturedBlogs.length === 2
+                    ? "col-md-6 mb-4"
+                    : "col-md-4 mb-4";
+                  
+                  return (
+                  <div key={blog.id} className={colClass}>
+                    <Link href={blog.link} className={styles.featuredBlogCard}>
                       <div className={styles.blogImageWrapper}>
                         <Image
                           src={blog.bg}
@@ -164,6 +186,7 @@ const Blogs = () => {
                           fill
                           className={styles.blogImage}
                         />
+                        <span className={styles.featuredBadge}>⭐ Featured</span>
                         <span className={styles.categoryBadge}>
                           {blog.category}
                         </span>
@@ -193,7 +216,8 @@ const Blogs = () => {
                       </div>
                     </Link>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}

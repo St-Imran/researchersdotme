@@ -10,8 +10,7 @@ const Hamberger = ({ navOpener, isOpen }) => {
 
   return (
     <div
-      id={styles.navicon}
-      className={`nav-icon3 ${isOpen ? styles.open : ""}`}
+      className={`${styles.navicon} ${isOpen ? styles.open : ""}`}
       onClick={toggleHandler}
     >
       <span></span>

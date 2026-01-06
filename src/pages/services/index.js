@@ -13,6 +13,8 @@ const Services = () => {
   const [breadcrumbs, setBreadcrumbs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [featuredServices, setFeaturedServices] = useState([]);
+  const [filteredFeaturedServices, setFilteredFeaturedServices] = useState([]);
 
   // Extract unique categories from services
   const mainCategories = ["All", ...new Set(allServices.map((service) => service.category || service.mainCategory).filter(Boolean))];
@@ -24,6 +26,16 @@ const Services = () => {
         // Store the flat array of services directly
         setAllServices(data);
         setFilteredServices(data);
+        // Filter featured services and get the latest 3
+        const featured = data
+          .filter(service => service.featured === true)
+          .sort((a, b) => {
+            // Sort by createdAt if available, otherwise by _id (MongoDB ObjectId contains timestamp)
+            const dateA = a.createdAt ? new Date(a.createdAt) : new Date(parseInt(a._id?.substring(0, 8), 16) * 1000 || 0);
+            const dateB = b.createdAt ? new Date(b.createdAt) : new Date(parseInt(b._id?.substring(0, 8), 16) * 1000 || 0);
+            return dateB - dateA; // Descending order (newest first)
+          });
+        setFeaturedServices(featured.slice(0, 3));
         setLoading(false);
       })
       .catch((err) => {
@@ -45,39 +57,61 @@ const Services = () => {
 
   const filterServices = () => {
     let filtered = allServices;
+    let filteredFeatured = featuredServices;
+
+    // Apply category filter
     if (selectedCategory !== "All") {
       filtered = filtered.filter(
         (service) => service.category === selectedCategory || 
                      service.mainCategory === selectedCategory
       );
+      filteredFeatured = filteredFeatured.filter(
+        (service) => service.category === selectedCategory || 
+                     service.mainCategory === selectedCategory
+      );
     }
+
+    // Apply subcategory filter
     if (selectedSubCategory) {
       filtered = filtered.filter(
         (service) => service.subCategory === selectedSubCategory
       );
+      filteredFeatured = filteredFeatured.filter(
+        (service) => service.subCategory === selectedSubCategory
+      );
     }
+
+    // Apply sub-subcategory filter
     if (selectedSubSubCategory) {
       filtered = filtered.filter(
         (service) => service.subSubCategory === selectedSubSubCategory
       );
-    }
-    if (searchTerm) {
-      filtered = filtered.filter(
-        (service) =>
-          service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (service.subTitle &&
-            service.subTitle
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase())) ||
-          (service.heading &&
-            service.heading.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (service.description &&
-            service.description
-              .toLowerCase()
-              .includes(searchTerm.toLowerCase()))
+      filteredFeatured = filteredFeatured.filter(
+        (service) => service.subSubCategory === selectedSubSubCategory
       );
     }
+
+    // Apply search filter
+    if (searchTerm) {
+      const searchFilter = (service) =>
+        service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (service.subTitle &&
+          service.subTitle
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())) ||
+        (service.heading &&
+          service.heading.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (service.description &&
+          service.description
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()));
+      
+      filtered = filtered.filter(searchFilter);
+      filteredFeatured = filteredFeatured.filter(searchFilter);
+    }
+
     setFilteredServices(filtered);
+    setFilteredFeaturedServices(filteredFeatured);
   };
 
   const updateBreadcrumbs = () => {
@@ -209,6 +243,72 @@ const Services = () => {
             ))}
           </div>
         )}
+        {/* Featured Services */}
+        {filteredFeaturedServices.length > 0 && (
+            <div className={styles.featuredSection}>
+              <h2 className={styles.featuredTitle}>Featured Services</h2>
+              <p className={styles.featuredSubtitle}>
+                {selectedCategory === "All" 
+                  ? "Explore our top services that can help transform your business"
+                  : `Featured ${selectedCategory} services`}
+              </p>
+              <div 
+                className={styles.featuredGrid}
+                style={{
+                  gridTemplateColumns: filteredFeaturedServices.length === 1
+                    ? '1fr'
+                    : filteredFeaturedServices.length === 2
+                    ? 'repeat(2, 1fr)'
+                    : 'repeat(auto-fit, minmax(320px, 1fr))'
+                }}
+              >
+                {filteredFeaturedServices.map((service, index) => {
+                  const serviceUrl = `/services/${service.slug}`;
+                  return (
+                    <Link
+                      key={service._id || service.slug || index}
+                      href={serviceUrl}
+                      className={styles.featuredCard}
+                      style={{
+                        maxWidth: filteredFeaturedServices.length === 1 ? '1000px' : 'none',
+                        width: filteredFeaturedServices.length === 1 ? '100%' : 'auto',
+                        margin: filteredFeaturedServices.length === 1 ? '0 auto' : '0'
+                      }}
+                    >
+                      <div
+                        className={styles.featuredCardHeader}
+                        style={{ background: getCategoryColor(index) }}
+                      >
+                        <div className={styles.featuredBadge}>⭐ Featured</div>
+                        <div className={styles.categoryBadge}>
+                          {service.category || service.mainCategory}
+                        </div>
+                        <h3 className={styles.featuredCardTitle}>
+                          {service.title}
+                        </h3>
+                        {service.subTitle && (
+                          <p className={styles.featuredCardSubtitle}>
+                            {service.subTitle}
+                          </p>
+                        )}
+                      </div>
+                      <div className={styles.featuredCardContent}>
+                        {service.description && (
+                          <p className={styles.featuredCardDescription}>
+                            {service.description.substring(0, 150)}
+                            {service.description.length > 150 ? "..." : ""}
+                          </p>
+                        )}
+                        <div className={styles.featuredCardFooter}>
+                          <span className={styles.learnMore}>Learn More →</span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         <div className={styles.filterSection}>
           <h3 className={styles.filterTitle}>Main Categories</h3>
           <div className={styles.filterButtons}>

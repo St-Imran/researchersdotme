@@ -6,7 +6,9 @@ import { getApiUrl } from "../../config/api";
 const AddService = () => {
   const router = useRouter();
   const contentRef = useRef(null);
+  const imageInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
   
   const [formData, setFormData] = useState({
@@ -49,16 +51,110 @@ const AddService = () => {
     contentRef.current?.focus();
   };
 
-  const insertImage = () => {
-    const url = prompt("Enter image URL (must start with / or http):\n\nExample: /services/my-image.jpg\n\nNote: Upload your image to public/services/ folder first!");
-    if (url) {
-      // Validate URL format
-      if (!url.startsWith('/') && !url.startsWith('http')) {
-        alert('Invalid URL! Image URL must start with / (for local images) or http (for external images).\n\nExample: /services/my-image.jpg');
-        return;
+  // Upload image to server
+  const uploadImageToServer = async (file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const response = await fetch(getApiUrl('/api/upload-image'), {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Upload failed');
       }
-      const imgHtml = `<img src="${url}" alt="Service Image" style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px;" />`;
-      document.execCommand('insertHTML', false, imgHtml);
+
+      const data = await response.json();
+      return data.path; // Returns /services/filename.jpg
+    } catch (error) {
+      console.error('Upload error:', error);
+      throw error;
+    }
+  };
+
+  const insertImage = async () => {
+    // Trigger hidden file input
+    if (imageInputRef.current) {
+      imageInputRef.current.click();
+    }
+  };
+
+  const handleImageSelect = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/avif'];
+    if (!allowedTypes.includes(file.type)) {
+      alert('Please select a valid image file (JPEG, PNG, GIF, WebP, or AVIF)');
+      return;
+    }
+
+    // Validate file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image size must be less than 5MB');
+      return;
+    }
+
+    setUploadingImage(true);
+    
+    try {
+      // Upload to server
+      const imagePath = await uploadImageToServer(file);
+      
+      // Insert into editor
+      const altText = prompt('Enter image description (for SEO):', file.name.split('.')[0]) || 'Service Image';
+      const imgHtml = `<img src="${imagePath}" alt="${altText}" style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px;" />`;
+      
+      // Focus the editor first
+      if (contentRef.current) {
+        contentRef.current.focus();
+        
+        // Insert the image HTML
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+          const range = selection.getRangeAt(0);
+          range.deleteContents();
+          
+          const imgElement = document.createElement('img');
+          imgElement.src = imagePath;
+          imgElement.alt = altText;
+          imgElement.style.maxWidth = '100%';
+          imgElement.style.height = 'auto';
+          imgElement.style.margin = '20px 0';
+          imgElement.style.borderRadius = '8px';
+          
+          range.insertNode(imgElement);
+          
+          // Move cursor after the image
+          range.setStartAfter(imgElement);
+          range.setEndAfter(imgElement);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        } else {
+          // No selection, append to end
+          contentRef.current.innerHTML += imgHtml;
+        }
+        
+        // Update form data
+        setFormData(prev => ({ ...prev, content: contentRef.current.innerHTML }));
+      }
+      
+      // Show success message briefly
+      setMessage({ type: 'success', text: 'Image uploaded and inserted successfully!' });
+      setTimeout(() => {
+        setMessage({ type: '', text: '' });
+      }, 2000);
+      
+    } catch (error) {
+      alert(`Failed to upload image: ${error.message}`);
+    } finally {
+      setUploadingImage(false);
+      // Reset file input
+      e.target.value = '';
     }
   };
 
@@ -337,10 +433,14 @@ const AddService = () => {
               <div className={styles.toolbarGroup}>
                 <select 
                   className={styles.toolbarSelect}
-                  onChange={(e) => setHeading(e.target.value)}
+                  onChange={(e) => {
+                    if(e.target.value) {
+                      setHeading(e.target.value);
+                    }
+                  }}
                   defaultValue=""
                 >
-                  <option value="" disabled>Heading</option>
+                  <option value="">Select Heading</option>
                   <option value="1">Heading 1</option>
                   <option value="2">Heading 2</option>
                   <option value="3">Heading 3</option>
@@ -348,10 +448,13 @@ const AddService = () => {
                 </select>
                 <select 
                   className={styles.toolbarSelect}
-                  onChange={(e) => { if(e.target.value) { setFontSize(e.target.value); e.target.value = ''; } }}
-                  defaultValue=""
+                  onChange={(e) => {
+                    if(e.target.value) {
+                      setFontSize(e.target.value);
+                    }
+                  }}
+                  defaultValue="3"
                 >
-                  <option value="" disabled>Font Size</option>
                   <option value="1">Small</option>
                   <option value="3">Normal</option>
                   <option value="5">Large</option>
@@ -424,9 +527,10 @@ const AddService = () => {
                   type="button" 
                   className={styles.toolbarBtn}
                   onClick={insertImage}
-                  title="Insert Image"
+                  title="Upload & Insert Image"
+                  disabled={uploadingImage}
                 >
-                  🖼️ Image
+                  {uploadingImage ? '⏳' : '🖼️'} {uploadingImage ? 'Uploading...' : 'Image'}
                 </button>
               </div>
 
@@ -453,8 +557,17 @@ const AddService = () => {
               suppressContentEditableWarning
             />
             
+            {/* Hidden file input for image upload */}
+            <input
+              ref={imageInputRef}
+              type="file"
+              accept="image/jpeg,image/jpg,image/png,image/gif,image/webp,image/avif"
+              onChange={handleImageSelect}
+              style={{ display: 'none' }}
+            />
+            
             <small>
-              Use the toolbar to format text and insert images/links. Click where you want to insert an image, then click the 🖼️ button.
+              Use the toolbar to format text. Click the 🖼️ button to upload images from your computer. Images are automatically saved to the server.
             </small>
           </div>
         </div>

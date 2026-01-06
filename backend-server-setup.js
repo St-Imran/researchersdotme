@@ -4,6 +4,9 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = 5000;
@@ -11,6 +14,50 @@ const PORT = 5000;
 // MongoDB connection
 const MONGO_URI = 'mongodb://localhost:27017';
 const DB_NAME = 'researchersdb';
+
+// Define the uploads directory - use path relative to the Next.js public folder
+const UPLOADS_DIR = path.join(__dirname, 'public', 'services');
+
+// Ensure upload directory exists
+if (!fs.existsSync(UPLOADS_DIR)) {
+  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  console.log('📁 Created uploads directory:', UPLOADS_DIR);
+}
+
+// Configure multer for image uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, UPLOADS_DIR);
+  },
+  filename: function (req, file, cb) {
+    // Generate unique filename: timestamp-originalname
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    const nameWithoutExt = path.basename(file.originalname, ext)
+      .replace(/[^a-zA-Z0-9-]/g, '-')
+      .toLowerCase();
+    cb(null, nameWithoutExt + '-' + uniqueSuffix + ext);
+  }
+});
+
+// File filter to accept only images
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = /jpeg|jpg|png|gif|webp|avif|svg/;
+  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = allowedTypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed (jpeg, jpg, png, gif, webp, avif, svg)'));
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: fileFilter
+});
 
 // Middleware
 app.use(cors());
@@ -31,6 +78,70 @@ async function connectDB() {
 
 // Initialize DB connection
 connectDB().catch(console.error);
+
+// ==================== IMAGE UPLOAD ROUTES ====================
+
+// POST /api/upload/image - Upload image for services
+app.post('/api/upload/image', upload.single('image'), (req, res) => {
+  try {
+    console.log('📤 Received upload request');
+    console.log('File:', req.file ? req.file.originalname : 'No file');
+    
+    if (!req.file) {
+      console.log('❌ No file in request');
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // Return the path relative to the public folder
+    const imagePath = `/services/${req.file.filename}`;
+    
+    console.log('✅ Image uploaded:', imagePath);
+    console.log('   Size:', req.file.size, 'bytes');
+    console.log('   Saved to:', req.file.path);
+
+    res.status(200).json({
+      success: true,
+      message: 'Image uploaded successfully',
+      path: imagePath,
+      filename: req.file.filename,
+      size: req.file.size
+    });
+
+  } catch (error) {
+    console.error('❌ Error uploading image:', error);
+    res.status(500).json({
+      error: 'Failed to upload image',
+      details: error.message
+    });
+  }
+});
+
+// DELETE /api/upload/image/:filename - Delete uploaded image
+app.delete('/api/upload/image/:filename', (req, res) => {
+  try {
+    const { filename } = req.params;
+    const filePath = path.join(UPLOADS_DIR, filename);
+
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: 'File not found' });
+    }
+
+    fs.unlinkSync(filePath);
+    console.log('✅ Image deleted:', filename);
+
+    res.json({
+      success: true,
+      message: 'Image deleted successfully'
+    });
+
+  } catch (error) {
+    console.error('❌ Error deleting image:', error);
+    res.status(500).json({
+      error: 'Failed to delete image',
+      details: error.message
+    });
+  }
+});
 
 // ==================== SERVICES ROUTES ====================
 
@@ -363,15 +474,57 @@ app.get('/api/case-studies', async (req, res) => {
 });
 
 // Health check route
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date() });
+app.get('/health', async (req, res) => {
+  try {
+    const db = await connectDB();
+    res.json({ 
+      status: 'ok', 
+      timestamp: new Date(),
+      database: 'connected',
+      uploadsDir: UPLOADS_DIR
+    });
+  } catch (error) {
+    res.json({ 
+      status: 'partial', 
+      timestamp: new Date(),
+      database: 'disconnected',
+      uploadsDir: UPLOADS_DIR
+    });
+  }
+});
+
+// Error handling middleware for multer errors
+app.use((error, req, res, next) => {
+  if (error instanceof multer.MulterError) {
+    console.error('Multer error:', error);
+    if (error.code === 'LIMIT_FILE_SIZE') {
+      return res.status(400).json({
+        error: 'File too large',
+        details: 'Maximum file size is 5MB'
+      });
+    }
+    return res.status(400).json({
+      error: 'File upload error',
+      details: error.message
+    });
+  } else if (error) {
+    console.error('Server error:', error);
+    return res.status(500).json({
+      error: 'Server error',
+      details: error.message
+    });
+  }
+  next();
 });
 
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Backend server running on http://localhost:${PORT}`);
   console.log(`📊 MongoDB: ${MONGO_URI}/${DB_NAME}`);
+  console.log(`📁 Uploads directory: ${UPLOADS_DIR}`);
   console.log(`\nAvailable endpoints:`);
+  console.log(`  POST   /api/upload/image`);
+  console.log(`  DELETE /api/upload/image/:filename`);
   console.log(`  GET    /api/services`);
   console.log(`  GET    /api/services/:slug`);
   console.log(`  POST   /api/services`);
