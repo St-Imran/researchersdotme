@@ -44,9 +44,38 @@ export default async function handler(req, res) {
       });
     }
   } else if (req.method === "POST") {
-    // For future: add new blog
-    res.status(201).json({ message: "Blog created (mock)" });
+    // Create new blog
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/blogs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(req.body)
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to create blog');
+      }
+
+      const blog = await response.json();
+      res.status(201).json(blog);
+    } catch (error) {
+      console.error("Error creating blog:", error);
+      res.status(500).json({
+        message: "Failed to create blog",
+        error: error.message,
+      });
+    }
+  } else if (req.method === "PUT") {
+    // Update blog - not used in this endpoint, handled by blogs/[id].js
+    res.status(405).json({ message: "Use /api/blogs/[id] for updates" });
+  } else if (req.method === "DELETE") {
+    // Delete blog - not used in this endpoint, handled by blogs/[id].js
+    res.status(405).json({ message: "Use /api/blogs/[id] for deletion" });
   } else {
     res.status(405).json({ message: "Method not allowed" });
   }
 }
+

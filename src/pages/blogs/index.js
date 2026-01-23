@@ -195,7 +195,7 @@ const Blogs = () => {
                         <div className={styles.blogMeta}>
                           <span className={styles.blogDate}>
                             📅{" "}
-                            {new Date(blog.date).toLocaleDateString("en-US", {
+                            {new Date(blog.createdAt || blog.date).toLocaleDateString("en-US", {
                               month: "short",
                               day: "numeric",
                               year: "numeric",
@@ -258,7 +258,7 @@ const Blogs = () => {
                   <div className={styles.blogMeta}>
                     <span className={styles.blogDate}>
                       📅{" "}
-                      {new Date(blog.date).toLocaleDateString("en-US", {
+                      {new Date(blog.createdAt || blog.date).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                         year: "numeric",

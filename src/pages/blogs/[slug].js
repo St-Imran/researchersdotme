@@ -85,19 +85,41 @@ const BlogDetail = () => {
 
   return (
     <div className={styles.blogDetailContainer}>
+      {/* Breadcrumb */}
+      <div className={styles.breadcrumbSection}>
+        <div className={styles.container}>
+          <div className={styles.breadcrumb}>
+            <Link href="/blogs">Blogs</Link>
+            <span className={styles.separator}>›</span>
+            {blog.category && (
+              <>
+                <Link href="/blogs">{blog.category}</Link>
+                <span className={styles.separator}>›</span>
+              </>
+            )}
+            {blog.subCategory && (
+              <>
+                <Link href="/blogs">{blog.subCategory}</Link>
+                <span className={styles.separator}>›</span>
+              </>
+            )}
+            <span className={styles.current}>{blog.title}</span>
+          </div>
+        </div>
+      </div>
+
       {/* Blog Header */}
       <div className={styles.blogHeader}>
         <div className={styles.headerContent}>
-          <Link href="/blogs" className={styles.backButton}>
-            ← Back to Blogs
-          </Link>
-          <span className={styles.categoryBadge}>{blog.category}</span>
+          {blog.category && (
+            <div className={styles.badge}>{blog.category}</div>
+          )}
           <h1 className={styles.blogTitle}>{blog.title}</h1>
           <div className={styles.blogMeta}>
             <div className={styles.metaItem}>
               <span>📅</span>
               <span>
-                {new Date(blog.date).toLocaleDateString("en-US", {
+                {new Date(blog.createdAt || blog.date).toLocaleDateString("en-US", {
                   month: "long",
                   day: "numeric",
                   year: "numeric",
@@ -119,16 +141,6 @@ const BlogDetail = () => {
       {/* Blog Content */}
       <div className="container">
         <div className={styles.blogContent}>
-          {blog.image && (
-            <Image
-              src={blog.image}
-              alt={blog.title}
-              width={900}
-              height={400}
-              className={styles.featuredImage}
-            />
-          )}
-
           <div
             className={styles.articleContent}
             dangerouslySetInnerHTML={{ __html: blog.content }}
@@ -147,54 +159,54 @@ const BlogDetail = () => {
               </div>
             </div>
           )}
+        </div>
 
-          {/* Share Section */}
-          <div className={styles.shareSection}>
-            <h3 className={styles.shareTitle}>Share this article</h3>
-            <div className={styles.shareButtons}>
-              <button
-                className={styles.shareBtn}
-                style={{ background: "#1DA1F2", color: "white" }}
-                onClick={() => {
-                  window.open(
-                    `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                      blog.title
-                    )}&url=${encodeURIComponent(window.location.href)}`,
-                    "_blank"
-                  );
-                }}
-              >
-                🐦 Twitter
-              </button>
-              <button
-                className={styles.shareBtn}
-                style={{ background: "#0077B5", color: "white" }}
-                onClick={() => {
-                  window.open(
-                    `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                      window.location.href
-                    )}`,
-                    "_blank"
-                  );
-                }}
-              >
-                💼 LinkedIn
-              </button>
-              <button
-                className={styles.shareBtn}
-                style={{ background: "#25D366", color: "white" }}
-                onClick={() => {
-                  window.open(
-                    `https://wa.me/?text=${encodeURIComponent(
-                      blog.title + " " + window.location.href
-                    )}`,
-                    "_blank"
-                  );
-                }}
-              >
-                💬 WhatsApp
-              </button>
-            </div>
+        {/* Share Section - Outside content area */}
+        <div className={styles.shareSection}>
+          <h3 className={styles.shareTitle}>Share this article</h3>
+          <div className={styles.shareButtons}>
+            <button
+              className={styles.shareBtn}
+              style={{ background: "#1DA1F2", color: "white" }}
+              onClick={() => {
+                window.open(
+                  `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                    blog.title
+                  )}&url=${encodeURIComponent(window.location.href)}`,
+                  "_blank"
+                );
+              }}
+            >
+              🐦 Twitter
+            </button>
+            <button
+              className={styles.shareBtn}
+              style={{ background: "#0077B5", color: "white" }}
+              onClick={() => {
+                window.open(
+                  `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                    window.location.href
+                  )}`,
+                  "_blank"
+                );
+              }}
+            >
+              💼 LinkedIn
+            </button>
+            <button
+              className={styles.shareBtn}
+              style={{ background: "#25D366", color: "white" }}
+              onClick={() => {
+                window.open(
+                  `https://wa.me/?text=${encodeURIComponent(
+                    blog.title + " " + window.location.href
+                  )}`,
+                  "_blank"
+                );
+              }}
+            >
+              💬 WhatsApp
+            </button>
           </div>
         </div>
 

@@ -1,14 +1,14 @@
-// Proxy API endpoint for individual blog details - fetches from backend
+// Proxy API endpoint for individual blog operations (admin) - fetches from backend
 // API routes run server-side and can access both NEXT_PUBLIC_ and regular env vars
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || 'http://localhost:5000';
 
 export default async function handler(req, res) {
-  const { slug } = req.query;
+  const { id } = req.query;
 
   if (req.method === "GET") {
     try {
-      // Fetch from backend
-      const backendUrl = `${API_BASE_URL}/api/blog/${slug}`;
+      // Fetch from backend - can use slug or _id
+      const backendUrl = `${API_BASE_URL}/api/blogs/${id}`;
       const response = await fetch(backendUrl);
 
       if (!response.ok) {
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
   } else if (req.method === "PUT") {
     // Update blog
     try {
-      const response = await fetch(`${API_BASE_URL}/api/blogs/${slug}`, {
+      const response = await fetch(`${API_BASE_URL}/api/blogs/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
   } else if (req.method === "DELETE") {
     // Delete blog
     try {
-      const response = await fetch(`${API_BASE_URL}/api/blogs/${slug}`, {
+      const response = await fetch(`${API_BASE_URL}/api/blogs/${id}`, {
         method: 'DELETE'
       });
 
@@ -77,4 +77,3 @@ export default async function handler(req, res) {
     res.status(405).json({ message: "Method not allowed" });
   }
 }
-
