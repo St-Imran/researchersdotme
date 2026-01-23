@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from "./ManageServices.module.css";
+import styles from "./ManageBlogs.module.css";
 import { getApiUrl } from "../../config/api";
 
-export default function ManageServices() {
+export default function ManageBlogs() {
   const router = useRouter();
-  const [services, setServices] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState({ type: "", text: "" });
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetchServices();
+    fetchBlogs();
   }, []);
 
-  const fetchServices = async () => {
+  const fetchBlogs = async () => {
     try {
-      const response = await fetch(getApiUrl("/api/services"));
+      const response = await fetch(getApiUrl("/api/blogs"));
       const data = await response.json();
-      setServices(data);
+      setBlogs(data);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching services:", error);
-      setMessage({ type: "error", text: "Failed to load services" });
+      console.error("Error fetching blogs:", error);
+      setMessage({ type: "error", text: "Failed to load blogs" });
       setLoading(false);
     }
   };
@@ -34,33 +34,34 @@ export default function ManageServices() {
     }
 
     try {
-      const response = await fetch(getApiUrl(`/api/services/${slug}`), {
+      const response = await fetch(getApiUrl(`/api/blogs/${slug}`), {
         method: "DELETE"
       });
 
       if (response.ok) {
         setMessage({ type: "success", text: `"${title}" deleted successfully!` });
-        fetchServices(); // Refresh the list
+        fetchBlogs(); // Refresh the list
         setTimeout(() => setMessage({ type: "", text: "" }), 3000);
       } else {
         throw new Error("Failed to delete");
       }
     } catch (error) {
-      setMessage({ type: "error", text: "Failed to delete service" });
+      setMessage({ type: "error", text: "Failed to delete blog" });
       setTimeout(() => setMessage({ type: "", text: "" }), 3000);
     }
   };
 
-  const filteredServices = services.filter(service =>
-    service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    service.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    service.category?.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredBlogs = blogs.filter(blog =>
+    blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    blog.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    blog.category?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    blog.author?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (loading) {
     return (
       <div className={styles.container}>
-        <div className={styles.loading}>Loading services...</div>
+        <div className={styles.loading}>Loading blogs...</div>
       </div>
     );
   }
@@ -69,12 +70,12 @@ export default function ManageServices() {
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
-          <h1>Manage Services</h1>
-          <p>View, edit, and delete your services</p>
+          <h1>Manage Blogs</h1>
+          <p>View, edit, and delete your blog posts</p>
         </div>
         <div className={styles.headerActions}>
-          <Link href="/admin/add-service" className={styles.addButton}>
-            ➕ Add New Service
+          <Link href="/admin/add-blog" className={styles.addButton}>
+            ➕ Add New Blog
           </Link>
           <Link href="/admin" className={styles.backButton}>
             ← Back to Dashboard
@@ -91,7 +92,7 @@ export default function ManageServices() {
       <div className={styles.searchBox}>
         <input
           type="text"
-          placeholder="Search services by title, category, or description..."
+          placeholder="Search blogs by title, category, author, or description..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className={styles.searchInput}
@@ -100,73 +101,80 @@ export default function ManageServices() {
 
       <div className={styles.stats}>
         <div className={styles.statItem}>
-          <span className={styles.statNumber}>{services.length}</span>
-          <span className={styles.statLabel}>Total Services</span>
+          <span className={styles.statNumber}>{blogs.length}</span>
+          <span className={styles.statLabel}>Total Blogs</span>
         </div>
         <div className={styles.statItem}>
-          <span className={styles.statNumber}>{services.filter(s => s.featured).length}</span>
+          <span className={styles.statNumber}>{blogs.filter(b => b.featured).length}</span>
           <span className={styles.statLabel}>Featured</span>
         </div>
         <div className={styles.statItem}>
-          <span className={styles.statNumber}>{services.filter(s => s.status === 'active').length}</span>
+          <span className={styles.statNumber}>{blogs.filter(b => b.status === 'active').length}</span>
           <span className={styles.statLabel}>Active</span>
         </div>
       </div>
 
-      <div className={styles.servicesList}>
-        {filteredServices.length === 0 ? (
+      <div className={styles.blogsList}>
+        {filteredBlogs.length === 0 ? (
           <div className={styles.emptyState}>
-            <p>No services found</p>
-            <Link href="/admin/add-service" className={styles.addButton}>
-              Add Your First Service
+            <p>No blogs found</p>
+            <Link href="/admin/add-blog" className={styles.addButton}>
+              Add Your First Blog
             </Link>
           </div>
         ) : (
-          filteredServices.map((service) => (
-            <div key={service._id} className={styles.serviceCard}>
-              <div className={styles.serviceInfo}>
-                <div className={styles.serviceHeader}>
-                  <h3>{service.title}</h3>
+          filteredBlogs.map((blog) => (
+            <div key={blog._id} className={styles.blogCard}>
+              <div className={styles.blogInfo}>
+                <div className={styles.blogHeader}>
+                  <h3>{blog.title}</h3>
                   <div className={styles.badges}>
-                    {service.featured && (
+                    {blog.featured && (
                       <span className={styles.badge}>⭐ Featured</span>
                     )}
-                    <span className={`${styles.badge} ${styles[service.status]}`}>
-                      {service.status}
+                    <span className={`${styles.badge} ${styles[blog.status]}`}>
+                      {blog.status}
                     </span>
                   </div>
                 </div>
-                <p className={styles.serviceDesc}>{service.description || service.subTitle}</p>
-                <div className={styles.serviceMeta}>
-                  <span className={styles.metaItem}>
-                    📁 {service.category || "Uncategorized"}
-                  </span>
-                  <span className={styles.metaItem}>
-                    🔗 /services/{service.slug}
-                  </span>
-                  {service.createdAt && (
+                <p className={styles.blogDesc}>{blog.excerpt || blog.description}</p>
+                <div className={styles.blogMeta}>
+                  {blog.author && (
                     <span className={styles.metaItem}>
-                      📅 {new Date(service.createdAt).toLocaleDateString()}
+                      ✍️ {blog.author}
+                    </span>
+                  )}
+                  {blog.category && (
+                    <span className={styles.metaItem}>
+                      📁 {blog.category}
+                    </span>
+                  )}
+                  <span className={styles.metaItem}>
+                    🔗 /blogs/{blog.slug}
+                  </span>
+                  {blog.createdAt && (
+                    <span className={styles.metaItem}>
+                      📅 {new Date(blog.createdAt).toLocaleDateString()}
                     </span>
                   )}
                 </div>
               </div>
-              <div className={styles.serviceActions}>
+              <div className={styles.blogActions}>
                 <Link
-                  href={`/services/${service.slug || service._id}`}
-                  target="_blank"
+                  href={`/blogs/${blog.slug}`}
                   className={styles.viewButton}
+                  target="_blank"
                 >
                   👁️ View
                 </Link>
                 <Link
-                  href={`/admin/add-service?id=${service.slug || service._id}`}
+                  href={`/admin/add-blog?id=${blog.slug}`}
                   className={styles.editButton}
                 >
                   ✏️ Edit
                 </Link>
                 <button
-                  onClick={() => handleDelete(service.slug || service._id, service.title)}
+                  onClick={() => handleDelete(blog.slug, blog.title)}
                   className={styles.deleteButton}
                 >
                   🗑️ Delete

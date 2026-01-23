@@ -190,8 +190,8 @@ const ServiceDetail = () => {
               </div>
             </>
           )}
-
-          {/* CTA Section */}
+        </div>
+        {/* CTA Section */}
           <div className={styles.ctaSection}>
             <h2>Ready to Get Started?</h2>
             <p>
@@ -201,7 +201,6 @@ const ServiceDetail = () => {
               Get in Touch
             </Link>
           </div>
-        </div>
       </div>
     </div>
   );

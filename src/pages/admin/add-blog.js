@@ -1,15 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
-import styles from "./AddService.module.css";
+import styles from "./AddBlog.module.css";
 import { getApiUrl } from "../../config/api";
 import ImageSeoModal from "../../components/ImageSeoModal/ImageSeoModal";
 
-const AddService = () => {
+const AddBlog = () => {
   const router = useRouter();
   const { id } = router.query; // Get id (slug or _id) from query params for editing
   const contentRef = useRef(null);
   const imageInputRef = useRef(null);
+  const featuredImageInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [uploadingFeaturedImage, setUploadingFeaturedImage] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
   const [showImageModal, setShowImageModal] = useState(false);
@@ -17,22 +19,22 @@ const AddService = () => {
   const [editingImage, setEditingImage] = useState(null); // Track image being edited
   const [savedSelection, setSavedSelection] = useState(null); // Store cursor position
   const [isEditMode, setIsEditMode] = useState(false);
-  const [serviceId, setServiceId] = useState(null);
+  const [blogId, setBlogId] = useState(null);
   
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
     category: "",
-    heading: "",
-    subTitle: "",
+    subCategory: "",
+    author: "",
+    excerpt: "",
     description: "",
     content: "",
     image: "",
+    bg: "",
     featured: false,
-    features: "",
-    benefits: "",
+    tags: "",
     keywords: "",
-    order: 0,
     status: "active"
   });
 
@@ -327,6 +329,36 @@ const AddService = () => {
     }
   };
 
+  // Upload featured image
+  const handleFeaturedImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/avif'];
+    if (!allowedTypes.includes(file.type)) {
+      alert('Please select a valid image file (JPEG, PNG, GIF, WebP, or AVIF)');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image size must be less than 5MB');
+      return;
+    }
+
+    setUploadingFeaturedImage(true);
+    try {
+      const imagePath = await uploadImageToServer(file);
+      setFormData(prev => ({ ...prev, image: imagePath }));
+      setMessage({ type: 'success', text: 'Featured image uploaded successfully!' });
+      setTimeout(() => setMessage({ type: '', text: '' }), 2000);
+    } catch (error) {
+      alert(`Failed to upload image: ${error.message}`);
+    } finally {
+      setUploadingFeaturedImage(false);
+      e.target.value = '';
+    }
+  };
+
   // Make images in editor clickable for editing
   const setupImageClickHandlers = () => {
     if (!contentRef.current) return;
@@ -408,34 +440,34 @@ const AddService = () => {
     setupImageClickHandlers();
   }, [formData.content]);
 
-  // Load service data if editing
+  // Load blog data if editing
   useEffect(() => {
     if (id) {
       setIsEditMode(true);
-      setServiceId(id);
+      setBlogId(id);
       setLoading(true);
       
-      fetch(getApiUrl(`/api/services/${id}`))
+      fetch(getApiUrl(`/api/blogs/${id}`))
         .then((res) => {
-          if (!res.ok) throw new Error('Service not found');
+          if (!res.ok) throw new Error('Blog not found');
           return res.json();
         })
         .then((data) => {
-          // Convert arrays to newline/comma-separated strings for form
+          // Convert arrays to comma-separated strings for form
           setFormData({
             title: data.title || "",
             slug: data.slug || "",
             category: data.category || "",
-            heading: data.heading || "",
-            subTitle: data.subTitle || "",
+            subCategory: data.subCategory || "",
+            author: data.author || "",
+            excerpt: data.excerpt || "",
             description: data.description || "",
             content: data.content || "",
             image: data.image || "",
+            bg: data.bg || "",
             featured: data.featured || false,
-            features: Array.isArray(data.features) ? data.features.join("\n") : "",
-            benefits: Array.isArray(data.benefits) ? data.benefits.join("\n") : "",
+            tags: Array.isArray(data.tags) ? data.tags.join(", ") : "",
             keywords: Array.isArray(data.keywords) ? data.keywords.join(", ") : "",
-            order: data.order || 0,
             status: data.status || "active"
           });
           
@@ -447,7 +479,7 @@ const AddService = () => {
           setLoading(false);
         })
         .catch((err) => {
-          setMessage({ type: "error", text: `Failed to load service: ${err.message}` });
+          setMessage({ type: "error", text: `Failed to load blog: ${err.message}` });
           setLoading(false);
         });
     }
@@ -465,75 +497,71 @@ const AddService = () => {
 
     try {
       // Convert comma-separated strings to arrays
-      const serviceData = {
+      const blogData = {
         ...formData,
-        features: formData.features 
-          ? formData.features.split("\n").map(f => f.trim()).filter(f => f)
-          : [],
-        benefits: formData.benefits 
-          ? formData.benefits.split("\n").map(b => b.trim()).filter(b => b)
+        tags: formData.tags 
+          ? formData.tags.split(",").map(t => t.trim()).filter(t => t)
           : [],
         keywords: formData.keywords 
           ? formData.keywords.split(",").map(k => k.trim()).filter(k => k)
-          : [],
-        order: parseInt(formData.order) || 0
+          : []
       };
 
       let response;
       if (isEditMode) {
-        // Update existing service
-        response = await fetch(getApiUrl(`/api/services/${serviceId}`), {
+        // Update existing blog
+        response = await fetch(getApiUrl(`/api/blogs/${blogId}`), {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(serviceData)
+          body: JSON.stringify(blogData)
         });
       } else {
-        // Create new service
-        response = await fetch(getApiUrl("/api/services"), {
+        // Create new blog
+        response = await fetch(getApiUrl("/api/blogs"), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(serviceData)
+          body: JSON.stringify(blogData)
         });
       }
 
       if (!response.ok) {
-        throw new Error(isEditMode ? "Failed to update service" : "Failed to create service");
+        throw new Error(isEditMode ? "Failed to update blog" : "Failed to create blog");
       }
 
       const result = await response.json();
       setMessage({ 
         type: "success", 
         text: isEditMode 
-          ? `Service "${formData.title}" updated successfully!` 
-          : `Service "${formData.title}" created successfully!`
+          ? `Blog "${formData.title}" updated successfully!` 
+          : `Blog "${formData.title}" created successfully!`
       });
       
       // Redirect after success
       setTimeout(() => {
-        if (confirm(`Service ${isEditMode ? 'updated' : 'created'}! Do you want to view it?`)) {
-          router.push(`/services/${formData.slug}`);
+        if (confirm(`Blog ${isEditMode ? 'updated' : 'created'}! Do you want to view it?`)) {
+          router.push(`/blogs/${formData.slug}`);
         } else if (isEditMode) {
-          router.push('/admin/manage-services');
+          router.push('/admin/manage-blogs');
         } else {
           // Reset form for next entry
           setFormData({
             title: "",
             slug: "",
             category: "",
-            heading: "",
-            subTitle: "",
+            subCategory: "",
+            author: "",
+            excerpt: "",
             description: "",
             content: "",
             image: "",
+            bg: "",
             featured: false,
-            features: "",
-            benefits: "",
+            tags: "",
             keywords: "",
-            order: 0,
             status: "active"
           });
           if (contentRef.current) {
@@ -545,7 +573,7 @@ const AddService = () => {
     } catch (error) {
       setMessage({ 
         type: "error", 
-        text: error.message || `Failed to ${isEditMode ? 'update' : 'create'} service. Make sure backend is running.` 
+        text: error.message || `Failed to ${isEditMode ? 'update' : 'create'} blog. Make sure backend is running.` 
       });
     } finally {
       setLoading(false);
@@ -580,8 +608,8 @@ const AddService = () => {
       
       <div className={styles.container}>
       <div className={styles.header}>
-        <h1>{isEditMode ? 'Edit Service' : 'Add New Service'}</h1>
-        <p>{isEditMode ? 'Update the service information below' : 'Create a new service that will appear on the services page and have its own detail page'}</p>
+        <h1>{isEditMode ? 'Edit Blog' : 'Add New Blog'}</h1>
+        <p>{isEditMode ? 'Update the blog information below' : 'Create a new blog post that will appear on the blogs page and have its own detail page'}</p>
       </div>
 
       {message.text && (
@@ -596,7 +624,7 @@ const AddService = () => {
           
           <div className={styles.formGroup}>
             <label htmlFor="title">
-              Service Title <span className={styles.required}>*</span>
+              Blog Title <span className={styles.required}>*</span>
             </label>
             <input
               type="text"
@@ -605,7 +633,7 @@ const AddService = () => {
               value={formData.title}
               onChange={handleChange}
               required
-              placeholder="e.g., Feasibility Studies"
+              placeholder="e.g., 10 Tips for Effective Market Research"
             />
           </div>
 
@@ -622,7 +650,7 @@ const AddService = () => {
                   value={formData.slug}
                   onChange={handleChange}
                   required
-                  placeholder="feasibility-studies"
+                  placeholder="10-tips-effective-market-research"
                 />
                 <button 
                   type="button" 
@@ -632,9 +660,23 @@ const AddService = () => {
                   Generate
                 </button>
               </div>
-              <small>URL: /services/{formData.slug || "your-slug"}</small>
+              <small>URL: /blogs/{formData.slug || "your-slug"}</small>
             </div>
 
+            <div className={styles.formGroup}>
+              <label htmlFor="author">Author</label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                value={formData.author}
+                onChange={handleChange}
+                placeholder="e.g., John Doe"
+              />
+            </div>
+          </div>
+
+          <div className={styles.formRow}>
             <div className={styles.formGroup}>
               <label htmlFor="category">Category</label>
               <input
@@ -643,35 +685,35 @@ const AddService = () => {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                placeholder="e.g., Market Research Services"
+                placeholder="e.g., Market Research"
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="subCategory">Sub Category</label>
+              <input
+                type="text"
+                id="subCategory"
+                name="subCategory"
+                value={formData.subCategory}
+                onChange={handleChange}
+                placeholder="e.g., Tips & Guides"
               />
             </div>
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="heading">Heading</label>
-            <input
-              type="text"
-              id="heading"
-              name="heading"
-              value={formData.heading}
-              onChange={handleChange}
-              placeholder="Short catchy heading"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="subTitle">
-              Subtitle <span className={styles.required}>*</span>
+            <label htmlFor="excerpt">
+              Excerpt <span className={styles.required}>*</span>
             </label>
-            <input
-              type="text"
-              id="subTitle"
-              name="subTitle"
-              value={formData.subTitle}
+            <textarea
+              id="excerpt"
+              name="excerpt"
+              value={formData.excerpt}
               onChange={handleChange}
               required
-              placeholder="Brief description shown on card"
+              rows="2"
+              placeholder="Brief summary shown on blog cards"
             />
           </div>
 
@@ -686,7 +728,7 @@ const AddService = () => {
               onChange={handleChange}
               required
               rows="3"
-              placeholder="Longer description for SEO and hero section"
+              placeholder="Longer description for SEO and detail page"
             />
           </div>
         </div>
@@ -696,7 +738,7 @@ const AddService = () => {
           
           <div className={styles.formGroup}>
             <label>
-              Service Content <span className={styles.required}>*</span>
+              Blog Content <span className={styles.required}>*</span>
             </label>
             
             {/* Rich Text Editor Toolbar */}
@@ -881,29 +923,49 @@ const AddService = () => {
         </div>
 
         <div className={styles.section}>
-          <h2>Features & Benefits</h2>
+          <h2>Media & SEO</h2>
           
-          <div className={styles.formGroup}>
-            <label htmlFor="features">Features (one per line)</label>
-            <textarea
-              id="features"
-              name="features"
-              value={formData.features}
-              onChange={handleChange}
-              rows="8"
-              placeholder="Technical Feasibility Assessment&#10;Economic & Financial Analysis&#10;Market Research & Demand Analysis"
-            />
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label htmlFor="image">Featured Image (Optional)</label>
+              <div className={styles.imageUploadGroup}>
+                <input
+                  type="text"
+                  id="image"
+                  name="image"
+                  value={formData.image}
+                  onChange={handleChange}
+                  placeholder="/services/blog-featured-image.jpg"
+                />
+                <button 
+                  type="button"
+                  onClick={() => featuredImageInputRef.current?.click()}
+                  className={styles.uploadImageBtn}
+                  disabled={uploadingFeaturedImage}
+                >
+                  {uploadingFeaturedImage ? '⏳ Uploading...' : '📤 Upload'}
+                </button>
+              </div>
+              <input
+                ref={featuredImageInputRef}
+                type="file"
+                accept="image/jpeg,image/jpg,image/png,image/gif,image/webp,image/avif"
+                onChange={handleFeaturedImageUpload}
+                style={{ display: 'none' }}
+              />
+              <small>Optional: Additional featured image for detail page</small>
+            </div>
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="benefits">Benefits (one per line)</label>
-            <textarea
-              id="benefits"
-              name="benefits"
-              value={formData.benefits}
+            <label htmlFor="tags">Tags (comma-separated)</label>
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              value={formData.tags}
               onChange={handleChange}
-              rows="6"
-              placeholder="Make informed decisions&#10;Identify risks early&#10;Validate market demand"
+              placeholder="market research, tips, business strategy"
             />
           </div>
 
@@ -915,7 +977,7 @@ const AddService = () => {
               name="keywords"
               value={formData.keywords}
               onChange={handleChange}
-              placeholder="feasibility study, project viability, business analysis"
+              placeholder="market research, data analysis, business insights"
             />
           </div>
         </div>
@@ -933,7 +995,7 @@ const AddService = () => {
                   checked={formData.featured}
                   onChange={handleChange}
                 />
-                <span>Featured Service</span>
+                <span>Featured Blog</span>
               </label>
             </div>
 
@@ -955,7 +1017,7 @@ const AddService = () => {
         <div className={styles.actions}>
           <button 
             type="button" 
-            onClick={() => router.push(isEditMode ? "/admin/manage-services" : "/services")}
+            onClick={() => router.push(isEditMode ? "/admin/manage-blogs" : "/admin")}
             className={styles.cancelButton}
             disabled={loading}
           >
@@ -966,7 +1028,7 @@ const AddService = () => {
             className={styles.submitButton}
             disabled={loading}
           >
-            {loading ? (isEditMode ? "Updating Service..." : "Creating Service...") : (isEditMode ? "Update Service" : "Create Service")}
+            {loading ? (isEditMode ? "Updating Blog..." : "Creating Blog...") : (isEditMode ? "Update Blog" : "Create Blog")}
           </button>
         </div>
       </form>
@@ -975,4 +1037,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default AddBlog;

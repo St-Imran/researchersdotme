@@ -127,13 +127,13 @@
   font-weight: 600;
 }
 
-.servicesList {
+.blogsList {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.serviceCard {
+.blogCard {
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
@@ -145,16 +145,16 @@
   transition: all 0.3s ease;
 }
 
-.serviceCard:hover {
+.blogCard:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
-.serviceInfo {
+.blogInfo {
   flex: 1;
 }
 
-.serviceHeader {
+.blogHeader {
   display: flex;
   justify-content: space-between;
   align-items: start;
@@ -162,7 +162,7 @@
   gap: 1rem;
 }
 
-.serviceHeader h3 {
+.blogHeader h3 {
   font-size: 1.25rem;
   color: #333;
   margin: 0;
@@ -197,13 +197,13 @@
   color: #856404;
 }
 
-.serviceDesc {
+.blogDesc {
   color: #666;
   margin-bottom: 1rem;
   line-height: 1.6;
 }
 
-.serviceMeta {
+.blogMeta {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
@@ -217,7 +217,7 @@
   gap: 0.25rem;
 }
 
-.serviceActions {
+.blogActions {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -308,12 +308,12 @@
     text-align: center;
   }
 
-  .serviceCard {
+  .blogCard {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .serviceActions {
+  .blogActions {
     flex-direction: row;
   }
 

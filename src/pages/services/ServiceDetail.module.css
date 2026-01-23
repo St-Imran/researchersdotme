@@ -1,6 +1,7 @@
 .serviceDetailContainer {
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding-bottom: 3rem;
 }
 
 /* Breadcrumb Section */
@@ -112,12 +113,16 @@
   padding: 3rem;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  min-height: 400px;
+  overflow: visible;
 }
 
 /* HTML Content Styles */
 .htmlContent {
   line-height: 1.8;
   color: #333;
+  padding-bottom: 3rem;
+  min-height: 300px;
 }
 
 .htmlContent h1 {
@@ -346,6 +351,10 @@
   margin: 3rem 0;
 }
 
+.section:last-of-type {
+  margin-bottom: 5rem;
+}
+
 .section h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -455,9 +464,13 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 3rem;
-  border-radius: 16px;
+  border-radius: 20px;
   text-align: center;
-  margin: 3rem 0 0;
+  margin: 3rem auto 0;
+  clear: both;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .ctaSection h2 {
