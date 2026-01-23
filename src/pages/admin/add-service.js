@@ -14,6 +14,8 @@ const AddService = () => {
   const [message, setMessage] = useState({ type: "", text: "" });
   const [showImageModal, setShowImageModal] = useState(false);
   const [pendingImageFile, setPendingImageFile] = useState(null);
+  const [editingImage, setEditingImage] = useState(null); // Track image being edited
+  const [savedSelection, setSavedSelection] = useState(null); // Store cursor position
   const [isEditMode, setIsEditMode] = useState(false);
   const [serviceId, setServiceId] = useState(null);
   
@@ -81,7 +83,48 @@ const AddService = () => {
     }
   };
 
+  // Resize image using Canvas API
+  const resizeImage = (file, width, height) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          canvas.toBlob((blob) => {
+            if (blob) {
+              // Create a new File object with the resized blob
+              const resizedFile = new File([blob], file.name, {
+                type: file.type,
+                lastModified: Date.now(),
+              });
+              resolve(resizedFile);
+            } else {
+              reject(new Error('Failed to resize image'));
+            }
+          }, file.type, 0.92); // 0.92 quality for good balance
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   const insertImage = async () => {
+    // Save current selection/cursor position
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0) {
+      setSavedSelection(selection.getRangeAt(0).cloneRange());
+    }
+    
     // Trigger hidden file input
     if (imageInputRef.current) {
       imageInputRef.current.click();
@@ -113,51 +156,130 @@ const AddService = () => {
     e.target.value = '';
   };
 
-  const handleImageModalSubmit = async (altText) => {
+  const handleImageModalSubmit = async (altText, resizeOptions = null) => {
     if (!pendingImageFile) return;
     
     setShowImageModal(false);
+    
+    // If editing an existing image, just update its attributes
+    if (editingImage) {
+      const imgElement = editingImage.element;
+      
+      // Update alt text
+      imgElement.alt = altText;
+      
+      // Update size if resize options provided
+      if (resizeOptions && resizeOptions.width) {
+        imgElement.style.maxWidth = `${resizeOptions.width}px`;
+        imgElement.style.width = '100%';
+        imgElement.style.height = 'auto';
+      }
+      
+      // Update form data
+      if (contentRef.current) {
+        setFormData(prev => ({ ...prev, content: contentRef.current.innerHTML }));
+      }
+      
+      setEditingImage(null);
+      setPendingImageFile(null);
+      setupImageClickHandlers();
+      
+      setMessage({ type: 'success', text: 'Image updated successfully!' });
+      setTimeout(() => setMessage({ type: '', text: '' }), 2000);
+      
+      return;
+    }
+    
+    // Original insert logic for new images
     setUploadingImage(true);
     
     try {
+      let fileToUpload = pendingImageFile;
+      
+      // Show placeholder in editor while uploading
+      if (contentRef.current && savedSelection) {
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(savedSelection);
+        
+        const placeholder = document.createElement('div');
+        placeholder.className = styles.imagePlaceholder;
+        placeholder.innerHTML = '<div class="' + styles.placeholderSpinner + '"></div><p>Uploading image...</p>';
+        placeholder.id = 'temp-image-placeholder';
+        
+        if (selection.rangeCount > 0) {
+          const range = selection.getRangeAt(0);
+          range.insertNode(placeholder);
+        }
+      }
+      
+      // Resize image if options provided
+      if (resizeOptions && resizeOptions.width && resizeOptions.height) {
+        setMessage({ type: 'info', text: 'Resizing image...' });
+        fileToUpload = await resizeImage(
+          pendingImageFile, 
+          resizeOptions.width, 
+          resizeOptions.height
+        );
+      }
+      
       // Upload to server
-      const imagePath = await uploadImageToServer(pendingImageFile);
+      const imagePath = await uploadImageToServer(fileToUpload);
       
-      // Insert into editor
-      const imgHtml = `<img src="${imagePath}" alt="${altText}" style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px;" />`;
+      // Remove placeholder if it exists
+      const placeholder = document.getElementById('temp-image-placeholder');
+      if (placeholder) {
+        placeholder.remove();
+      }
       
-      // Focus the editor first
+      // Insert into editor at saved cursor position
       if (contentRef.current) {
         contentRef.current.focus();
         
-        // Insert the image HTML
+        // Restore the saved selection
         const selection = window.getSelection();
+        if (savedSelection) {
+          selection.removeAllRanges();
+          selection.addRange(savedSelection);
+        }
+        
+        // Create and insert the image element
+        const imgElement = document.createElement('img');
+        imgElement.src = imagePath;
+        imgElement.alt = altText;
+        imgElement.style.maxWidth = resizeOptions ? `${resizeOptions.width}px` : '100%';
+        imgElement.style.width = '100%';
+        imgElement.style.height = 'auto';
+        imgElement.style.margin = '20px 0';
+        imgElement.style.borderRadius = '8px';
+        
+        // Insert at current cursor position
         if (selection.rangeCount > 0) {
           const range = selection.getRangeAt(0);
           range.deleteContents();
-          
-          const imgElement = document.createElement('img');
-          imgElement.src = imagePath;
-          imgElement.alt = altText;
-          imgElement.style.maxWidth = '100%';
-          imgElement.style.height = 'auto';
-          imgElement.style.margin = '20px 0';
-          imgElement.style.borderRadius = '8px';
-          
           range.insertNode(imgElement);
           
-          // Move cursor after the image
-          range.setStartAfter(imgElement);
-          range.setEndAfter(imgElement);
+          // Add a line break after the image for better UX
+          const br = document.createElement('br');
+          range.collapse(false);
+          range.insertNode(br);
+          
+          // Move cursor after the break
+          range.setStartAfter(br);
+          range.setEndAfter(br);
           selection.removeAllRanges();
           selection.addRange(range);
         } else {
-          // No selection, append to end
-          contentRef.current.innerHTML += imgHtml;
+          // Fallback: append to end if no selection
+          contentRef.current.appendChild(imgElement);
+          contentRef.current.appendChild(document.createElement('br'));
         }
         
         // Update form data
         setFormData(prev => ({ ...prev, content: contentRef.current.innerHTML }));
+        
+        // Setup click handlers for the newly inserted image
+        setupImageClickHandlers();
       }
       
       // Show success message briefly
@@ -167,10 +289,16 @@ const AddService = () => {
       }, 2000);
       
     } catch (error) {
+      // Remove placeholder if upload failed
+      const placeholder = document.getElementById('temp-image-placeholder');
+      if (placeholder) {
+        placeholder.remove();
+      }
       alert(`Failed to upload image: ${error.message}`);
     } finally {
       setUploadingImage(false);
       setPendingImageFile(null);
+      setSavedSelection(null); // Clear saved selection
     }
   };
 
@@ -199,12 +327,86 @@ const AddService = () => {
     }
   };
 
+  // Make images in editor clickable for editing
+  const setupImageClickHandlers = () => {
+    if (!contentRef.current) return;
+    
+    const images = contentRef.current.querySelectorAll('img');
+    images.forEach(img => {
+      // Remove old listeners
+      img.style.cursor = 'pointer';
+      img.title = 'Click to edit image size';
+      
+      // Clone to remove old event listeners
+      const newImg = img.cloneNode(true);
+      newImg.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleImageEdit(newImg);
+      });
+      
+      img.parentNode.replaceChild(newImg, img);
+    });
+  };
+
+  // Handle editing an existing image
+  const handleImageEdit = (imgElement) => {
+    const currentWidth = imgElement.naturalWidth || parseInt(imgElement.style.maxWidth) || imgElement.width;
+    const currentAlt = imgElement.alt || '';
+    
+    // Store reference to the image being edited
+    setEditingImage({
+      element: imgElement,
+      currentWidth: currentWidth,
+      currentAlt: currentAlt
+    });
+    
+    // Create a temporary file object from the image src for preview
+    fetch(imgElement.src)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], 'current-image.jpg', { type: blob.type });
+        setPendingImageFile(file);
+        setShowImageModal(true);
+      })
+      .catch(err => {
+        console.error('Failed to load image for editing:', err);
+        alert('Failed to load image for editing');
+      });
+  };
+
+  // Handle deleting an image
+  const handleImageDelete = () => {
+    if (editingImage && editingImage.element) {
+      // Remove the image element from the editor
+      editingImage.element.remove();
+      
+      // Update form data
+      if (contentRef.current) {
+        setFormData(prev => ({ ...prev, content: contentRef.current.innerHTML }));
+      }
+      
+      // Close modal and reset state
+      setShowImageModal(false);
+      setEditingImage(null);
+      setPendingImageFile(null);
+      
+      setMessage({ type: 'success', text: 'Image deleted successfully!' });
+      setTimeout(() => setMessage({ type: '', text: '' }), 2000);
+    }
+  };
+
   // Set initial content only once
   useEffect(() => {
     if (contentRef.current && !contentRef.current.innerHTML) {
       contentRef.current.innerHTML = formData.content || '';
+      setupImageClickHandlers();
     }
   }, []);
+
+  // Setup image click handlers when content changes
+  useEffect(() => {
+    setupImageClickHandlers();
+  }, [formData.content]);
 
   // Load service data if editing
   useEffect(() => {
@@ -357,10 +559,24 @@ const AddService = () => {
         onClose={() => {
           setShowImageModal(false);
           setPendingImageFile(null);
+          setEditingImage(null);
         }}
         onSubmit={handleImageModalSubmit}
-        defaultValue={pendingImageFile ? pendingImageFile.name.split('.')[0].replace(/-|_/g, ' ') : ''}
+        onDelete={editingImage ? handleImageDelete : null}
+        isEditing={!!editingImage}
+        defaultValue={editingImage ? editingImage.currentAlt : (pendingImageFile ? pendingImageFile.name.split('.')[0].replace(/-|_/g, ' ') : '')}
+        imageFile={pendingImageFile}
       />
+      
+      {/* Loading overlay during image upload */}
+      {uploadingImage && (
+        <div className={styles.uploadOverlay}>
+          <div className={styles.uploadSpinner}>
+            <div className={styles.spinner}></div>
+            <p>Uploading and inserting image...</p>
+          </div>
+        </div>
+      )}
       
       <div className={styles.container}>
       <div className={styles.header}>
