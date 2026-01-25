@@ -1,6 +1,6 @@
 // Proxy API endpoint for individual blog details - fetches from backend
-// API routes run server-side and can access both NEXT_PUBLIC_ and regular env vars
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || 'http://localhost:5000';
+// Use NEXT_PUBLIC_API_URL which is available in both client and server
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
 export default async function handler(req, res) {
   const { slug } = req.query;
