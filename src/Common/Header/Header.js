@@ -75,7 +75,7 @@ function Header() {
 
           <div className={styles.headerActions}>
             <a
-              href="https://wa.me/+919999888676"
+              href="https://wa.me/+971565747998"
               className={styles.whatsappBtn}
               target="_blank"
               rel="noopener noreferrer"

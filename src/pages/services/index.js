@@ -181,7 +181,19 @@ const Services = () => {
     return colors[index % colors.length];
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className={styles.servicesContainer}>
+        <div className="container">
+          <div className={styles.loadingState}>
+            <div className={styles.spinner}></div>
+            <p>Loading services...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (error) return <div>{error}</div>;
 
   return (
