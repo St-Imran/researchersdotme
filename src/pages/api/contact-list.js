@@ -4,7 +4,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/contactus`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact-us`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
         });
       }
 
-      const response = await fetch(`${API_BASE_URL}/api/contactus/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact-us/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

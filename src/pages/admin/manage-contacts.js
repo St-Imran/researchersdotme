@@ -60,6 +60,21 @@ export default function ManageContacts() {
     displayContacts = displayContacts.filter(c => !readContacts.includes(c._id));
   }
 
+  // Sort: unread first, then by date (latest first)
+  displayContacts = [...displayContacts].sort((a, b) => {
+    const aIsRead = readContacts.includes(a._id);
+    const bIsRead = readContacts.includes(b._id);
+    
+    // Unread contacts come first
+    if (aIsRead !== bIsRead) {
+      return aIsRead ? 1 : -1;
+    }
+    
+    // Within same read/unread status, sort by date (latest first)
+    // MongoDB ObjectId contains timestamp in first 8 characters
+    return b._id.localeCompare(a._id);
+  });
+
   const isContactRead = (contactId) => readContacts.includes(contactId);
 
   const unreadCount = contacts.filter(c => !readContacts.includes(c._id)).length;
