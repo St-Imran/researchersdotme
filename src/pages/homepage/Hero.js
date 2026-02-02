@@ -23,7 +23,7 @@ function Hero() {
               <div className={style.heroButtons}>
                 <button 
                   className={style.primaryBtn}
-                  onClick={() => router.push("/contact")}
+                  onClick={() => router.push("/contact-us")}
                 >
                   Get Started
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -179,7 +179,7 @@ function Hero() {
             </p>
             <button 
               className={style.ctaButton}
-              onClick={() => router.push("/contact")}
+              onClick={() => router.push("/contact-us")}
             >
               Contact Us Today
             </button>

@@ -15,7 +15,7 @@ export default function Home() {
             Our research experts guide you to make informed decisions that help
             you stay ahead of the competition.
           </p>
-          <Link href="/contact">
+          <Link href="/contact-us">
             <button className={styles.heroButton}>Get Started</button>
           </Link>
         </div>
@@ -118,7 +118,7 @@ export default function Home() {
           Ready to unlock your business potential? Reach out to our team to
           discuss how we can help you.
         </p>
-        <Link href="/contact">
+        <Link href="/contact-us">
           <button className={styles.contactButton}>Contact Us</button>
         </Link>
       </section>

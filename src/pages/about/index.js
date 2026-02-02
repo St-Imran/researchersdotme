@@ -147,7 +147,7 @@ const About = () => {
             <p className={styles.ctaDescription}>
               Let us assist you optimize marketing campaigns by leveraging consumer insights and savor higher conversion rates and ROI
             </p>
-            <Link href="/contact">
+            <Link href="/contact-us">
               <button className={styles.ctaButton}>Become a Client</button>
             </Link>
           </div>

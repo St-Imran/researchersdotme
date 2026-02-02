@@ -197,7 +197,7 @@ const ServiceDetail = () => {
             <p>
               Contact us today to learn more about how {service.title} can benefit your business.
             </p>
-            <Link href="/contact" className={styles.ctaButton}>
+            <Link href="/contact-us" className={styles.ctaButton}>
               Get in Touch
             </Link>
           </div>

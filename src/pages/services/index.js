@@ -468,7 +468,7 @@ const Services = () => {
               Let's discuss how our services can help you achieve your goals.
               Contact us today for a free consultation.
             </p>
-            <Link href="/contact" className={styles.ctaButton}>
+            <Link href="/contact-us" className={styles.ctaButton}>
               Get Started
             </Link>
           </div>
