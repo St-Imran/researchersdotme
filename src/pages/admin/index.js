@@ -168,6 +168,13 @@ export default function AdminDashboard() {
             <span className={styles.quickIcon}>🗑️</span>
             <span className={styles.quickLabel}>Delete Items</span>
           </button>
+          <button 
+            className={styles.quickActionCard}
+            onClick={() => router.push("/admin/manage-contacts")}
+          >
+            <span className={styles.quickIcon}>📧</span>
+            <span className={styles.quickLabel}>View Contacts</span>
+          </button>
         </div>
       </div>
 

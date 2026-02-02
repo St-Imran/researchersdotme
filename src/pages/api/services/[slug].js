@@ -1,5 +1,5 @@
 // API endpoint for fetching, updating, and deleting a single service by slug
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL || 'http://localhost:5000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
 export default async function handler(req, res) {
   const { slug } = req.query;

@@ -181,7 +181,19 @@ const Services = () => {
     return colors[index % colors.length];
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className={styles.servicesContainer}>
+        <div className="container">
+          <div className={styles.loadingState}>
+            <div className={styles.spinner}></div>
+            <p>Loading services...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (error) return <div>{error}</div>;
 
   return (
@@ -456,7 +468,7 @@ const Services = () => {
               Let's discuss how our services can help you achieve your goals.
               Contact us today for a free consultation.
             </p>
-            <Link href="/contact" className={styles.ctaButton}>
+            <Link href="/contact-us" className={styles.ctaButton}>
               Get Started
             </Link>
           </div>
