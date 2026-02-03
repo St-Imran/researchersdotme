@@ -1,0 +1,19 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /api/
+
+# Allow crawling of static assets
+Allow: /img/
+Allow: /services/
+Allow: /_next/static/
+Allow: /_next/image
+
+# Crawl-delay
+Crawl-delay: 0
+
+# Sitemap
+Sitemap: https://researchers.me/sitemap.xml

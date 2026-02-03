@@ -187,7 +187,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://wa.me/+919999888676"
+                    href="https://wa.me/+971565747998"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.whatsappLink}

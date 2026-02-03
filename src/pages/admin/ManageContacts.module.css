@@ -336,11 +336,115 @@
   }
 
   .filters {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .totalCount {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .filterGroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .filterSelect {
+    width: 100%;
   }
 
   .filterBtn {
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
+  }
+
+  /* Mobile card layout for table */
+  .tableWrapper {
+    overflow-x: visible;
+  }
+
+  .table {
+    min-width: auto;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody {
+    display: block;
+  }
+
+  .table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    background: white;
+  }
+
+  .unreadRow {
+    border-left: 4px solid #0070f3;
+  }
+
+  .table td {
+    display: block;
+    padding: 0.5rem 0;
+    border: none;
+  }
+
+  .table td:before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 0.5rem;
+    color: #495057;
+  }
+
+  .dateCell,
+  .nameCell,
+  .emailCell,
+  .phoneCell,
+  .countryCell {
+    white-space: normal;
+  }
+
+  .messageCell {
+    max-width: 100%;
+  }
+
+  .messageTruncate {
+    max-height: 4.5em;
+    overflow: hidden;
+  }
+
+  .messageExpanded {
+    max-height: none;
+  }
+
+  .toggleBtn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    width: auto;
+  }
+
+  .actionsCell {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+    margin-top: 0.5rem;
+  }
+
+  .readBtn,
+  .deleteBtn {
+    flex: 1;
+    margin: 0;
+    padding: 0.75rem 1rem;
   }
 }

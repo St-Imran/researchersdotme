@@ -201,10 +201,10 @@ export default function ContactUs() {
                 <h3 className={styles.infoItemTitle}>Phone</h3>
                 <p className={styles.infoItemText}>
                   <a
-                    href="tel:+919999888676"
+                    href="tel:+971 56 574 7998"
                     style={{ color: "inherit", textDecoration: "none" }}
                   >
-                    +91 9999888676
+                    +971 56 574 7998
                   </a>
                 </p>
               </div>
@@ -216,7 +216,7 @@ export default function ContactUs() {
                 <h3 className={styles.infoItemTitle}>WhatsApp</h3>
                 <p className={styles.infoItemText}>
                   <a
-                    href="https://wa.me/+919999888676"
+                    href="https://wa.me/+971565747998"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: "inherit", textDecoration: "none" }}

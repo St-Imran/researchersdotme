@@ -239,24 +239,24 @@ export default function ManageContacts() {
                   key={contact._id || index} 
                   className={`${styles.newRow} ${!isContactRead(contact._id) ? styles.unreadRow : ''}`}
                 >
-                  <td className={styles.dateCell}>
+                  <td className={styles.dateCell} data-label="Date:">
                     {formatDate(contact._id)}
                   </td>
-                  <td className={styles.nameCell}>{contact.displayName || contact.name || 'N/A'}</td>
-                  <td className={styles.emailCell}>
+                  <td className={styles.nameCell} data-label="Name:">{contact.displayName || contact.name || 'N/A'}</td>
+                  <td className={styles.emailCell} data-label="Email:">
                     <a href={`mailto:${contact.email}`}>{contact.email}</a>
                   </td>
-                  <td className={styles.countryCell}>
+                  <td className={styles.countryCell} data-label="Country:">
                     {contact.country ? getCountryName(contact.country) : 'N/A'}
                   </td>
-                  <td className={styles.phoneCell}>
+                  <td className={styles.phoneCell} data-label="Phone:">
                     {contact.phoneNo || contact.phone ? (
                       <a href={`tel:${contact.country || ''}${contact.phoneNo || contact.phone || ''}`}>
                         {contact.country && `${contact.country} `}{contact.phoneNo || contact.phone || 'N/A'}
                       </a>
                     ) : 'N/A'}
                   </td>
-                  <td className={styles.messageCell}>
+                  <td className={styles.messageCell} data-label="Message:">
                     <div className={expandedMessages[contact._id] ? styles.messageExpanded : styles.messageTruncate}>
                       {contact.message}
                     </div>
@@ -269,7 +269,7 @@ export default function ManageContacts() {
                       </button>
                     )}
                   </td>
-                  <td className={styles.actionsCell}>
+                  <td className={styles.actionsCell} data-label="Actions:">
                     {!isContactRead(contact._id) && (
                       <button 
                         onClick={() => markAsRead(contact._id)}
