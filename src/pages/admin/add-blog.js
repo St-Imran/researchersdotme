@@ -323,6 +323,72 @@ const AddBlog = () => {
     execCommand('formatBlock', `<h${level}>`);
   };
 
+  // Float image left or right for text wrapping
+  const floatImage = (direction) => {
+    const selection = window.getSelection();
+    let imgElement = null;
+    
+    if (selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      const node = range.commonAncestorContainer;
+      
+      // Check various ways the image might be selected
+      if (node.nodeName === 'IMG') {
+        imgElement = node;
+      } else if (node.nodeType === Node.ELEMENT_NODE && node.querySelector('img')) {
+        imgElement = node.querySelector('img');
+      } else if (node.parentNode && node.parentNode.nodeName === 'IMG') {
+        imgElement = node.parentNode;
+      } else if (range.startContainer && range.startContainer.nodeType === Node.ELEMENT_NODE) {
+        const element = range.startContainer;
+        if (element.nodeName === 'IMG') {
+          imgElement = element;
+        } else if (element.querySelector('img')) {
+          imgElement = element.querySelector('img');
+        }
+      }
+      
+      // Also check if anything in the range is an image
+      if (!imgElement && contentRef.current) {
+        const allImages = contentRef.current.querySelectorAll('img');
+        allImages.forEach(img => {
+          if (selection.containsNode(img, true)) {
+            imgElement = img;
+          }
+        });
+      }
+    }
+    
+    if (imgElement) {
+      if (direction === 'left') {
+        imgElement.style.float = 'left';
+        imgElement.style.margin = '10px 20px 10px 0';
+        imgElement.style.display = 'block';
+      } else if (direction === 'right') {
+        imgElement.style.float = 'right';
+        imgElement.style.margin = '10px 0 10px 20px';
+        imgElement.style.display = 'block';
+      } else if (direction === 'none') {
+        imgElement.style.float = 'none';
+        imgElement.style.margin = '20px 0';
+        imgElement.style.display = 'block';
+      }
+      
+      // Update form data
+      if (contentRef.current) {
+        setFormData(prev => ({ ...prev, content: contentRef.current.innerHTML }));
+      }
+      
+      // Show brief confirmation
+      const floatText = direction === 'left' ? 'left' : direction === 'right' ? 'right' : 'reset';
+      setMessage({ type: 'success', text: `Image floated ${floatText}!` });
+      setTimeout(() => setMessage({ type: '', text: '' }), 1500);
+    } else {
+      setMessage({ type: 'error', text: 'Please click on an image first, then use the float buttons.' });
+      setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+    }
+  };
+
   const handleContentBlur = () => {
     if (contentRef.current) {
       setFormData(prev => ({ ...prev, content: contentRef.current.innerHTML }));
@@ -367,11 +433,24 @@ const AddBlog = () => {
     images.forEach(img => {
       // Remove old listeners
       img.style.cursor = 'pointer';
-      img.title = 'Click to edit image size';
+      img.title = 'Double-click to edit image size/alt text';
       
       // Clone to remove old event listeners
       const newImg = img.cloneNode(true);
+      
+      // Single click - just select the image (for float buttons)
       newImg.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Select the image for floating
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNode(newImg);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      });
+      
+      // Double click - open edit modal
+      newImg.addEventListener('dblclick', (e) => {
         e.preventDefault();
         handleImageEdit(newImg);
       });
@@ -868,6 +947,35 @@ const AddBlog = () => {
                 <button 
                   type="button" 
                   className={styles.toolbarBtn}
+                  onClick={() => floatImage('left')}
+                  title="Float Image Left (text wraps on right)"
+                >
+                  📷⬅
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => floatImage('right')}
+                  title="Float Image Right (text wraps on left)"
+                >
+                  ➡📷
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => floatImage('none')}
+                  title="Reset Image (no float)"
+                >
+                  📷
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
                   onClick={insertLink}
                   title="Insert Link"
                 >
@@ -918,6 +1026,8 @@ const AddBlog = () => {
             
             <small>
               Use the toolbar to format text. Click the 🖼️ button to upload images from your computer. Images are automatically saved to the server.
+              <br />
+              <strong>Image controls:</strong> Single-click an image to select it for floating (📷⬅ ➡📷 📷 buttons). Double-click an image to edit its size and alt text.
             </small>
           </div>
         </div>

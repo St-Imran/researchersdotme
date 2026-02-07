@@ -270,6 +270,9 @@
   margin: 1.25rem 0 0.75rem 0;
   color: #444;
   font-weight: 600;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
 }
 
 .richTextEditor h3 {
@@ -300,12 +303,28 @@
   cursor: pointer;
   transition: all 0.2s ease;
   border: 2px solid transparent;
+  display: block;
 }
 
 .richTextEditor img:hover {
   box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
   border-color: #667eea;
   transform: translateY(-2px);
+}
+
+/* Floating images with text wrap */
+.richTextEditor img[style*="float: left"],
+.richTextEditor img[style*="float:left"] {
+  float: left;
+  margin: 10px 20px 10px 0;
+  max-width: 50%;
+}
+
+.richTextEditor img[style*="float: right"],
+.richTextEditor img[style*="float:right"] {
+  float: right;
+  margin: 10px 0 10px 20px;
+  max-width: 50%;
 }
 
 .richTextEditor img:hover::after {
