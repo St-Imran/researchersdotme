@@ -323,6 +323,268 @@ const AddBlog = () => {
     execCommand('formatBlock', `<h${level}>`);
   };
 
+  // Color functions
+  const setFontColor = (color) => {
+    execCommand('foreColor', color);
+    contentRef.current?.focus();
+  };
+
+  const setBackgroundColor = (color) => {
+    execCommand('backColor', color);
+    contentRef.current?.focus();
+  };
+
+  // Insert blockquote
+  const insertBlockquote = () => {
+    const selection = window.getSelection();
+    const selectedText = selection.toString();
+    
+    if (selectedText) {
+      const quoteHtml = `<blockquote>${selectedText}</blockquote><p><br></p>`;
+      document.execCommand('insertHTML', false, quoteHtml);
+    } else {
+      const quoteHtml = `<blockquote>Enter your quote here...</blockquote><p><br></p>`;
+      document.execCommand('insertHTML', false, quoteHtml);
+    }
+  };
+
+  // Insert code block
+  const insertCodeBlock = () => {
+    const selection = window.getSelection();
+    const selectedText = selection.toString();
+    const code = selectedText || 'Enter your code here...';
+    const codeHtml = `<pre><code>${code}</code></pre><p><br></p>`;
+    document.execCommand('insertHTML', false, codeHtml);
+  };
+
+  // Insert horizontal rule
+  const insertHorizontalRule = () => {
+    execCommand('insertHorizontalRule');
+  };
+
+  // Insert bordered text box
+  const insertTextBox = () => {
+    const selection = window.getSelection();
+    const selectedText = selection.toString();
+    const text = selectedText || 'Enter your text here...';
+    const boxHtml = `<div style="border: 2px solid #667eea; padding: 15px; margin: 15px 0; border-radius: 8px; background: #f8f9fa;">${text}</div><p><br></p>`;
+    document.execCommand('insertHTML', false, boxHtml);
+  };
+
+  // Insert highlighted text box
+  const insertHighlightBox = () => {
+    const selection = window.getSelection();
+    const selectedText = selection.toString();
+    const text = selectedText || 'Enter highlighted text here...';
+    const boxHtml = `<div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 4px;">${text}</div><p><br></p>`;
+    document.execCommand('insertHTML', false, boxHtml);
+  };
+
+  // Insert table
+  const insertTable = () => {
+    // Insert a default 3x3 table that users can modify
+    let tableHtml = '<div style="margin: 20px 0; border: 2px solid #667eea; border-radius: 8px; padding: 15px; background: #f8f9fa;">';
+    tableHtml += '<div style="margin-bottom: 10px; display: flex; gap: 10px; flex-wrap: wrap;">';
+    tableHtml += '<button onclick="addTableRow(this); return false;" type="button" style="padding: 6px 12px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">+ Add Row</button>';
+    tableHtml += '<button onclick="removeTableRow(this); return false;" type="button" style="padding: 6px 12px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">- Remove Row</button>';
+    tableHtml += '<button onclick="addTableColumn(this); return false;" type="button" style="padding: 6px 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">+ Add Column</button>';
+    tableHtml += '<button onclick="removeTableColumn(this); return false;" type="button" style="padding: 6px 12px; background: #ffc107; color: #333; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">- Remove Column</button>';
+    tableHtml += '</div>';;
+    tableHtml += '<table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; background: white;">';
+    tableHtml += '<thead><tr>';
+    
+    // Header row - 3 columns by default
+    for (let j = 0; j < 3; j++) {
+      tableHtml += '<th style="border: 1px solid #ddd; padding: 12px; background: #667eea; color: white; text-align: left;" contenteditable="true" onclick="window.lastClickedTableCell=this">Header ' + (j + 1) + '</th>';
+    }
+    tableHtml += '</tr></thead><tbody>';
+    
+    // Data rows - 2 rows by default
+    for (let i = 0; i < 2; i++) {
+      tableHtml += '<tr>';
+      for (let j = 0; j < 3; j++) {
+        tableHtml += '<td style="border: 1px solid #ddd; padding: 12px;" contenteditable="true" onclick="window.lastClickedTableCell=this">Cell ' + (i+1) + ',' + (j+1) + '</td>';
+      }
+      tableHtml += '</tr>';
+    }
+    tableHtml += '</tbody></table></div><p><br></p>';
+    
+    document.execCommand('insertHTML', false, tableHtml);
+    
+    // Add global functions for table manipulation if not already added
+    if (typeof window.addTableRow === 'undefined') {
+      // Track last clicked cell globally
+      window.lastClickedTableCell = null;
+      
+      window.addTableRow = function(btn) {
+        const table = btn.parentElement.nextElementSibling;
+        const row = table.insertRow(-1);
+        const colCount = table.rows[0].cells.length;
+        for (let i = 0; i < colCount; i++) {
+          const cell = row.insertCell(i);
+          cell.style.border = '1px solid #ddd';
+          cell.style.padding = '12px';
+          cell.contentEditable = 'true';
+          cell.textContent = 'New cell';
+          cell.onclick = function() { window.lastClickedTableCell = this; };
+        }
+      };
+      
+      window.removeTableRow = function(btn) {
+        const table = btn.parentElement.nextElementSibling;
+        let rowToDelete = -1;
+        
+        // Use last clicked cell to find row
+        if (window.lastClickedTableCell) {
+          let node = window.lastClickedTableCell;
+          while (node && node !== table) {
+            if (node.tagName === 'TR') {
+              rowToDelete = Array.from(table.rows).indexOf(node);
+              break;
+            }
+            node = node.parentElement;
+          }
+        }
+        
+        // If no row is selected or header is selected, default to last row
+        if (rowToDelete <= 0) {
+          rowToDelete = table.rows.length - 1;
+        }
+        
+        if (table.rows.length > 2) {
+          table.deleteRow(rowToDelete);
+          window.lastClickedTableCell = null;
+        } else {
+          alert('Table must have at least one data row!');
+        }
+      };
+      
+      window.addTableColumn = function(btn) {
+        const table = btn.parentElement.nextElementSibling;
+        const rows = table.rows;
+        const headerRow = table.querySelector('thead tr');
+        const headerCell = document.createElement('th');
+        headerCell.style.border = '1px solid #ddd';
+        headerCell.style.padding = '12px';
+        headerCell.style.background = '#667eea';
+        headerCell.style.color = 'white';
+        headerCell.style.textAlign = 'left';
+        headerCell.contentEditable = 'true';
+        headerCell.textContent = 'Header ' + (headerRow.cells.length + 1);
+        headerCell.onclick = function() { window.lastClickedTableCell = this; };
+        headerRow.appendChild(headerCell);
+        
+        for (let i = 1; i < rows.length; i++) {
+          const cell = rows[i].insertCell(-1);
+          cell.style.border = '1px solid #ddd';
+          cell.style.padding = '12px';
+          cell.contentEditable = 'true';
+          cell.textContent = 'New cell';
+          cell.onclick = function() { window.lastClickedTableCell = this; };
+        }
+      };
+      
+      window.removeTableColumn = function(btn) {
+        const table = btn.parentElement.nextElementSibling;
+        const rows = table.rows;
+        let colToDelete = -1;
+        
+        // Use last clicked cell to find column
+        if (window.lastClickedTableCell) {
+          let node = window.lastClickedTableCell;
+          while (node && node !== table) {
+            if (node.tagName === 'TD' || node.tagName === 'TH') {
+              colToDelete = node.cellIndex;
+              break;
+            }
+            node = node.parentElement;
+          }
+        }
+        
+        // If no column is selected, default to last column
+        if (colToDelete === -1) {
+          colToDelete = rows[0].cells.length - 1;
+        }
+        
+        if (rows[0].cells.length > 1) {
+          for (let i = 0; i < rows.length; i++) {
+            rows[i].deleteCell(colToDelete);
+          }
+          window.lastClickedTableCell = null;
+        } else {
+          alert('Table must have at least one column!');
+        }
+      };
+    }
+    
+    setMessage({ type: 'success', text: 'Table inserted! Use the buttons above the table to add/remove rows and columns.' });
+    setTimeout(() => setMessage({ type: '', text: '' }), 4000);
+  };
+
+  // Text case transformations
+  const transformText = (type) => {
+    const selection = window.getSelection();
+    const selectedText = selection.toString();
+    
+    if (selectedText) {
+      let transformed = selectedText;
+      switch(type) {
+        case 'uppercase':
+          transformed = selectedText.toUpperCase();
+          break;
+        case 'lowercase':
+          transformed = selectedText.toLowerCase();
+          break;
+        case 'capitalize':
+          transformed = selectedText.replace(/\b\w/g, char => char.toUpperCase());
+          break;
+      }
+      document.execCommand('insertHTML', false, transformed);
+    }
+  };
+
+  // Insert special characters
+  const insertSpecialChar = (char) => {
+    document.execCommand('insertHTML', false, char);
+    contentRef.current?.focus();
+  };
+
+  // Select all content
+  const selectAllContent = () => {
+    if (contentRef.current) {
+      const range = document.createRange();
+      range.selectNodeContents(contentRef.current);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  };
+
+  // Clear all content with confirmation
+  const clearAllContent = () => {
+    if (window.confirm('Are you sure you want to clear all content? This cannot be undone.')) {
+      if (contentRef.current) {
+        contentRef.current.innerHTML = '';
+        setFormData(prev => ({ ...prev, content: '' }));
+      }
+    }
+  };
+
+  // Get word count
+  const getWordCount = () => {
+    if (contentRef.current) {
+      const text = contentRef.current.innerText || '';
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+      return words.length;
+    }
+    return 0;
+  };
+
+  // Set font family
+  const setFontFamily = (font) => {
+    execCommand('fontName', font);
+  };
+
   // Float image left or right for text wrapping
   const floatImage = (direction) => {
     const selection = window.getSelection();
@@ -820,8 +1082,58 @@ const AddBlog = () => {
               Blog Content <span className={styles.required}>*</span>
             </label>
             
+            {/* Word Count Display */}
+            <div className={styles.wordCount}>
+              📊 Words: <strong>{getWordCount()}</strong> | Characters: <strong>{contentRef.current?.innerText?.length || 0}</strong>
+            </div>
+            
             {/* Rich Text Editor Toolbar */}
             <div className={styles.editorToolbar}>
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => execCommand('undo')}
+                  title="Undo (Ctrl+Z)"
+                >
+                  ↶
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => execCommand('redo')}
+                  title="Redo (Ctrl+Y)"
+                >
+                  ↷
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <select 
+                  className={styles.toolbarSelect}
+                  onChange={(e) => {
+                    if(e.target.value) {
+                      setFontFamily(e.target.value);
+                    }
+                  }}
+                  defaultValue=""
+                >
+                  <option value="">Font Family</option>
+                  <option value="Arial">Arial</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                  <option value="Courier New">Courier New</option>
+                  <option value="Verdana">Verdana</option>
+                  <option value="Tahoma">Tahoma</option>
+                  <option value="Trebuchet MS">Trebuchet MS</option>
+                  <option value="Comic Sans MS">Comic Sans</option>
+                </select>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
               <div className={styles.toolbarGroup}>
                 <button 
                   type="button" 
@@ -939,6 +1251,14 @@ const AddBlog = () => {
                 >
                   ➡
                 </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => execCommand('justifyFull')}
+                  title="Justify"
+                >
+                  ⬌
+                </button>
               </div>
 
               <div className={styles.toolbarDivider}></div>
@@ -995,13 +1315,317 @@ const AddBlog = () => {
               <div className={styles.toolbarDivider}></div>
 
               <div className={styles.toolbarGroup}>
+                <span className={styles.toolbarLabel}>Text:</span>
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setFontColor('#000000')}
+                  style={{background: '#000000'}}
+                  title="Black"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setFontColor('#dc3545')}
+                  style={{background: '#dc3545'}}
+                  title="Red"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setFontColor('#28a745')}
+                  style={{background: '#28a745'}}
+                  title="Green"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setFontColor('#007bff')}
+                  style={{background: '#007bff'}}
+                  title="Blue"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setFontColor('#ffc107')}
+                  style={{background: '#ffc107'}}
+                  title="Yellow"
+                />
+                <input 
+                  type="color" 
+                  className={styles.colorInput}
+                  onChange={(e) => setFontColor(e.target.value)}
+                  title="Custom Text Color"
+                  defaultValue="#000000"
+                />
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <span className={styles.toolbarLabel}>BG:</span>
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setBackgroundColor('#ffffff')}
+                  style={{background: '#ffffff', border: '1px solid #ccc'}}
+                  title="White"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setBackgroundColor('#ffeb3b')}
+                  style={{background: '#ffeb3b'}}
+                  title="Yellow Highlight"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setBackgroundColor('#80ed99')}
+                  style={{background: '#80ed99'}}
+                  title="Green Highlight"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setBackgroundColor('#a8daff')}
+                  style={{background: '#a8daff'}}
+                  title="Blue Highlight"
+                />
+                <button 
+                  type="button" 
+                  className={styles.colorBtn}
+                  onClick={() => setBackgroundColor('#ffc9e0')}
+                  style={{background: '#ffc9e0'}}
+                  title="Pink Highlight"
+                />
+                <input 
+                  type="color" 
+                  className={styles.colorInput}
+                  onChange={(e) => setBackgroundColor(e.target.value)}
+                  title="Custom Background Color"
+                  defaultValue="#ffffff"
+                />
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
                 <button 
                   type="button" 
                   className={styles.toolbarBtn}
-                  onClick={() => execCommand('removeFormat')}
-                  title="Clear Formatting"
+                  onClick={() => execCommand('indent')}
+                  title="Indent"
                 >
-                  ✕ Clear
+                  ➡️
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => execCommand('outdent')}
+                  title="Outdent"
+                >
+                  ⬅️
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => execCommand('subscript')}
+                  title="Subscript"
+                >
+                  X₂
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => execCommand('superscript')}
+                  title="Superscript"
+                >
+                  X²
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={insertBlockquote}
+                  title="Insert Blockquote"
+                >
+                  💬 Quote
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={insertCodeBlock}
+                  title="Insert Code Block"
+                >
+                  &lt;/&gt; Code
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={insertHorizontalRule}
+                  title="Insert Horizontal Line"
+                >
+                  ―
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={insertTextBox}
+                  title="Insert Bordered Text Box"
+                >
+                  📦 Box
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={insertHighlightBox}
+                  title="Insert Highlight Box"
+                >
+                  ⭐ Highlight
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={insertTable}
+                  title="Insert Table"
+                >
+                  ⊞ Table
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => transformText('uppercase')}
+                  title="UPPERCASE"
+                >
+                  AA
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => transformText('lowercase')}
+                  title="lowercase"
+                >
+                  aa
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => transformText('capitalize')}
+                  title="Capitalize Each Word"
+                >
+                  Aa
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <select 
+                  className={styles.toolbarSelect}
+                  onChange={(e) => {
+                    if(e.target.value) {
+                      insertSpecialChar(e.target.value);
+                      e.target.value = '';
+                    }
+                  }}
+                  defaultValue=""
+                >
+                  <option value="">Symbols</option>
+                  <option value="©">© Copyright</option>
+                  <option value="®">® Registered</option>
+                  <option value="™">™ Trademark</option>
+                  <option value="€">€ Euro</option>
+                  <option value="£">£ Pound</option>
+                  <option value="¥">¥ Yen</option>
+                  <option value="°">° Degree</option>
+                  <option value="±">± Plus-Minus</option>
+                  <option value="×">× Multiply</option>
+                  <option value="÷">÷ Divide</option>
+                  <option value="→">→ Arrow Right</option>
+                  <option value="←">← Arrow Left</option>
+                  <option value="↑">↑ Arrow Up</option>
+                  <option value="↓">↓ Arrow Down</option>
+                  <option value="✓">✓ Check</option>
+                  <option value="✗">✗ Cross</option>
+                  <option value="★">★ Star</option>
+                  <option value="♥">♥ Heart</option>
+                  <option value="•">• Bullet</option>
+                  <option value="…">… Ellipsis</option>
+                </select>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={selectAllContent}
+                  title="Select All (Ctrl+A)"
+                >
+                  ⊡ All
+                </button>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={clearAllContent}
+                  title="Clear All Content"
+                  style={{color: '#dc3545'}}
+                >
+                  🗑️ Clear
+                </button>
+              </div>
+
+              <div className={styles.toolbarDivider}></div>
+
+              <div className={styles.toolbarGroup}>
+                <button 
+                  type="button" 
+                  className={styles.toolbarBtn}
+                  onClick={() => {
+                    const selection = window.getSelection();
+                    if (selection.toString()) {
+                      execCommand('removeFormat');
+                    } else {
+                      // If nothing selected, select all and remove format
+                      if (window.confirm('No text selected. Remove all formatting from entire content?')) {
+                        selectAllContent();
+                        setTimeout(() => {
+                          execCommand('removeFormat');
+                          // Deselect
+                          window.getSelection().removeAllRanges();
+                        }, 100);
+                      }
+                    }
+                  }}
+                  title="Remove Formatting (select text first, or click to format all)"
+                >
+                  ✕ Format
                 </button>
               </div>
             </div>
